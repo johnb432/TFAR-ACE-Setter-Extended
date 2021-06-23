@@ -1,0 +1,13 @@
+name = "ACE-TFAR-Setter-Extended"
+prefix = "tfar_ace_extended"
+author = "johnb43"
+template = "cba"
+mainprefix = "x"
+files = [
+    "CHANGELOG.md",
+    "mod.cpp",
+    "LICENSE",
+    "README.md"
+]
+folder_optionals = false
+sig_version = 3
