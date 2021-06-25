@@ -1,4 +1,4 @@
-// When arsenal opens, save current radio config
+// When arsenals open, save current radio config
 ["ace_arsenal_displayOpened", {
     // If CBA settings for this are disabled, break
     if (!GVAR(enableArsenalAutoSettings)) exitWith {};
@@ -39,7 +39,7 @@
     GVAR(radioLoadout) = _data;
 }] call BIS_fnc_addScriptedEventHandler;
 
-// When arsenal closes, apply previously saved config
+// When arsenals close, apply previously saved config
 ["ace_arsenal_displayClosed", {
     // If CBA settings for this are disabled, break
     if (!GVAR(enableArsenalAutoSettings)) exitWith {};

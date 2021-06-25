@@ -1,5 +1,5 @@
 <p align="center">
-	<img width="460" height="300" src="https://github.com/RTO-Chatter/ACE-TFAR-Long-Range-Setter/blob/master/image_src/logo_large_grey_alpha.png?raw=true">
+	<img width="460" height="300" src="https://github.com/johnb432/ACE-TFAR-Setter-Extended/blob/main/image_src/logo_large_grey_alpha.png?raw=true">
 </p>
 
 ***
@@ -8,20 +8,33 @@
 
 The mod stores data locally in `profileNamespace` which means it stores configurations on a per profile basis. This has the added side effect of requiring you to save a new configuration for each profile you make use of, but also ensures you can have different LR configurations for different units etc.
 
+## CBA Settings
+- **Air profile:** Allows the player to have a profile applied automatically when getting in an aircraft.
+- **Land profile:** Allows the player to have a profile applied automatically when getting in a ground vehicle.
+- **Ask load confirmation:** This setting will open a confirmation box when you try to load a profile. Handy for avoiding mistakes.
+- **Ask save confirmation:** This setting will open a confirmation box when you try to save a profile. Handy for avoiding mistakes.
+- **Enable automatic arsenal saving of radio settings:** This setting will make the player save his current radio preset before mounting into a vehicle. When exiting the vehicle, the saved settings will be applied again.
+- **Enable automatic mounting saving of radio settings:** This setting will make the player save his current radio preset before accessing an arsenal (Vanilla or ACE). When exiting the vehicle, the saved settings will be applied again.
+- **Enable 'SR' interactions:** If enabled, you will see the load and save options for SRs.
+- **Enable 'LR' interactions:** If enabled, you will see the load and save options for LRs.
+- **Enable 'VLR' interactions:** If enabled, you will see the load and save options for VLRs.
+- **Enable 'SR & LR' interactions:** If enabled, you will see the load and save options if you have access to an SR and LR at the same time.
+- **Enable 'All' interactions:** If enabled, you will see the load and save options if you have access to an SR, LR and VLR at the same time.
+
 ## Links
 
 - [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=1909836103)
+- [GitHub](https://github.com/johnb432/ACE-TFAR-Setter-Extended)
 
 ## Requirements
 
 - [ACE 3](https://steamcommunity.com/sharedfiles/filedetails/?id=463939057)
 - [Task Force Arrowhead Radio (BETA)](https://steamcommunity.com/sharedfiles/filedetails/?id=894678801)
-- [Zeus Enhanced](https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631) (For profile creation and deletion; hopefully in future I will remove that dependency)
+- [Zeus Enhanced](https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631) (For dialogs (GUI); hopefully in future I will remove that dependency)
 
 ## Notes
 
 - TFAR is required, but it is version independent as far as I'm aware. If you use a version other than the one listed, or if you use a local version, this should still work. Currently written and tested under 1.0.328 (Beta).
-- Do not use with side encryption enabled servers. This mod does not care for encryption: It can load BLUFOR encrypted radio settings on REDFOR radios e.g.
 
 ## Credit
 

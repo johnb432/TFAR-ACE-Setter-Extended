@@ -12,24 +12,44 @@
  * Public: No
  */
 
-["Create Radio Preset", [
-    ["EDIT", ["Create new radio preset", "Allows you to store multiple radio presets. If you use whitespaces, it will remove those. DO NOT USE PUNCTUATION MARKS."], "", true]
+["Create/Import Radio Preset", [
+    ["EDIT", ["Preset name", "Allows you to store multiple radio presets. If you use whitespaces, it will remove those. Profiles names are case insensitive. DO NOT USE PUNCTUATION MARKS."], "", true],
+    ["EDIT", ["Preset settings", "Paste radio preset here, if you are importing. Leave blank if you are creating a new profile."], "", true]
 ],
 {
     params ["_results"];
-    _results params ["_newPreset"];
+    _results params ["_preset", "_settings"];
 
-    // Remove spaces from the new name
-    _newPreset = _newPreset splitString " " joinString "";
+    // Remove whitespaces
+    _preset = _preset splitString " " joinString "";
+
+    // If the new preset is invalid, then quit
+    if (_preset isEqualTo "") exitWith {};
+
+    // If settings are left to default, add default preset; otherwise make string into array
+    _settings = parseSimpleArray (["[[], [], [], false]", _settings] select (_settings isNotEqualTo ""));
+
+    // Set the UID on the SR (only required for SR). Done as a precaution if the imported profile comes from another player
+    if ((_settings select 0) isNotEqualTo []) then {
+        (_settings select 0) set [7, getPlayerUID player];
+    };
 
     private _presets = GETPRVAR(QGVAR(profileNames),[]);
 
-    // If the new preset already exists or invalid, then quit
-    if !(_newPreset isNotEqualTo "" && {!(_newPreset in _presets)}) exitWith {};
-
-    // Add the preset to the list of presets
-    _presets pushBack _newPreset;
-    SETPRVAR(QGVAR(profileNames),_presets);
-
-    SETPRVAR(FORMAT_1(QGVAR(profile%1),_newPreset),[ARR_4([],[],[],false)]);
+    // If preset isn't in preset list, add it. Make everything lowercase for string comparison
+    if !((toLower _preset) in (_presets apply {toLower _x})) then {
+        _presets pushBack _preset;
+        SETPRVAR(QGVAR(profileNames),_presets);
+        SETPRVAR(FORMAT_1(QGVAR(profile%1),_preset),_settings);
+    } else {
+        // If preset is already in the list, it's going to overwrite it. Ask for confirmation if necessary. Needs to be scheduled because of BIS_fnc_guiMessage
+        [_preset, _settings] spawn {
+            params ["_preset", "_settings"];
+            // Wait for confimation or setting is not enabled
+            if (!GVAR(askDeleteConfirmation) || {[format ["Are you sure you want to overwrite profile '%1'?", _preset], "Confirmation", "Yes", "No"] call BIS_fnc_guiMessage}) then {
+                // Overwrite profile
+                SETPRVAR(FORMAT_1(QGVAR(profile%1),_preset),_settings);
+            };
+        };
+    };
 }, {}] call zen_dialog_fnc_create;

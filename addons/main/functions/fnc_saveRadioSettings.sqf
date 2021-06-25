@@ -7,6 +7,7 @@
  * 0: Which radios should be saved <ARRAY>
 	* 1: Load other type of radio (only works for LR and VLR) <BOOLEAN>
 	* 2: Which profile is selected <STRING>
+	* 3: SR Radio <STRING>
  *
  * Return Value:
  * None
@@ -14,17 +15,17 @@
  * Public: No
  */
 
-params ["_saveToRadios", "_saveSameType", "_profile"];
+params ["_saveToRadios", "_saveSameType", "_profile", "_radio"];
 _saveToRadios params ["_doSR", "_doLR", "_doVLR"];
 
 // Get data from selected profile
 private _data = GETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),[]);
-private _dataRadio;
+private _dataRadio = [];
 private _text = "SR";
 
 // If the SR settings should be saved
 if (_doSR) then {
-				_dataRadio = (call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings;
+				_dataRadio = ([_radio, call TFAR_fnc_activeSwRadio] select (_radio isEqualTo "")) call TFAR_fnc_getSwSettings;
 
     // If player has no SW radio, it will reset the settings to nothing
 				if (isNil "_dataRadio") then {
@@ -72,4 +73,4 @@ _data set [3, missionNamespace getVariable ["TFAR_core_isHeadsetLowered", false]
 
 SETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),_data);
 
-[format ["Saved %1 settings to %2", _text, _profile], ICON_LOAD] call ace_common_fnc_displayTextPicture;
+[format ["Saved %1 settings to %2", _text, _profile], ICON_SAVE] call ace_common_fnc_displayTextPicture;

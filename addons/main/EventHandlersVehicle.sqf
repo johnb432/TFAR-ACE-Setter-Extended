@@ -3,7 +3,7 @@ player addEventHandler ["GetInMan", {
     // If CBA settings for this are disabled, break
     if (!GVAR(enableMountingAutoSettings)) exitWith {};
 
-	   params ["_unit", "_role", "_vehicle", "_turret"];
+	   params ["_unit", "", "_vehicle"];
 
     // If not correct type of vehicle
     if !(_vehicle isKindOf "Air" || _vehicle isKindOf "Land") exitWith {};
@@ -52,7 +52,7 @@ player addEventHandler ["SeatSwitchedMan", {
     // If CBA settings for this are disabled, break
     if (!GVAR(enableMountingAutoSettings)) exitWith {};
 
-	   params ["_unit1", "_unit2", "_vehicle"];
+	   params ["_unit1", "", "_vehicle"];
 
     // If not correct type of vehicle
     if !(_vehicle isKindOf "Air" || _vehicle isKindOf "Land") exitWith {};
@@ -71,8 +71,8 @@ player addEventHandler ["SeatSwitchedMan", {
     // If no LR radio found in vehicle, then continue
     if (call TFAR_fnc_haveLRRadio) then {
         // Apply VLR to VLR if possible, otherwise a mix of settings (LR -> VLR, VLR -> LR, LR -> LR)
-        private _radioVLR = _unit call TFAR_fnc_vehicleLR;
-        [[_unit call TFAR_fnc_backpackLR, _radioVLR] select (!isNil "_radioVLR"), _data select ([1, 2] select (!isNil {_data select 2} && {(_data select 2) isNotEqualto []}))] call TFAR_fnc_setLrSettings;
+        private _radioVLR = _unit1 call TFAR_fnc_vehicleLR;
+        [[_unit1 call TFAR_fnc_backpackLR, _radioVLR] select (!isNil "_radioVLR"), _data select ([1, 2] select (!isNil {_data select 2} && {(_data select 2) isNotEqualto []}))] call TFAR_fnc_setLrSettings;
     };
 
     // Set the headset up or down
@@ -86,7 +86,7 @@ player addEventHandler ["GetOutMan", {
     // If CBA settings for this are disabled, break
     if (!GVAR(enableMountingAutoSettings)) exitWith {};
 
-	   params ["_unit", "_role", "_vehicle", "_turret"];
+	   params ["_unit", "_role"];
 
     GVAR(radioLoadout) params ["_SR", "_LR", "_headsetStatus"];
 
