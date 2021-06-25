@@ -138,7 +138,7 @@ class CfgVehicles {
                     };
 
                     class GVAR(exportProfile) {
-                         condition = QUOTE(true);
+                         condition = QUOTE(GETPRVAR(QUOTE(QGVAR(profileNames)),[]) isNotEqualTo []);
                          displayName = "Export Profile";
                          EXCEPTIONS;
                          icon = ICON_ADD;
