@@ -25,7 +25,7 @@ class CfgVehicles {
                         };
 
                         class GVAR(saveFromVLRtoLR) {
-                            condition = QUOTE(GVAR(enableVLRInteractions) && {(objectParent _player) call TFAR_fnc_hasVehicleRadio});
+                            condition = QUOTE(GVAR(enableVLRInteractions) && {!isNil {_player call TFAR_fnc_VehicleLR}});
                             displayName = "from VLR to LR";
                             EXCEPTIONS;
                             icon = ICON_LR;
@@ -41,7 +41,7 @@ class CfgVehicles {
                         };
 
                         class GVAR(saveFromVLRtoVLR) {
-                            condition = QUOTE(GVAR(enableVLRInteractions) && {(objectParent _player) call TFAR_fnc_hasVehicleRadio});
+                            condition = QUOTE(GVAR(enableVLRInteractions) && {!isNil {_player call TFAR_fnc_VehicleLR}});
                             displayName = "from VLR to VLR";
                             EXCEPTIONS;
                             icon = ICON_VLR;
@@ -57,7 +57,7 @@ class CfgVehicles {
                         };
 
                         class GVAR(saveAll) {
-                            condition = QUOTE(GVAR(enableAllInteractions) && {call TFAR_fnc_haveSWRadio} && {!isNil {_player call TFAR_fnc_backpackLR}} && {(objectParent _player) call TFAR_fnc_hasVehicleRadio});
+                            condition = QUOTE(GVAR(enableAllInteractions) && {call TFAR_fnc_haveSWRadio} && {!isNil {_player call TFAR_fnc_backpackLR}} && {!isNil {_player call TFAR_fnc_VehicleLR}});
                             displayName = "All";
                             EXCEPTIONS;
                             icon = ICON_ROOT;
@@ -89,7 +89,7 @@ class CfgVehicles {
                         };
 
                         class GVAR(loadFromLRToVLR) {
-                            condition = QUOTE(GVAR(enableVLRInteractions) && {(objectParent _player) call TFAR_fnc_hasVehicleRadio});
+                            condition = QUOTE(GVAR(enableVLRInteractions) && {!isNil {_player call TFAR_fnc_VehicleLR}});
                             displayName = "from LR to VLR";
                             EXCEPTIONS;
                             icon = ICON_VLR;
@@ -97,7 +97,7 @@ class CfgVehicles {
                         };
 
                         class GVAR(loadFromVLRToVLR) {
-                            condition = QUOTE(GVAR(enableVLRInteractions) && {(objectParent _player) call TFAR_fnc_hasVehicleRadio});
+                            condition = QUOTE(GVAR(enableVLRInteractions) && {!isNil {_player call TFAR_fnc_VehicleLR}});
                             displayName = "from VLR to VLR";
                             EXCEPTIONS;
                             icon = ICON_VLR;
@@ -113,7 +113,7 @@ class CfgVehicles {
                         };
 
                         class GVAR(loadAll) {
-                            condition = QUOTE(GVAR(enableAllInteractions) && {call TFAR_fnc_haveSWRadio} && {!isNil {_player call TFAR_fnc_backpackLR}} && {(objectParent _player) call TFAR_fnc_hasVehicleRadio});
+                            condition = QUOTE(GVAR(enableAllInteractions) && {call TFAR_fnc_haveSWRadio} && {!isNil {_player call TFAR_fnc_backpackLR}} && {!isNil {_player call TFAR_fnc_VehicleLR}});
                             displayName = "All";
                             EXCEPTIONS;
                             icon = ICON_ROOT;
@@ -122,7 +122,7 @@ class CfgVehicles {
                     };
 
                     class GVAR(deleteProfile) {
-                         condition = QUOTE(GETPRVAR(QUOTE(QGVAR(profileNames)),[]) isNotEqualTo []);
+                         condition = QUOTE(GETPRVAR(QQGVAR(profileNames),[]) isNotEqualTo []);
                          displayName = "Delete Profile";
                          EXCEPTIONS;
                          icon = ICON_DELETE;
@@ -138,7 +138,7 @@ class CfgVehicles {
                     };
 
                     class GVAR(exportProfile) {
-                         condition = QUOTE(GETPRVAR(QUOTE(QGVAR(profileNames)),[]) isNotEqualTo []);
+                         condition = QUOTE(GETPRVAR(QQGVAR(profileNames),[]) isNotEqualTo []);
                          displayName = "Export Profile";
                          EXCEPTIONS;
                          icon = ICON_ADD;

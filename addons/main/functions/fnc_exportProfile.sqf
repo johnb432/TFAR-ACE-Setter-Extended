@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 /*
- * Authors: johnb43
+ * Author: johnb43
  * Export a profile to the clipboard.
  *
  * Arguments:
@@ -34,5 +34,5 @@
     "ace_clipboard" callExtension (str _settings + ";");
     "ace_clipboard" callExtension "--COMPLETE--";
 
-    [format ["Profile '%1' has been copied to your clipboard.", _selectedPreset], ICON_LOAD] call ace_common_fnc_displayTextPicture;
+    [format ["Profile '%1' has been copied to your clipboard.", _selectedPreset], ICON_LOAD, GVAR(loadColorIcon), call CBA_fnc_currentUnit, 3] call ace_common_fnc_displayTextPicture;
 }, {}] call zen_dialog_fnc_create;

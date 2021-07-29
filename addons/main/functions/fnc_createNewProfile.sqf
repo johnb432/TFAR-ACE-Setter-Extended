@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 /*
- * Authors: johnb43
-	* Creates a new profile.
+ * Author: johnb43
+ * Creates a new profile.
  *
  * Arguments:
  * None
@@ -45,8 +45,8 @@
         // If preset is already in the list, it's going to overwrite it. Ask for confirmation if necessary. Needs to be scheduled because of BIS_fnc_guiMessage
         [_preset, _settings] spawn {
             params ["_preset", "_settings"];
-            // Wait for confimation or setting is not enabled
-            if (!GVAR(askDeleteConfirmation) || {[format ["Are you sure you want to overwrite profile '%1'?", _preset], "Confirmation", "Yes", "No"] call BIS_fnc_guiMessage}) then {
+            // Wait for confirmation or setting is not enabled
+            if (!GVAR(askOverwriteConfirmation) || {[format ["Are you sure you want to overwrite profile '%1'?", _preset], "Confirmation", "Yes", "No"] call BIS_fnc_guiMessage}) then {
                 // Overwrite profile
                 SETPRVAR(FORMAT_1(QGVAR(profile%1),_preset),_settings);
             };

@@ -1,0 +1,54 @@
+[b]TFAR - ACE Radio Setter - Extended[/b] is a simple Quality of Life mod for the ARMA 3 written by johnb43, based off of [url=https://github.com/Tirpitz93/ACE-TFAR-Setter]this mod[/url] which allows you to save/load your TFAR radios configuration via ACE Self-Interactions. This mod is a client side mod.
+
+The mod stores data locally in `profileNamespace` which means it stores configurations on a per profile basis. This has the added side effect of requiring you to save a new configuration for each profile you make use of, but also ensures you can have different LR configurations for different units etc.
+
+This mod also adds a keybind for accessing the 9th SR channel, which can be changed under Options -> Controls -> Configure Addons -> TFAR - ACE Radio Setter - Extended.
+
+[h2]CBA Settings[/h2]
+[list]
+[*] [b]Enable Arsenal Radio settings Saving:[/b] This setting will make the player save his current radio preset before accessing an arsenal (Vanilla or ACE). When exiting the arsenal, the saved settings will be applied again.
+[*] [b]Enable FK Server Detection:[/b] This setting will change your SR channel to your squad's channel automatically after loading a setting and can only be used on an FK server.
+[*] [b]Enable 'SR' Interactions:[/b] If enabled, you will see the load and save options for SRs.
+[*] [b]Enable 'LR' Interactions:[/b] If enabled, you will see the load and save options for LRs.
+[*] [b]Enable 'VLR' Interactions:[/b] If enabled, you will see the load and save options for VLRs.
+[*] [b]Enable 'SR & LR' Interactions:[/b] If enabled, you will see the load and save options if you have access to an SR and LR at the same time.
+[*] [b]Enable 'All' Interactions:[/b] If enabled, you will see the load and save options if you have access to an SR, LR and VLR at the same time.
+[*] [b]Ask Load Confirmation:[/b] This setting will open a confirmation box when you try to load a profile. Handy for avoiding mistakes.
+[*] [b]Ask Save Confirmation:[/b] This setting will open a confirmation box when you try to save a profile. Handy for avoiding mistakes.
+[*] [b]Ask Delete Confirmation:[/b] This setting will open a confirmation box when you try to delete a profile. Handy for avoiding mistakes.
+[*] [b]Ask Overwrite Confirmation:[/b] This setting will open a confirmation box when you try to overwrite a profile when importing/creating profiles. Handy for avoiding mistakes.
+[*] [b]Icon Color in Messages:[/b] This setting changes the color of the icon that is shown when you load/save/export a profile.
+[*] [b]Air Profile:[/b] Allows the player to have a profile applied automatically when getting in an aircraft.
+[*] [b]Land Profile:[/b] Allows the player to have a profile applied automatically when getting in a ground vehicle.
+[*] [b]Enable Mounting Radio settings Saving:[/b] This setting will make the player save his current radio preset before mounting into a vehicle. When exiting the vehicle, the saved settings will be applied again.
+[/list]
+
+[h2]How to[/h2]
+[list]
+[*] Use the "Create/Import Profile" interaction, which will open a dialog (window). In the top line you must give your profile a name and in the lower line you can give settings to a preset, but it's optional. This array is proprietary (see config.cpp in comment).
+[*] Now you can save your current radio settings using the "Save" interaction. SR radios will be individually listed, if there are multiple whereas for LR there will always be 1 interaction. You can select which profile you want to save the settings to.
+[*] You can now load the saved settings using the "Load" interaction.
+[/list]
+
+[h2]Links[/h2]
+[list]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909836103]Steam Workshop[/url]
+[*] [url=https://github.com/johnb432/ACE-TFAR-Setter-Extended]GitHub[/url]
+[/list]
+
+[h2]Notes[/h2]
+[list]
+[*] TFAR is required, but it is version independent as far as I'm aware. If you use a version other than the one listed, or if you use a local version, this should still work. Currently written and tested under 1.0.328 (Beta).
+[/list]
+
+[h2]Credit[/h2]
+
+Credit to the original authors [url=https://github.com/RTO-Chatter]Chatter[/url] & [url=https://github.com/M3ales]M3ales[/url], with edits from [url=https://github.com/Tirpitz93]Tirpitz93[/url] for TFAR Beta compatibility. Very little of their code is left, but it served as a basis and inspiration nonetheless, not to mention their pictures and icons are used in this version. So, thank you guys for making the original [url=https://github.com/Tirpitz93/ACE-TFAR-Setter]mod[/url]!
+
+[h2]How to create PBOs[/h2]
+[list]
+[*] Download hemtt from [url=https://brettmayson.github.io/HEMTT/#/]here[/url]
+[*] Place hemtt.exe inside the project folder (same level as addons)
+[*] Open command terminal, navigate to said folder (Windows: cd <insert path>)
+[*] Type "hemtt build --release"
+[/list]
