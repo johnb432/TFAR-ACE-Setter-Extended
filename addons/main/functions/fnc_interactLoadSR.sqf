@@ -4,7 +4,7 @@
  * Adds all SR to the menu for loading self-interactions.
  *
  * Arguments:
- * 0: Player <OBJECT>
+ * 0: Unit <OBJECT>
  *
  * Return Value:
  * All interaction submenus of SR <ARRAY>
@@ -12,7 +12,7 @@
  * Public: No
  */
 
-params ["_player"];
+params ["_unit"];
 
 private _menus = [];
 
@@ -28,8 +28,8 @@ private _menus = [];
             // Send player and radio information
             [_this select 2 select 0, [true, false, false], true, _this select 2 select 1] call FUNC(profileMenusLoad);
         },
-        [_player, _x] // Action parameters
-    ] call ace_interact_menu_fnc_createAction, [], _player];
-} forEach (_player call TFAR_fnc_radiosList);
+        [_unit, _x] // Action parameters
+    ] call ace_interact_menu_fnc_createAction, [], _unit];
+} forEach (_unit call TFAR_fnc_radiosList);
 
-_menus
+_menus;

@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 /*
- * Authors: johnb43
-	* Deletes a chosen profile.
+ * Author: johnb43
+ * Deletes a chosen profile.
  *
  * Arguments:
  * None
@@ -30,6 +30,7 @@
 
             // Delete the preset from the list if it's in there
             private _index = _presets findIf {_x isEqualTo _this};
+
             if (_index isEqualTo -1) exitWith {};
 
             _presets deleteAt _index;
