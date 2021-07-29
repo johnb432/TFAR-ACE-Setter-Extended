@@ -11,6 +11,7 @@ The mod stores data locally in `profileNamespace` which means it stores configur
 This mod also adds a keybind for accessing the 9th SR channel, which can be changed under Options -> Controls -> Configure Addons -> TFAR - ACE Radio Setter - Extended.
 
 <h2>CBA Settings</h2>
+
 - **Enable Arsenal Radio settings Saving:** This setting will make the player save his current radio preset before accessing an arsenal (Vanilla or ACE). When exiting the arsenal, the saved settings will be applied again.
 - **Enable FK Server Detection:** This setting will change your SR channel to your squad's channel automatically after loading a setting and can only be used on an FK server.
 - **Enable 'SR' Interactions:** If enabled, you will see the load and save options for SRs.
