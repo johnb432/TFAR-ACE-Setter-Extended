@@ -132,3 +132,12 @@
     true,
     false
 ] call CBA_fnc_addSetting;
+
+[
+    QGVAR(crewStatusDefault),
+    "CHECKBOX",
+    ["Default Crew Status", "Sets the crew status you are by default when joining a mission. 'On' means you are crew, 'Off' means you aren't."],
+    [COMPONENT_NAME, "Vehicles"],
+    false,
+    false
+] call CBA_fnc_addSetting;

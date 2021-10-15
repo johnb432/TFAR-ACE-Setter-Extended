@@ -3,10 +3,10 @@
     private _unit = call CBA_fnc_currentUnit;
 
     // If CBA settings for this are disabled, break
-    if (!GVAR(enableArsenalAutoSettings) || {missionNamespace getVariable ["ace_arsenal_center", _unit] isNotEqualto _unit}) exitWith {};
+    if (!GVAR(enableArsenalAutoSettings) || {GETMVAR("ace_arsenal_center",_unit) isNotEqualto _unit}) exitWith {};
 
     // Get currently active radios
-    private _data = [(call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings, (_unit call TFAR_fnc_backpackLR) call TFAR_fnc_getLrSettings, [], missionNamespace getVariable ["TFAR_core_isHeadsetLowered", false]];
+    private _data = [(call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings, (_unit call TFAR_fnc_backpackLR) call TFAR_fnc_getLrSettings, [], GETMVAR("TFAR_core_isHeadsetLowered",false)];
 
     // If entries are nil, set them to []
     {
@@ -22,10 +22,10 @@
     private _unit = call CBA_fnc_currentUnit;
 
     // If CBA settings for this are disabled, break
-    if (!GVAR(enableArsenalAutoSettings) || {missionNamespace getVariable ["BIS_fnc_arsenal_center", _unit] isNotEqualto _unit}) exitWith {};
+    if (!GVAR(enableArsenalAutoSettings) || {GETMVAR("BIS_fnc_arsenal_center",_unit) isNotEqualto _unit}) exitWith {};
 
     // Get currently active radios
-    private _data = [(call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings, (_unit call TFAR_fnc_backpackLR) call TFAR_fnc_getLrSettings, [], missionNamespace getVariable ["TFAR_core_isHeadsetLowered", false]];
+    private _data = [(call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings, (_unit call TFAR_fnc_backpackLR) call TFAR_fnc_getLrSettings, [], GETMVAR("TFAR_core_isHeadsetLowered",false)];
 
     // If entries are nil, set them to []
     {

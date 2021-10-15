@@ -16,5 +16,5 @@
 
 #include "\x\tfar_ace_extended\addons\main\script_macros.hpp"
 
-// Include BI DIK codes.
+// Include BI DIK codes
 #include "\a3\ui_f\hpp\defineDIKCodes.inc"

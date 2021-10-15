@@ -14,7 +14,7 @@
  */
 
 // Set the correct SR channel if FK compat mode is enabled and FKFramework is loaded
-if !(GVAR(enableCompatFK) && {!isNil {"FKF/CfgArsenalBlacklist" call Clib_fnc_getSettings}}) exitWith {};
+if !(GVAR(enableCompatFK) && {!isNil "fkf_main_fnc_addArsenal"}) exitWith {};
 
 params ["_unit", "_radio"];
 

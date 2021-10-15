@@ -20,7 +20,7 @@ if (!isNil {_unit getVariable QGVAR(eventHandlersVehicleIDs)}) exitWith {};
 _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
     _unit addEventHandler ["GetInMan", {
         // If CBA settings for this are disabled, break
-        if (!GVAR(enableMountingAutoSettings)) exitWith {};
+        if (!GVAR(enableMountingAutoSettings) || {!GVAR(crewStatus)}) exitWith {};
 
         params ["_unit", "", "_vehicle"];
 
@@ -28,7 +28,7 @@ _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
         if !(_vehicle isKindOf "Air" || {_vehicle isKindOf "Land"}) exitWith {};
 
         // Get currently active radios
-        private _data = [(call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings, (_unit call TFAR_fnc_backpackLR) call TFAR_fnc_getLrSettings, [], missionNamespace getVariable ["TFAR_core_isHeadsetLowered", false]];
+        private _data = [(call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings, (_unit call TFAR_fnc_backpackLR) call TFAR_fnc_getLrSettings, [], GETMVAR("TFAR_core_isHeadsetLowered",false)];
 
         // If entries are nil, set them to []
         {
@@ -53,7 +53,7 @@ _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
     // When switching seats, apply a profile's config
     _unit addEventHandler ["SeatSwitchedMan", {
         // If CBA settings for this are disabled, break
-        if (!GVAR(enableMountingAutoSettings)) exitWith {};
+        if (!GVAR(enableMountingAutoSettings) || {!GVAR(crewStatus)}) exitWith {};
 
         params ["_unit", "", "_vehicle"];
 
@@ -78,7 +78,7 @@ _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
     // When leaving a vehicle, the previously saved loadout will be applied
     _unit addEventHandler ["GetOutMan", {
         // If CBA settings for this are disabled, break
-        if (!GVAR(enableMountingAutoSettings)) exitWith {};
+        if (!GVAR(enableMountingAutoSettings) || {!GVAR(crewStatus)}) exitWith {};
 
         params ["_unit", "", "_vehicle"];
 
