@@ -57,7 +57,7 @@ if (_doVLR) then {
 } forEach _data;
 
 // Save whether headset is down or up
-_data set [3, missionNamespace getVariable ["TFAR_core_isHeadsetLowered", false]];
+_data set [3, GETMVAR("TFAR_core_isHeadsetLowered",false)];
 
 SETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),_data);
 

@@ -50,7 +50,6 @@ if (_doSR && {_SR isNotEqualTo []}) then {
 if (_doLR && {_LR isNotEqualTo []}) then {
     // If loading from a LR to a LR, saveSameType == true, if loading from VLR to LR, then not
     _radio = _unit call ([TFAR_fnc_vehicleLR, TFAR_fnc_backpackLR] select _loadSameType);
-    //_radio = [_unit call TFAR_fnc_vehicleLR, _unit call TFAR_fnc_backpackLR] select _loadSameType;
     [_radio, _LR] call TFAR_fnc_setLrSettings;
     [_radio, _code] call TFAR_fnc_setLrRadioCode;
 
@@ -61,7 +60,6 @@ if (_doLR && {_LR isNotEqualTo []}) then {
 if (_doVLR && {_VLR isNotEqualTo []}) then {
     // If loading from a VLR to a VLR, saveSameType == true, if loading from LR to VLR, then not
     _radio = _unit call ([TFAR_fnc_backpackLR, TFAR_fnc_vehicleLR] select _loadSameType);
-    //_radio = [_unit call TFAR_fnc_backpackLR, _unit call TFAR_fnc_vehicleLR] select _loadSameType;
     [_radio, _VLR] call TFAR_fnc_setLrSettings;
     [_radio, _code] call TFAR_fnc_setLrRadioCode;
 

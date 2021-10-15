@@ -2,7 +2,7 @@
 
 The mod stores data locally in `profileNamespace` which means it stores configurations on a per profile basis. This has the added side effect of requiring you to save a new configuration for each profile you make use of, but also ensures you can have different LR configurations for different units etc.
 
-This mod also adds a keybind for accessing the 9th SR channel, which can be changed under Options -> Controls -> Configure Addons -> TFAR - ACE Radio Setter - Extended.
+This mod also adds a keybind for accessing the 9th SR channel, which can be changed under Options -> Controls -> Configure Addons -> TFAR - ACE Radio Setter - Extended, as well as the ability to sort radios by their ranges in the ACE arsenal.
 
 [h2]CBA Settings[/h2]
 [list]
@@ -28,6 +28,9 @@ This mod also adds a keybind for accessing the 9th SR channel, which can be chan
 [*] Use the "Create/Import Profile" interaction, which will open a dialog (window). In the top line you must give your profile a name and in the lower line you can give settings to a preset, but it's optional. This array is proprietary (see config.cpp in comment).
 [*] Now you can save your current radio settings using the "Save" interaction. SR radios will be individually listed, if there are multiple whereas for LR there will always be 1 interaction. You can select which profile you want to save the settings to.
 [*] You can now load the saved settings using the "Load" interaction.
+[*] Use the "Set Status" interaction to change your status as a crew member:
+    If you are crew, it will apply radio loadouts in vehicles if they are defined.
+    If you aren't crew, it will do nothing.
 [/list]
 
 [h2]Links[/h2]
@@ -47,8 +50,7 @@ Credit to the original authors [url=https://github.com/RTO-Chatter]Chatter[/url]
 
 [h2]How to create PBOs[/h2]
 [list]
-[*] Download hemtt from [url=https://brettmayson.github.io/HEMTT/#/]here[/url]
-[*] Place hemtt.exe inside the project folder (same level as addons)
-[*] Open command terminal, navigate to said folder (Windows: cd <insert path>)
-[*] Type "hemtt build --release"
+[*] Download and install hemtt from [url=https://github.com/BrettMayson/HEMTT]here[/url]
+[*] Open command terminal, navigate to said folder (Windows: cd 'insert path')
+[*] Type "hemtt build" for pbo, "hemtt build --release" for entire release
 [/list]

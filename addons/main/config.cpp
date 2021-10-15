@@ -9,8 +9,7 @@ class CfgPatches {
         requiredAddons[] = {
             "cba_main",
             "ace_interact_menu",
-            "task_force_radio",
-            "zen_main"
+            "task_force_radio"
         };
         units[] = {};
         weapons[] = {};
@@ -19,10 +18,18 @@ class CfgPatches {
 
 class CfgMods {
     class PREFIX {
-        name = COMPONENT_NAME;
-        actionName = "GitHub";
+        name = "TFAR - ACE Radio Setter - Extended";
+        author = "johnb43";
+        tooltipOwned = "TFAR - ACE Radio Setter - Extended";
+        picture = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
+        logoSmall = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
+        logo = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
+        logoOver = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
+        hidePicture = 0;
+        actionName = "Github";
         action = "https://github.com/johnb432/ACE-TFAR-Setter-Extended";
-        description = "A Simple Quality of Life mod for the ARMA 3 TFAR Addon. Allows you to save your current configuration, and reload it at any point in the future.";
+        description = "A simple quality of life mod for the Arma 3 TFAR Addon. Allows you to save multiple radio configurations and reload them at any point in the future.";
+        overview = "A simple quality of life mod for the Arma 3 TFAR Addon. Allows you to save multiple radio configurations and reload them at any point in the future.";
     };
 };
 
