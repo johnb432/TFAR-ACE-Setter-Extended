@@ -13,7 +13,6 @@ class CfgPatches {
         };
         units[] = {};
         weapons[] = {};
-        VERSION_CONFIG;
     };
 };
 
@@ -28,9 +27,9 @@ class CfgMods {
         action = "https://github.com/johnb432/ACE-TFAR-Setter-Extended";
         description = "A simple quality of life mod for the Arma 3 TFAR Addon. Allows you to save multiple radio configurations and reload them at any point in the future.";
         overview = "A simple quality of life mod for the Arma 3 TFAR Addon. Allows you to save multiple radio configurations and reload them at any point in the future.";
-        overviewPicture = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
-        logo = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
         picture = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
+        logo = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
+        overviewPicture = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
     };
 };
 

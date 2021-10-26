@@ -22,3 +22,4 @@ logo = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
 // logoSmall = ;
 // Picture displayed from the expansions menu/ Optimal size is 2048x1024, other sizes work too; https://community.bistudio.com/wiki/ImageToPAA
 picture = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
+overviewPicture = "\x\tfar_ace_extended\addons\main\ui\logo_ace_tfar_setter_extended.paa";
