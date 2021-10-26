@@ -3,16 +3,18 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        author = "johnb43";
-        authors[] = {"johnb43", "Chatter", "M3ales", "Tirpitz93"};
-        url = "https://github.com/johnb432/ACE-TFAR-Setter-Extended";
+        units[] = {};
+        weapons[] = {};
+        requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "cba_main",
             "ace_interact_menu",
             "task_force_radio"
         };
-        units[] = {};
-        weapons[] = {};
+        author = "johnb43";
+        authors[] = {"johnb43", "Chatter", "M3ales", "Tirpitz93"};
+        url = "https://github.com/johnb432/ACE-TFAR-Setter-Extended";
+        VERSION_CONFIG;
     };
 };
 
