@@ -35,14 +35,13 @@ This mod also adds a keybind for accessing the 9th SR channel, which can be chan
 
 [h2]Links[/h2]
 [list]
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909836103]Steam Workshop[/url]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909836103]Steam Workshop[/url] (original mod)
 [*] [url=https://github.com/johnb432/ACE-TFAR-Setter-Extended]GitHub[/url]
 [/list]
 
 [h2]Notes[/h2]
-[list]
-[*] TFAR is required, but it is version independent as far as I'm aware. If you use a version other than the one listed, or if you use a local version, this should still work. Currently written and tested under 1.0.328 (Beta).
-[/list]
+
+TFAR is required, but it is version independent as far as I'm aware. If you use a version other than the one listed, or if you use a local version, this should still work. Currently written and tested under 1.0.328 (Beta).
 
 [h2]Credit[/h2]
 
