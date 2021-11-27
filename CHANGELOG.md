@@ -1,4 +1,9 @@
-# Changelog for ACE TFAR Setter - Extended 28.9.2021
+# Changelog for TFAR - ACE Setter - Extended 27.11.2021
+
+1.0.1.2
+- Minor tweaks & cleanup.
+
+# Changelog for TFAR - ACE Setter - Extended 15.10.2021
 
 1.0.1.1
 - Added option to assign yourself a crew option:
@@ -7,7 +12,7 @@
 - Added "Sort by radio range" in the ACE arsenal.
 - Removed ZEN dependency.
 
-# Changelog for ACE TFAR Setter - Extended 29.7.2021
+# Changelog for TFAR - ACE Setter - Extended 29.7.2021
 
 1.0.1.0
 - Fixed loadouts being wrongfully loaded when switching seats in vehicles.
@@ -15,7 +20,7 @@
 - Added CBA setting: Overwriting confirmation when importing already used profiles.
 - Added CBA setting: When saving/loading/exporting profiles, you can now set the color of the icon.
 
-# Changelog for ACE TFAR Setter - Extended 25.6.2021
+# Changelog for TFAR - ACE Setter - Extended 25.6.2021
 
 1.0.0.0
 - Initial release.

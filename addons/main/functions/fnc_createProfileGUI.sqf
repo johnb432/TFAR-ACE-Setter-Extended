@@ -78,15 +78,13 @@ _ctrlButtonOk ctrlSetBackgroundColor [0, 0, 0, 0.7];
 _ctrlButtonOk ctrlSetFont "PuristaLight";
 _ctrlButtonOk ctrlSetText "OK";
 _ctrlButtonOk ctrlCommit 0;
-_ctrlButtonOk ctrlAddEventHandler ["ButtonClick",
-    {
-        private _display = ctrlParent (_this select 0);
+_ctrlButtonOk ctrlAddEventHandler ["ButtonClick", {
+    private _display = ctrlParent (_this select 0);
 
-        [ctrlText (_display displayCtrl IDD_EDIT_BOX_NAME), ctrlText (_display displayCtrl IDD_EDIT_BOX_SETTINGS)] call FUNC(createProfile);
+    [ctrlText (_display displayCtrl IDD_EDIT_BOX_NAME), ctrlText (_display displayCtrl IDD_EDIT_BOX_SETTINGS)] call FUNC(createProfile);
 
-        _display closeDisplay IDC_OK;
-    }
-];
+    _display closeDisplay IDC_OK;
+}];
 
 private _ctrlButtonCancel = _display ctrlCreate ["RscButtonMenu", -1, _ctrlGroup];
 _ctrlButtonCancel ctrlSetPosition [POS_X(3.3), POS_Y(4.6), POS_W(5), POS_H(1.2)];
@@ -94,11 +92,9 @@ _ctrlButtonCancel ctrlSetBackgroundColor [0, 0, 0, 0.7];
 _ctrlButtonCancel ctrlSetFont "PuristaLight";
 _ctrlButtonCancel ctrlSetText "CANCEL";
 _ctrlButtonCancel ctrlCommit 0;
-_ctrlButtonCancel ctrlAddEventHandler ["ButtonClick",
-    {
-        (ctrlParent (_this select 0)) closeDisplay IDC_CANCEL;
-    }
-];
+_ctrlButtonCancel ctrlAddEventHandler ["ButtonClick", {
+    (ctrlParent (_this select 0)) closeDisplay IDC_CANCEL;
+}];
 
 // Add display EH for Enter and Escape buttons
 _display displayAddEventHandler ["KeyDown", {

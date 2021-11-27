@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 /*
  * Author: johnb43
- * Creates the UI for deleting a profile.
+ * Creates the UI for selecting a profile.
  * See https://community.bistudio.com/wiki/ctrlCreate, example 5 as main source.
  *
  * Arguments:
@@ -72,15 +72,13 @@ _ctrlButtonOk ctrlSetBackgroundColor [0, 0, 0, 0.7];
 _ctrlButtonOk ctrlSetFont "PuristaLight";
 _ctrlButtonOk ctrlSetText "OK";
 _ctrlButtonOk ctrlCommit 0;
-_ctrlButtonOk ctrlAddEventHandler ["ButtonClick",
-    {
-        private _display = ctrlParent (_this select 0);
+_ctrlButtonOk ctrlAddEventHandler ["ButtonClick", {
+    private _display = ctrlParent (_this select 0);
 
-        (lbCurSel (_display displayCtrl IDD_LIST_SELECTED)) call ([FUNC(deleteProfile), FUNC(exportProfile)] select (GVAR(selectProfileType) isEqualTo EXPORT_PROFILE));
+    (lbCurSel (_display displayCtrl IDD_LIST_SELECTED)) call ([FUNC(deleteProfile), FUNC(exportProfile)] select (GVAR(selectProfileType) isEqualTo EXPORT_PROFILE));
 
-        _display closeDisplay IDC_OK;
-    }
-];
+    _display closeDisplay IDC_OK;
+}];
 
 private _ctrlButtonCancel = _display ctrlCreate ["RscButtonMenu", -1, _ctrlGroup];
 _ctrlButtonCancel ctrlSetPosition [POS_X(3.3), POS_Y(4.6), POS_W(5), POS_H(1.2)];
@@ -88,11 +86,9 @@ _ctrlButtonCancel ctrlSetBackgroundColor [0, 0, 0, 0.7];
 _ctrlButtonCancel ctrlSetFont "PuristaLight";
 _ctrlButtonCancel ctrlSetText "CANCEL";
 _ctrlButtonCancel ctrlCommit 0;
-_ctrlButtonCancel ctrlAddEventHandler ["ButtonClick",
-    {
-        (ctrlParent (_this select 0)) closeDisplay IDC_CANCEL;
-    }
-];
+_ctrlButtonCancel ctrlAddEventHandler ["ButtonClick", {
+    (ctrlParent (_this select 0)) closeDisplay IDC_CANCEL;
+}];
 
 // Add display EH for Enter and Escape buttons
 _display displayAddEventHandler ["KeyDown", {

@@ -20,7 +20,7 @@ _preset = _preset splitString " " joinString "";
 
 // If the new preset is invalid, then quit
 if (_preset isEqualTo "" || toLower _preset isEqualTo "names") exitWith {
-    hint "The chosen name is invalid!";
+    ["The chosen name is invalid!", false, 10, 2] call ace_common_fnc_displayText;
 };
 
 // If settings are left to default, add default preset; otherwise make string into array

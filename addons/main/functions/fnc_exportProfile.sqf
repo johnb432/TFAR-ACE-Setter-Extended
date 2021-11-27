@@ -17,7 +17,7 @@ private _settings = GETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),[]);
 
 // If profile is invalid, don't copy to clipboard
 if (_settings isEqualTo []) exitWith {
-    hint "The chosen profile is invalid!";
+    ["The chosen profile is invalid!", false, 10, 2] call ace_common_fnc_displayText;
 };
 
 // Copy to the clipboard
