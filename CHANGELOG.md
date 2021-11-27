@@ -1,4 +1,9 @@
-# Changelog for TFAR - ACE Setter - Extended 28.9.2021
+# Changelog for TFAR - ACE Setter - Extended 27.11.2021
+
+1.0.1.2
+- Minor tweaks & cleanup.
+
+# Changelog for TFAR - ACE Setter - Extended 15.10.2021
 
 1.0.1.1
 - Added option to assign yourself a crew option:
