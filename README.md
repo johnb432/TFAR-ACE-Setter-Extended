@@ -1,5 +1,5 @@
 <p align="center">
-	<img width="460" height="300" src="https://github.com/johnb432/ACE-TFAR-Setter-Extended/blob/main/image_src/logo_large_grey_alpha.png?raw=true">
+    <img width="460" height="300" src="https://github.com/johnb432/ACE-TFAR-Setter-Extended/blob/main/image_src/logo_large_grey_alpha.png?raw=true">
 </p>
 
 ***

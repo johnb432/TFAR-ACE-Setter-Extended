@@ -12,6 +12,10 @@
  * Public: No
  */
 
+ if (!isClass (configFile >> "ACE_Extensions" >> "ace_clipboard")) exitWith {
+     ["ACE clipboard is disabled!", false, 10, 2] call ace_common_fnc_displayText;
+ };
+
 private _profile = GETPRVAR(QGVAR(profileNames),[]) select _this;
 private _settings = GETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),[]);
 

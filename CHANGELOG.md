@@ -1,3 +1,8 @@
+# Changelog for TFAR - ACE Setter - Extended 31.12.2021
+
+1.0.1.3
+- Check for ACE clipboard.
+
 # Changelog for TFAR - ACE Setter - Extended 27.11.2021
 
 1.0.1.2
