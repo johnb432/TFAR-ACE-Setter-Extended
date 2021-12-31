@@ -41,7 +41,7 @@ This mod also adds the ability to sort radios by their ranges in the ACE arsenal
 [h2]Links[/h2]
 [list]
 [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909836103]Steam Workshop[/url] (original mod)
-[*] [url=https://github.com/johnb432/ACE-TFAR-Setter-Extended]GitHub[/url]
+[*] [url=https://github.com/johnb432/TFAR-ACE-Setter-Extended]GitHub[/url]
 [/list]
 
 [h2]Notes[/h2]

@@ -1,5 +1,5 @@
 <p align="center">
-	<img width="460" height="300" src="https://github.com/johnb432/ACE-TFAR-Setter-Extended/blob/main/image_src/logo_large_grey_alpha.png?raw=true">
+    <img width="460" height="300" src="https://github.com/johnb432/TFAR-ACE-Setter-Extended/blob/main/image_src/logo_large_grey_alpha.png?raw=true">
 </p>
 
 ***
@@ -44,7 +44,7 @@ This mod also adds the ability to sort radios by their ranges in the ACE arsenal
 <h2>Links</h2>
 
 * [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=1909836103) (original mod)
-* [GitHub](https://github.com/johnb432/ACE-TFAR-Setter-Extended)
+* [GitHub](https://github.com/johnb432/TFAR-ACE-Setter-Extended)
 
 <h2>Notes</h2>
 

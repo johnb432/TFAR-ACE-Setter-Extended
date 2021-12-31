@@ -8,6 +8,7 @@ class CfgPatches {
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
             "cba_main",
+            "cba_xeh",
             "ace_interact_menu",
             "task_force_radio"
         };
