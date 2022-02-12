@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+
 /*
  * Author: johnb43
  * Creates the UI for making a new profile.
@@ -9,6 +10,9 @@
  *
  * Return Value:
  * None
+ *
+ * Example:
+ * [] spawn tfar_ace_extended_main_fnc_createProfileGUI;
  *
  * Public: No
  */
@@ -21,8 +25,15 @@ private _yOff = safezoneY + (safezoneH - (_calc / 1.2)) / 2;
 private _wOff = _calc / 40;
 private _hOff = _calc / 30; // (_calc / 1.2) / 25
 
+// Open in Zeus interface if needed
+private _displayParent = findDisplay IDD_RSCDISPLAYCURATOR;
+
+if (isNull _displayParent) then {
+    _displayParent = findDisplay IDD_MISSION;
+};
+
 // Display creation
-private _display = findDisplay IDD_MISSION createDisplay "RscDisplayEmpty";
+private _display = _displayParent createDisplay "RscDisplayEmpty";
 
 // Create group control
 private _ctrlGroup = _display ctrlCreate ["RscControlsGroupNoScrollbars", -1];
@@ -81,7 +92,7 @@ _ctrlButtonOk ctrlCommit 0;
 _ctrlButtonOk ctrlAddEventHandler ["ButtonClick", {
     private _display = ctrlParent (_this select 0);
 
-    [ctrlText (_display displayCtrl IDD_EDIT_BOX_NAME), ctrlText (_display displayCtrl IDD_EDIT_BOX_SETTINGS)] call FUNC(createProfile);
+    [ctrlText (_display displayCtrl IDD_EDIT_BOX_NAME), ctrlText (_display displayCtrl IDD_EDIT_BOX_SETTINGS), displayParent _display] call FUNC(createProfile);
 
     _display closeDisplay IDC_OK;
 }];
@@ -96,23 +107,29 @@ _ctrlButtonCancel ctrlAddEventHandler ["ButtonClick", {
     (ctrlParent (_this select 0)) closeDisplay IDC_CANCEL;
 }];
 
+// Prevent scroll wheel from moving curator camera
+if (_displayParent isEqualTo (findDisplay IDD_RSCDISPLAYCURATOR)) then {
+    _display setVariable [QGVAR(cameraPos), getPosASL curatorCamera];
+    _display displayAddEventHandler ["MouseZChanged", {
+        curatorCamera setPosASL ((_this select 0) getVariable QGVAR(cameraPos));
+    }];
+};
+
 // Add display EH for Enter and Escape buttons
 _display displayAddEventHandler ["KeyDown", {
     params ["_display", "_keyCode"];
 
     // Cancel
-    if (_keyCode isEqualTo DIK_ESCAPE) then {
-        _display closeDisplay IDC_CANCEL;
-    };
+    if (_keyCode isEqualTo DIK_ESCAPE) exitWith {};
 
     // Ok
-    if (_keyCode isEqualTo DIK_RETURN) then {
-        [ctrlText (_display displayCtrl IDD_EDIT_BOX_NAME), ctrlText (_display displayCtrl IDD_EDIT_BOX_SETTINGS)] call FUNC(createProfile);
+    if (_keyCode isEqualTo DIK_RETURN) exitWith {
+        [ctrlText (_display displayCtrl IDD_EDIT_BOX_NAME), ctrlText (_display displayCtrl IDD_EDIT_BOX_SETTINGS), displayParent _display] call FUNC(createProfile);
 
         _display closeDisplay IDC_OK;
     };
 
-    false;
+    true;
 }];
 
 ctrlSetFocus _ctrlEditName;

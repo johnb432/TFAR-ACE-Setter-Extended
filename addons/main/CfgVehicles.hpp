@@ -21,7 +21,7 @@ class CfgVehicles {
                             displayName = "from LR to LR";
                             EXCEPTIONS;
                             icon = ICON_LR;
-                            insertChildren = QUOTE([ARR_3(_player,[ARR_3(false,true,false)],true)] call FUNC(profileMenusSave));
+                            insertChildren = QUOTE([ARR_2(_player,[ARR_3(false,true,false)])] call FUNC(profileMenusSave));
                         };
 
                         class GVAR(saveFromVLRtoLR) {
@@ -45,7 +45,7 @@ class CfgVehicles {
                             displayName = "from VLR to VLR";
                             EXCEPTIONS;
                             icon = ICON_VLR;
-                            insertChildren = QUOTE([ARR_3(_player,[ARR_3(false,false,true)],true)] call FUNC(profileMenusSave));
+                            insertChildren = QUOTE([ARR_2(_player,[ARR_3(false,false,true)])] call FUNC(profileMenusSave));
                         };
 
                         class GVAR(saveSRAndFromLRtoLR) {
@@ -53,7 +53,7 @@ class CfgVehicles {
                             displayName = "SR and from LR to LR";
                             EXCEPTIONS;
                             icon = ICON_ROOT;
-                            insertChildren = QUOTE([ARR_3(_player,[ARR_3(true,true,false)],true)] call FUNC(profileMenusSave));
+                            insertChildren = QUOTE([ARR_2(_player,[ARR_3(true,true,false)])] call FUNC(profileMenusSave));
                         };
 
                         class GVAR(saveAll) {
@@ -61,7 +61,7 @@ class CfgVehicles {
                             displayName = "All";
                             EXCEPTIONS;
                             icon = ICON_ROOT;
-                            insertChildren = QUOTE([ARR_3(_player,[ARR_3(true,true,true)],true)] call FUNC(profileMenusSave));
+                            insertChildren = QUOTE([ARR_2(_player,[ARR_3(true,true,true)])] call FUNC(profileMenusSave));
                         };
                     };
 
@@ -77,7 +77,7 @@ class CfgVehicles {
                             displayName = "from LR to LR";
                             EXCEPTIONS;
                             icon = ICON_LR;
-                            insertChildren = QUOTE([ARR_3(_player,[ARR_3(false,true,false)],true)] call FUNC(profileMenusLoad));
+                            insertChildren = QUOTE([ARR_2(_player,[ARR_3(false,true,false)])] call FUNC(profileMenusLoad));
                         };
 
                         class GVAR(loadFromVLRToLR) {
@@ -101,7 +101,7 @@ class CfgVehicles {
                             displayName = "from VLR to VLR";
                             EXCEPTIONS;
                             icon = ICON_VLR;
-                            insertChildren = QUOTE([ARR_3(_player,[ARR_3(false,false,true)],true)] call FUNC(profileMenusLoad));
+                            insertChildren = QUOTE([ARR_2(_player,[ARR_3(false,false,true)])] call FUNC(profileMenusLoad));
                         };
 
                         class GVAR(loadFromSRAndFromLRToLR) {
@@ -109,7 +109,7 @@ class CfgVehicles {
                             displayName = "SR and from LR to LR";
                             EXCEPTIONS;
                             icon = ICON_ROOT;
-                            insertChildren = QUOTE([ARR_3(_player,[ARR_3(true,true,false)],true)] call FUNC(profileMenusLoad));
+                            insertChildren = QUOTE([ARR_2(_player,[ARR_3(true,true,false)])] call FUNC(profileMenusLoad));
                         };
 
                         class GVAR(loadAll) {
@@ -117,7 +117,7 @@ class CfgVehicles {
                             displayName = "All";
                             EXCEPTIONS;
                             icon = ICON_ROOT;
-                            insertChildren = QUOTE([ARR_3(_player,[ARR_3(true,true,true)],true)] call FUNC(profileMenusLoad));
+                            insertChildren = QUOTE([ARR_2(_player,[ARR_3(true,true,true)])] call FUNC(profileMenusLoad));
                         };
                     };
 
@@ -150,7 +150,7 @@ class CfgVehicles {
                          displayName = "Set Status to Crew";
                          EXCEPTIONS;
                          icon = ICON_PERSON;
-                         statement = QUOTE(call FUNC(setStatus));
+                         statement = QUOTE(_player call FUNC(setStatus));
                     };
 
                     class GVAR(resetCrewStatus) {

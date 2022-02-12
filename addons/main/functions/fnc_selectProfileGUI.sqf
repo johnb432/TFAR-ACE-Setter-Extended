@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+
 /*
  * Author: johnb43
  * Creates the UI for selecting a profile.
@@ -9,6 +10,9 @@
  *
  * Return Value:
  * None
+ *
+ * Example:
+ * 1 spawn tfar_ace_extended_main_fnc_selectProfileGUI;
  *
  * Public: No
  */
@@ -21,8 +25,16 @@ private _yOff = safezoneY + (safezoneH - (_calc / 1.2)) / 2;
 private _wOff = _calc / 40;
 private _hOff = _calc / 30; // (_calc / 1.2) / 25
 
+// Open in Zeus interface if needed
+private _displayParent = findDisplay IDD_RSCDISPLAYCURATOR;
+
+if (isNull _displayParent) then {
+    _displayParent = findDisplay IDD_MISSION;
+};
+
 // Display creation
-private _display = findDisplay IDD_MISSION createDisplay "RscDisplayEmpty";
+private _display = _displayParent createDisplay "RscDisplayEmpty";
+_display setVariable [QGVAR(selectProfileType), _this];
 
 // Create group control
 private _ctrlGroup = _display ctrlCreate ["RscControlsGroupNoHScrollbars", -1];
@@ -63,8 +75,6 @@ _ctrlBackgroundList ctrlCommit 0;
     _ctrlList lbAdd _x;
 } forEach GETPRVAR(QGVAR(profileNames),[]);
 
-GVAR(selectProfileType) = +_this;
-
 // Buttons
 private _ctrlButtonOk = _display ctrlCreate ["RscButtonMenu", -1, _ctrlGroup];
 _ctrlButtonOk ctrlSetPosition [POS_X(15.3), POS_Y(4.6), POS_W(4.8), POS_H(1.2)];
@@ -75,7 +85,7 @@ _ctrlButtonOk ctrlCommit 0;
 _ctrlButtonOk ctrlAddEventHandler ["ButtonClick", {
     private _display = ctrlParent (_this select 0);
 
-    (lbCurSel (_display displayCtrl IDD_LIST_SELECTED)) call ([FUNC(deleteProfile), FUNC(exportProfile)] select (GVAR(selectProfileType) isEqualTo EXPORT_PROFILE));
+    [lbCurSel (_display displayCtrl IDD_LIST_SELECTED), displayParent _display] call ([FUNC(deleteProfile), FUNC(exportProfile)] select ((_display getVariable [QGVAR(selectProfileType), -1]) isEqualTo EXPORT_PROFILE));
 
     _display closeDisplay IDC_OK;
 }];
@@ -90,23 +100,29 @@ _ctrlButtonCancel ctrlAddEventHandler ["ButtonClick", {
     (ctrlParent (_this select 0)) closeDisplay IDC_CANCEL;
 }];
 
+// Prevent scroll wheel from moving curator camera
+if (_displayParent isEqualTo (findDisplay IDD_RSCDISPLAYCURATOR)) then {
+    _display setVariable [QGVAR(cameraPos), getPosASL curatorCamera];
+    _display displayAddEventHandler ["MouseZChanged", {
+        curatorCamera setPosASL ((_this select 0) getVariable QGVAR(cameraPos));
+    }];
+};
+
 // Add display EH for Enter and Escape buttons
 _display displayAddEventHandler ["KeyDown", {
     params ["_display", "_keyCode"];
 
     // Cancel
-    if (_keyCode isEqualTo DIK_ESCAPE) then {
-        _display closeDisplay IDC_CANCEL;
-    };
+    if (_keyCode isEqualTo DIK_ESCAPE) exitWith {};
 
     // Ok
-    if (_keyCode isEqualTo DIK_RETURN) then {
-        (lbCurSel (_display displayCtrl IDD_LIST_SELECTED)) call ([FUNC(deleteProfile), FUNC(exportProfile)] select (GVAR(selectProfileType) isEqualTo EXPORT_PROFILE));
+    if (_keyCode isEqualTo DIK_RETURN) exitWith {
+        [lbCurSel (_display displayCtrl IDD_LIST_SELECTED), displayParent _display] call ([FUNC(deleteProfile), FUNC(exportProfile)] select ((_display getVariable [QGVAR(selectProfileType), -1]) isEqualTo EXPORT_PROFILE));
 
         _display closeDisplay IDC_OK;
     };
 
-    false;
+    true;
 }];
 
 ctrlSetFocus _ctrlList;

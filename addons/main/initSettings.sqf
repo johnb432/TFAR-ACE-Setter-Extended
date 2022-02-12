@@ -1,7 +1,7 @@
 [
     QGVAR(enableArsenalAutoSettings),
     "CHECKBOX",
-    ["Enable Arsenal Radio settings Saving", "Saves the current radio settings before entering the arsenal and applies them when you exit the arsenal (both ACE and BI Arsenals)."],
+    ["Enable Arsenal Radio settings Saving", "Saves the current radio settings before entering the arsenal and applies them when you exit the arsenal (both ACE and BI Arsenals) or after respawning."],
     [COMPONENT_NAME, "Funtionality"],
     true
 ] call CBA_fnc_addSetting;
@@ -56,18 +56,40 @@
 
 [
     QGVAR(airProfile),
-    "EDITBOX",
+    "LIST",
     ["Air Profile", "Applies the specified profile when you get into crew slots of air vehicles."],
     [COMPONENT_NAME, "Vehicles"],
-    ""
+    [["None"] + GETPRVAR(QGVAR(profileNames),[]), ["None"] + GETPRVAR(QGVAR(profileNames),[]), 0],
+    0,
+    {
+        private _profiles = GETPRVAR(QGVAR(profileNames),[]);
+        private _index = _profiles find _this;
+
+        GVAR(airProfileName) = if (_index isEqualTo -1) then {
+            "";
+        } else {
+            _profiles param [_index, ""];
+        };
+    }
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(landProfile),
-    "EDITBOX",
+    "LIST",
     ["Land Profile", "Applies the specified profile when you get into crew slots of land vehicles."],
     [COMPONENT_NAME, "Vehicles"],
-    ""
+    [["None"] + GETPRVAR(QGVAR(profileNames),[]), ["None"] + GETPRVAR(QGVAR(profileNames),[]), 0],
+    0,
+    {
+        private _profiles = GETPRVAR(QGVAR(profileNames),[]);
+        private _index = _profiles find _this;
+
+        GVAR(landProfileName) = if (_index isEqualTo -1) then {
+            "";
+        } else {
+            _profiles param [_index, ""];
+        };
+    }
 ] call CBA_fnc_addSetting;
 
 [

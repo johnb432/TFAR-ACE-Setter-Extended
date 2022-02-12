@@ -6,7 +6,7 @@ This mod also adds the ability to sort radios by their ranges in the ACE arsenal
 
 [h2]CBA Settings[/h2]
 [list]
-[*] [b]Enable Arsenal Radio settings Saving:[/b] This setting will make the player save his current radio preset before accessing an arsenal (Vanilla or ACE). When exiting the arsenal, the saved settings will be applied again.
+[*] [b]Enable Arsenal Radio settings Saving:[/b] This setting will make the player save his current radio preset before accessing an arsenal (Vanilla or ACE). When exiting the arsenal or after respawning, the saved settings will be applied again.
 [*] [b]Enable FK Server Detection:[/b] This setting will change your SR channel to your squad's channel automatically after loading a setting and can only be used on an FK server.
 [*] [b]Enable 'SR' Interactions:[/b] If enabled, you will see the load and save options for SRs.
 [*] [b]Enable 'LR' Interactions:[/b] If enabled, you will see the load and save options for LRs.
@@ -51,10 +51,3 @@ TFAR Beta is required, but it is version independent as far as I'm aware. If you
 [h2]Credit[/h2]
 
 Credit to the original authors [url=https://github.com/RTO-Chatter]Chatter[/url] & [url=https://github.com/M3ales]M3ales[/url], with edits from [url=https://github.com/Tirpitz93]Tirpitz93[/url] for TFAR Beta compatibility. Very little of their code is left, but it served as a basis and inspiration nonetheless, not to mention their pictures and icons are used in this version. So, thank you guys for making the original [url=https://github.com/Tirpitz93/ACE-TFAR-Setter]mod[/url]!
-
-[h2]How to create PBOs[/h2]
-[list]
-[*] Download and install hemtt from [url=https://github.com/BrettMayson/HEMTT]here[/url]
-[*] Open command terminal, navigate to said folder (Windows: cd 'insert path')
-[*] Type "hemtt build" for pbo, "hemtt build --release" for entire release
-[/list]

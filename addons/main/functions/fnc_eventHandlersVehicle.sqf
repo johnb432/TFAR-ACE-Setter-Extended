@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+
 /*
  * Author: johnb43
  * Applies EH to check for vehicle change on selected units
@@ -9,17 +10,20 @@
  * Return Value:
  * None
  *
+ * Example:
+ * player call tfar_ace_extended_main_fnc_eventHandlersVehicle;
+ *
  * Public: No
  */
 
-params ["_unit"];
+params [["_unit", player, [objNull]]];
 
-if (!isNil {_unit getVariable QGVAR(eventHandlersVehicleIDs)}) exitWith {};
+if (isNull _unit || {!isNil {_unit getVariable QGVAR(eventHandlersVehicleIDs)}}) exitWith {};
 
 // When mounting, save loadout and apply a profile's config
 _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
     _unit addEventHandler ["GetInMan", {
-        // If CBA settings for this are disabled, break
+        // If CBA settings for this are disabled
         if (!GVAR(enableMountingAutoSettings) || {!GVAR(crewStatus)}) exitWith {};
 
         params ["_unit", "", "_vehicle"];
@@ -27,12 +31,20 @@ _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
         // If not correct type of vehicle
         if !(_vehicle isKindOf "Air" || {_vehicle isKindOf "Land"}) exitWith {};
 
+        private _radioSR = call FUNC(activeSwRadio);
+
+        private _dataRadioSR = if (_radioSR isNotEqualTo "") then {
+            _radioSR call TFAR_fnc_getSwSettings;
+        } else {
+            [];
+        };
+
         // Get currently active radios
-        private _data = [(call TFAR_fnc_activeSwRadio) call TFAR_fnc_getSwSettings, (_unit call TFAR_fnc_backpackLR) call TFAR_fnc_getLrSettings, [], GETMVAR("TFAR_core_isHeadsetLowered",false)];
+        private _data = [_dataRadioSR, (_unit call TFAR_fnc_backpackLR) call TFAR_fnc_getLrSettings, [], GETMVAR("TFAR_core_isHeadsetLowered",false)];
 
         // If entries are nil, set them to []
         {
-            if (isNil "_x") then {
+            if (isNil "_x" || {_x isEqualType objNull && {isNull _x}}) then {
                 _data set [_forEachIndex, []];
             };
         } forEach _data;
@@ -43,16 +55,16 @@ _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
         if (isNil {_unit call TFAR_fnc_vehicleLR}) exitWith {};
 
         // Get data from profile
-        _data = GETPRVAR(FORMAT_1(QGVAR(profile%1),[ARR_2(GVAR(landProfile),GVAR(airProfile))] select (_vehicle isKindOf "Air")),[]);
+        _data = GETPRVAR(FORMAT_1(QGVAR(profile%1),[ARR_2(GVAR(landProfileName),GVAR(airProfileName))] select (_vehicle isKindOf "Air")),[]);
 
         // If nothing can be applied, exit
         if (isNil "_data" || {_data isEqualTo []}) exitWith {};
 
-        [_unit, _data, call TFAR_fnc_activeSwRadio, _unit call TFAR_fnc_vehicleLR] call FUNC(loadVehicleSettings);
+        [_unit, _data, _unit call TFAR_fnc_vehicleLR] call FUNC(loadVehicleSettings);
     }],
     // When switching seats, apply a profile's config
     _unit addEventHandler ["SeatSwitchedMan", {
-        // If CBA settings for this are disabled, break
+        // If CBA settings for this are disabled
         if (!GVAR(enableMountingAutoSettings) || {!GVAR(crewStatus)}) exitWith {};
 
         params ["_unit", "", "_vehicle"];
@@ -60,9 +72,9 @@ _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
         // If not correct type of vehicle
         if !(_vehicle isKindOf "Air" || {_vehicle isKindOf "Land"}) exitWith {};
 
-        private _data = GETPRVAR(FORMAT_1(QGVAR(profile%1),[ARR_2(GVAR(landProfile),GVAR(airProfile))] select (_vehicle isKindOf "Air")),[]);
+        private _data = GETPRVAR(FORMAT_1(QGVAR(profile%1),[ARR_2(GVAR(landProfileName),GVAR(airProfileName))] select (_vehicle isKindOf "Air")),[]);
 
-        // If nothing can be applied, exit
+        // If nothing can be applied
         if (isNil "_data" || {_data isEqualTo []}) exitWith {};
 
         private _radioLR = _unit call TFAR_fnc_vehicleLR;
@@ -73,11 +85,11 @@ _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
             _data = _unit getVariable [QGVAR(radioLoadout), [[], [], [], false]];
         };
 
-        [_unit, _data, call TFAR_fnc_activeSwRadio, _radioLR] call FUNC(loadVehicleSettings);
+        [_unit, _data, _radioLR] call FUNC(loadVehicleSettings);
     }],
     // When leaving a vehicle, the previously saved loadout will be applied
     _unit addEventHandler ["GetOutMan", {
-        // If CBA settings for this are disabled, break
+        // If CBA settings for this are disabled
         if (!GVAR(enableMountingAutoSettings) || {!GVAR(crewStatus)}) exitWith {};
 
         params ["_unit", "", "_vehicle"];
@@ -85,6 +97,6 @@ _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
         // If not correct type of vehicle
         if !(_vehicle isKindOf "Air" || {_vehicle isKindOf "Land"}) exitWith {};
 
-        [_unit, _unit getVariable [QGVAR(radioLoadout), [[], [], [], false]], call TFAR_fnc_activeSwRadio, _unit call TFAR_fnc_backpackLR] call FUNC(loadVehicleSettings);
+        [_unit, _unit getVariable [QGVAR(radioLoadout), [[], [], [], false]], _unit call TFAR_fnc_backpackLR] call FUNC(loadVehicleSettings);
     }]
 ]];
