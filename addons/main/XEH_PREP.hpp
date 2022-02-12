@@ -1,3 +1,4 @@
+PREP(activeSwRadio);
 PREP(createProfile);
 PREP(createProfileGUI);
 PREP(deleteProfile);

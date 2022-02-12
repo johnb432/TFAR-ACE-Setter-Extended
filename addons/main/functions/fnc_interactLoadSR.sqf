@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+
 /*
  * Author: johnb43
  * Adds all SR to the menu for loading self-interactions.
@@ -9,27 +10,26 @@
  * Return Value:
  * All interaction submenus of SR <ARRAY>
  *
+ * Example:
+ * player call tfar_ace_extended_main_fnc_interactLoadSR;
+ *
  * Public: No
  */
 
-params ["_unit"];
-
-private _menus = [];
-
 // Make menus for each SR
-{
-    _menus pushBack [[
-        format [QGVAR(interactLoadingSR%1), _x], // Action name
-        [_x, "displayName", ""] call TFAR_fnc_getWeaponConfigProperty, // Display name
-        [_x, "picture", ""] call TFAR_fnc_getWeaponConfigProperty, // Icon
+(_this call TFAR_fnc_radiosList) apply {[
+    [
+        format [QGVAR(interactLoadSR_%1), _x], // Action name
+        [_x, "displayName"] call TFAR_fnc_getWeaponConfigProperty, // Display name
+        [_x, "picture"] call TFAR_fnc_getWeaponConfigProperty, // Icon
         {}, // Statement
         {GVAR(enableSRInteractions)}, // Condition
         { // Children actions
             // Send player and radio information
-            [_this select 2 select 0, [true, false, false], true, _this select 2 select 1] call FUNC(profileMenusLoad);
-        },
-        [_unit, _x] // Action parameters
-    ] call ace_interact_menu_fnc_createAction, [], _unit];
-} forEach (_unit call TFAR_fnc_radiosList);
+            private _args = _this select 2;
 
-_menus;
+            [_args select 0, [true, false, false], true, _args select 1] call FUNC(profileMenusLoad);
+        },
+        [_this, _x] // Action parameters
+    ] call ace_interact_menu_fnc_createAction, [], _this];
+};

@@ -6,6 +6,7 @@ PREP_RECOMPILE_START;
 #include "XEH_PREP.hpp"
 PREP_RECOMPILE_END;
 
+// CBA Settings
 #include "initSettings.sqf"
 
 // Add Keybind for Channel 9 on SR

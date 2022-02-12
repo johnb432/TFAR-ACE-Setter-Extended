@@ -6,7 +6,7 @@ This mod also adds the ability to sort radios by their ranges in the ACE arsenal
 
 [h2]CBA Settings[/h2]
 [list]
-[*] [b]Enable Arsenal Radio settings Saving:[/b] This setting will make the player save his current radio preset before accessing an arsenal (Vanilla or ACE). When exiting the arsenal, the saved settings will be applied again.
+[*] [b]Enable Arsenal Radio settings Saving:[/b] This setting will make the player save his current radio preset before accessing an arsenal (Vanilla or ACE). When exiting the arsenal or after respawning, the saved settings will be applied again.
 [*] [b]Enable FK Server Detection:[/b] This setting will change your SR channel to your squad's channel automatically after loading a setting and can only be used on an FK server.
 [*] [b]Enable 'SR' Interactions:[/b] If enabled, you will see the load and save options for SRs.
 [*] [b]Enable 'LR' Interactions:[/b] If enabled, you will see the load and save options for LRs.

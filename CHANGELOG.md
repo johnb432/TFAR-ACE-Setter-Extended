@@ -1,3 +1,10 @@
+# Changelog for TFAR - ACE Setter - Extended 12.2.2022
+
+1.0.1.4
+- Added Zeus compatibility.
+- Added setting saved radio settings on respawn. Setting "Enable Arsenal Radio settings Saving" must be on to use this.
+- Minor tweaks & cleanup.
+
 # Changelog for TFAR - ACE Setter - Extended 31.12.2021
 
 1.0.1.3

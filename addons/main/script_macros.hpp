@@ -25,6 +25,7 @@
 #define IDC_CANCEL 2 // emulate "Cancel" button
 
 #define IDD_MISSION 46
+#define IDD_RSCDISPLAYCURATOR 312
 #define IDD_EDIT_BOX_NAME 123
 #define IDD_EDIT_BOX_SETTINGS 124
 #define IDD_LIST_SELECTED 125
