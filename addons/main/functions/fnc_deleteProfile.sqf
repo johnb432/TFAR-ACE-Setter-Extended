@@ -16,12 +16,19 @@
  * Public: No
  */
 
-params [["_index", -1, [0]], ["_display", findDisplay IDD_MISSION, [displayNull]]];
+params [["_index", -1, [0]], ["_display", displayNull, [displayNull]]];
 
 // If index is invalid
 if (_index isEqualTo -1) exitWith {
     ["Profile can't be deleted!", false, 10, 2] call ace_common_fnc_displayText;
 };
+
+if (isNull _display) then {
+    _display = findDisplay IDD_MISSION;
+};
+
+// If still null, exit
+if (isNull _display) exitWith {};
 
 // Needs to be scheduled because of BIS_fnc_guiMessage
 [_index, _display] spawn {
@@ -37,6 +44,5 @@ if (_index isEqualTo -1) exitWith {
 
         // Delete the preset from the list
         _presets deleteAt _index;
-        SETPRVAR(QGVAR(profileNames),_presets);
     };
 };

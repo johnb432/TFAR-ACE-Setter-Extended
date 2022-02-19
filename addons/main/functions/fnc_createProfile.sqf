@@ -23,7 +23,7 @@ params [["_preset", "", [""]], ["_settings", [[], [], [], false], ["", []]], ["_
 _preset = _preset splitString " " joinString "";
 
 // If the new preset is invalid
-if (_preset isEqualTo "" || ((toLower _preset) in ["names", "none"])) exitWith {
+if (_preset isEqualTo "" || {(toLower _preset) in ["names", "none"]}) exitWith {
     ["The chosen name is invalid!", false, 10, 2] call ace_common_fnc_displayText;
 };
 
@@ -47,29 +47,25 @@ if !(_settings isEqualType []) exitWith {
 private _dataSR = _settings param [0, []];
 
 if (_dataSR isNotEqualTo []) then {
-    private _playerUID = getPlayerUID player;
-
-    if ((_dataSR param [7, -1]) isEqualTo _playerUID) exitWith {};
-
-    _dataSR set [7, _playerUID];
+    _dataSR set [7, getPlayerUID player];
 };
 
 private _presets = GETPRVAR(QGVAR(profileNames),[]);
-private _index = -1;
+private _index = _presets findIf {_x == _preset};
 
 // If preset isn't in preset list, add it; Make everything lowercase for string comparison
-if !((toLower _preset) in (_presets apply {toLower _x})) then {
-    _index = _presets pushBack _preset;
+if (_index isEqualTo -1) exitWith {
+    _presets pushBack _preset;
 
-    SETPRVAR(QGVAR(profileNames),_presets);
+    SETPRVAR(FORMAT_1(QGVAR(profile%1),_preset),_settings);
 };
 
 // Needs to be scheduled because of BIS_fnc_guiMessage
-[_preset, _settings, _index, _display] spawn {
-    params ["_preset", "_settings", "_index", "_display"];
+[_preset, _settings, _display] spawn {
+    params ["_preset", "_settings", "_display"];
 
     // Wait for confirmation or setting is not enabled or setting was newly added
-    if (_index isNotEqualTo -1 || {!GVAR(askOverwriteConfirmation)} || {[format ["Are you sure you want to overwrite profile '%1'?", _preset], "Confirmation", "Yes", "No", _display] call BIS_fnc_guiMessage}) then {
+    if (!GVAR(askOverwriteConfirmation) || {[format ["Are you sure you want to overwrite profile '%1'?", _preset], "Confirmation", "Yes", "No", _display] call BIS_fnc_guiMessage}) then {
         SETPRVAR(FORMAT_1(QGVAR(profile%1),_preset),_settings);
     };
 };

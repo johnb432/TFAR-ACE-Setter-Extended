@@ -18,8 +18,5 @@
 
 // Active SR radio must be in assignedItems
 private _assignedItems = assignedItems TFAR_currentUnit;
-private _index = _assignedItems findIf {_x call TFAR_fnc_isRadio};
 
-if (_index isEqualTo -1) exitWith {""};
-
-_assignedItems select _index;
+_assignedItems param [_assignedItems findIf {_x call TFAR_fnc_isRadio}, ""];
