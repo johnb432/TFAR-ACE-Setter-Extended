@@ -41,6 +41,7 @@ This mod also adds the ability to sort radios by their ranges in the ACE arsenal
 [h2]Links[/h2]
 [list]
 [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909836103]Steam Workshop[/url] (original mod)
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2526965189]Steam Workshop[/url]
 [*] [url=https://github.com/johnb432/TFAR-ACE-Setter-Extended]GitHub[/url]
 [/list]
 
@@ -51,3 +52,7 @@ TFAR Beta is required, but it is version independent as far as I'm aware. If you
 [h2]Credit[/h2]
 
 Credit to the original authors [url=https://github.com/RTO-Chatter]Chatter[/url] & [url=https://github.com/M3ales]M3ales[/url], with edits from [url=https://github.com/Tirpitz93]Tirpitz93[/url] for TFAR Beta compatibility. Very little of their code is left, but it served as a basis and inspiration nonetheless, not to mention their pictures and icons are used in this version. So, thank you guys for making the original [url=https://github.com/Tirpitz93/ACE-TFAR-Setter]mod[/url]!
+
+[h2]License[/h2]
+
+See LICENSE.
