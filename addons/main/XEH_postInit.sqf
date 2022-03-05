@@ -4,21 +4,56 @@
 
 GVAR(crewStatus) = GVAR(crewStatusDefault);
 
-// Add changed unit EH
+// Add changed unit EH; This also triggers on respawn
 ["unit", {
     params ["_newUnit", "_oldUnit"];
 
-    private _eventIDs = _oldUnit getVariable QGVAR(eventHandlersVehicleIDs);
+    if (!isNull _oldUnit) then {
+        private _eventIDs = _oldUnit getVariable QGVAR(eventHandlersVehicleIDs);
 
-    // Remove old EH
-    if (!isNil "_eventIDs") then {
-        _eventIDs params ["_getIn", "_switchSeat", "_getOut"];
+        // Remove old EH
+        if (!isNil "_eventIDs") then {
+            _eventIDs params ["_getIn", "_switchSeat", "_getOut"];
 
-        _oldUnit removeEventHandler ["GetInMan", _getIn];
-        _oldUnit removeEventHandler ["SeatSwitchedMan", _switchSeat];
-        _oldUnit removeEventHandler ["GetOutMan", _getOut];
+            _oldUnit removeEventHandler ["GetInMan", _getIn];
+            _oldUnit removeEventHandler ["SeatSwitchedMan", _switchSeat];
+            _oldUnit removeEventHandler ["GetOutMan", _getOut];
 
-        _oldUnit setVariable [QGVAR(eventHandlersVehicleIDs), nil];
+            _oldUnit setVariable [QGVAR(eventHandlersVehicleIDs), nil];
+        };
+
+        if (!GVAR(enableArsenalAutoSettings)) exitWith {};
+
+        // On respawn
+        private _data = _oldUnit getVariable [QGVAR(radioLoadout), [[], [], [], false]];
+
+        if (isNil "_data" || {_data isEqualTo [[], [], [], false]}) exitWith {};
+
+        // Load the SW settings when a SW is detected. However, there is a 10s timeout timer, in case a SW is never found.
+        [{
+           call TFAR_fnc_haveSWRadio;
+        }, {
+            _this params ["_SR", "", "", "_headset"];
+
+            if (_SR isNotEqualTo []) then {
+                [call FUNC(activeSwRadio), _SR] call TFAR_fnc_setSwSettings;
+            };
+
+            _headset call TFAR_fnc_setHeadsetLowered;
+        }, _data, 10] call CBA_fnc_waitUntilAndExecute;
+
+        // Load the LR settings when a LR is detected. However, there is a 10s timeout timer, in case a LR is never found.
+        [{
+           !isNil {(_this select 1) call TFAR_fnc_backpackLR};
+        }, {
+            (_this select 0) params ["", "_LR", "", "_headset"];
+
+            if (_LR isNotEqualTo []) then {
+                [(_this select 1) call TFAR_fnc_backpackLR, _LR] call TFAR_fnc_setLrSettings;
+            };
+
+            _headset call TFAR_fnc_setHeadsetLowered;
+        }, [_data, _newUnit], 10] call CBA_fnc_waitUntilAndExecute;
     };
 
     _newUnit call FUNC(eventHandlersVehicle);
@@ -44,7 +79,7 @@ GVAR(crewStatus) = GVAR(crewStatusDefault);
         { // Condition
             TFAR_currentUnit call TFAR_fnc_isForcedCurator && {(TFAR_currentUnit call TFAR_fnc_radiosList) isNotEqualTo [] || (TFAR_currentUnit call TFAR_fnc_LRRadiosList) isNotEqualTo []};
         },
-        {
+        { // Children actions
             private _unit = TFAR_currentUnit;
 
             // Add Stereo actions
@@ -101,7 +136,7 @@ GVAR(crewStatus) = GVAR(crewStatusDefault);
                         _radioType = typeOf (_x select 0);
 
                         [[
-                            format [QGVAR(radiosCuratorInteractSaveLR_%1), _radioType],
+                            format [QGVAR(radiosCuratorInteractLoadLR_%1), _radioType],
                             [_radioType, "displayName"] call TFAR_fnc_getVehicleConfigProperty,
                             [_radioType, "picture"] call TFAR_fnc_getVehicleConfigProperty,
                             {},
@@ -146,6 +181,6 @@ GVAR(crewStatus) = GVAR(crewStatusDefault);
             ] call ace_interact_menu_fnc_createAction, [], _unit];
 
             _actions;
-        } // Children actions
+        }
     ] call ace_interact_menu_fnc_createAction
 ] call ace_interact_menu_fnc_addActionToZeus;
