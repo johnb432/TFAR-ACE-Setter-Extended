@@ -1,8 +1,21 @@
 #include "script_component.hpp"
 
-#include "EventHandlersArsenal.sqf"
-
 GVAR(crewStatus) = GVAR(crewStatusDefault);
+
+// Add radio range sorting
+[[[5, 12], []], QGVAR(radioRangeSort), "Sort by radio range", {
+    params ["_itemCfg"];
+
+    // If the LR is disabled, filter it out immediately; However, SRs don't have it, so check if config entry exists
+    if (isNumber (_itemCfg >> "tf_hasLRradio") && {getNumber (_itemCfg >> "tf_hasLRradio") isEqualTo 0}) exitWith {0};
+
+    getNumber (_itemCfg >> "tf_range");
+}] call ace_arsenal_fnc_addSort;
+
+// If not multiplayer, exit
+if (!isMultiplayer) exitWith {};
+
+#include "EventHandlersArsenal.sqf"
 
 // Add changed unit EH; This also triggers on respawn
 ["unit", {
@@ -58,16 +71,6 @@ GVAR(crewStatus) = GVAR(crewStatusDefault);
 
     _newUnit call FUNC(eventHandlersVehicle);
 }, true] call CBA_fnc_addPlayerEventHandler;
-
-// Add radio range sorting
-[[[5, 12], []], QGVAR(radioRangeSort), "Sort by radio range", {
-    params ["_itemCfg"];
-
-    // If the LR is disabled, filter it out immediately; However, SRs don't have it, so check if config entry exists
-    if (isNumber (_itemCfg >> "tf_hasLRradio") && {getNumber (_itemCfg >> "tf_hasLRradio") isEqualTo 0}) exitWith {0};
-
-    getNumber (_itemCfg >> "tf_range");
-}] call ace_arsenal_fnc_addSort;
 
 // Zeus actions
 [
