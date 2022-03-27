@@ -11,15 +11,15 @@
 
 #define EXCEPTIONS exceptions[] = {"isNotInside","isNotSitting","isNotSwimming"}
 
-#define ICON_ROOT "\x\tfar_ace_extended\addons\main\ui\interact_root.paa"
-#define ICON_SAVE "\x\tfar_ace_extended\addons\main\ui\save.paa"
-#define ICON_LOAD "\x\tfar_ace_extended\addons\main\ui\load.paa"
+#define ICON_ROOT QPATHTOF(ui\interact_root.paa)
+#define ICON_SAVE QPATHTOF(ui\save.paa)
+#define ICON_LOAD QPATHTOF(ui\load.paa)
 #define ICON_ADD "\A3\ui_f\data\gui\cfg\cursors\add_gs.paa"
 #define ICON_DELETE "\A3\ui_f\data\igui\cfg\commandbar\unitcombatmode_ca.paa"
 #define ICON_PERSON "\a3\Modules_F_Bootcamp\Data\PortraitPunishment.paa"
-#define ICON_SR "\x\tfar_ace_extended\addons\main\ui\sr.paa"
-#define ICON_LR "\x\tfar_ace_extended\addons\main\ui\lr.paa"
-#define ICON_VLR "\x\tfar_ace_extended\addons\main\ui\vlr_plane.paa"
+#define ICON_SR QPATHTOF(ui\sr.paa)
+#define ICON_LR QPATHTOF(ui\lr.paa)
+#define ICON_VLR QPATHTOF(ui\vlr_plane.paa)
 
 #define IDC_OK 1 // emulate "OK" button
 #define IDC_CANCEL 2 // emulate "Cancel" button

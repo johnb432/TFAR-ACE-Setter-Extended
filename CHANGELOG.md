@@ -1,3 +1,13 @@
+# Changelog for TFAR - ACE Setter - Extended 27.3.2022
+
+1.0.1.7
+- Fixed errors being thrown in single player.
+
+# Changelog for TFAR - ACE Setter - Extended 5.3.2022
+
+1.0.1.6
+- Fixed applying radio settings on respawn.
+
 # Changelog for TFAR - ACE Setter - Extended 19.2.2022
 
 1.0.1.5
