@@ -110,6 +110,7 @@ _ctrlButtonCancel ctrlAddEventHandler ["ButtonClick", {
 // Prevent scroll wheel from moving curator camera
 if (_displayParent isEqualTo (findDisplay IDD_RSCDISPLAYCURATOR)) then {
     _display setVariable [QGVAR(cameraPos), getPosASL curatorCamera];
+
     _display displayAddEventHandler ["MouseZChanged", {
         curatorCamera setPosASL ((_this select 0) getVariable QGVAR(cameraPos));
     }];
@@ -120,10 +121,10 @@ _display displayAddEventHandler ["KeyDown", {
     params ["_display", "_keyCode"];
 
     // Cancel
-    if (_keyCode isEqualTo DIK_ESCAPE) exitWith {};
+    if (_keyCode == DIK_ESCAPE) exitWith {};
 
     // Ok
-    if (_keyCode isEqualTo DIK_RETURN) exitWith {
+    if (_keyCode == DIK_RETURN) exitWith {
         [ctrlText (_display displayCtrl IDD_EDIT_BOX_NAME), ctrlText (_display displayCtrl IDD_EDIT_BOX_SETTINGS), displayParent _display] call FUNC(createProfile);
 
         _display closeDisplay IDC_OK;

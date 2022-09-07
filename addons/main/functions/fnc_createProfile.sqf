@@ -51,10 +51,9 @@ if (_dataSR isNotEqualTo []) then {
 };
 
 private _presets = GETPRVAR(QGVAR(profileNames),[]);
-private _index = _presets findIf {_x == _preset};
 
 // If preset isn't in preset list, add it; Make everything lowercase for string comparison
-if (_index isEqualTo -1) exitWith {
+if ((_presets findIf {_x == _preset}) == -1) exitWith {
     _presets pushBack _preset;
 
     SETPRVAR(FORMAT_1(QGVAR(profile%1),_preset),_settings);

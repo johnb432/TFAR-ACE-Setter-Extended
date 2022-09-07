@@ -1,3 +1,8 @@
+# Changelog for TFAR - ACE Setter - Extended 7.9.2022
+
+1.0.1.8
+- Minor tweaks & cleanup.
+
 # Changelog for TFAR - ACE Setter - Extended 27.3.2022
 
 1.0.1.7

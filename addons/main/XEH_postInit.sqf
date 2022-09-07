@@ -7,7 +7,7 @@ GVAR(crewStatus) = GVAR(crewStatusDefault);
     params ["_itemCfg"];
 
     // If the LR is disabled, filter it out immediately; However, SRs don't have it, so check if config entry exists
-    if (isNumber (_itemCfg >> "tf_hasLRradio") && {getNumber (_itemCfg >> "tf_hasLRradio") isEqualTo 0}) exitWith {0};
+    if (isNumber (_itemCfg >> "tf_hasLRradio") && {getNumber (_itemCfg >> "tf_hasLRradio") == 0}) exitWith {0};
 
     getNumber (_itemCfg >> "tf_range");
 }] call ace_arsenal_fnc_addSort;

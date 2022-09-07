@@ -63,13 +63,8 @@
     0,
     {
         private _profiles = GETPRVAR(QGVAR(profileNames),[]);
-        private _index = _profiles find _this;
 
-        GVAR(airProfileName) = if (_index isEqualTo -1) then {
-            "";
-        } else {
-            _profiles param [_index, ""];
-        };
+        GVAR(airProfileName) = _profiles param [_profiles find _this, ""];
     }
 ] call CBA_fnc_addSetting;
 
@@ -82,13 +77,8 @@
     0,
     {
         private _profiles = GETPRVAR(QGVAR(profileNames),[]);
-        private _index = _profiles find _this;
 
-        GVAR(landProfileName) = if (_index isEqualTo -1) then {
-            "";
-        } else {
-            _profiles param [_index, ""];
-        };
+        GVAR(landProfileName) = _profiles param [_profiles find _this, ""];
     }
 ] call CBA_fnc_addSetting;
 
