@@ -92,12 +92,4 @@ if (!isNil "_headsetStatus") then {
     _headsetStatus call TFAR_fnc_setHeadsetLowered;
 };
 
-// Change text accordingly
-private _text = "";
-private _count = count _textArray - 1;
-
-{
-    _text = _text + _x + ([", ", ""] select (_forEachIndex isEqualTo _count));
-} forEach _textArray;
-
-[format ["Loaded %1 settings from profile '%2'.", _text, _profile], ICON_LOAD, GVAR(loadColorIcon), _unit, 3] call ace_common_fnc_displayTextPicture;
+[format ["Loaded %1 settings from profile '%2'.", _textArray joinString ", ", _profile], ICON_LOAD, GVAR(loadColorIcon), _unit, 3] call ace_common_fnc_displayTextPicture;

@@ -89,11 +89,4 @@ _data set [3, GETMVAR("TFAR_core_isHeadsetLowered",false)];
 
 SETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),_data);
 
-// Change text accordingly
-private _text = "";
-
-{
-    _text = _text + _x + ([", ", ""] select (_forEachIndex isEqualTo (count _textArray - 1)));
-} forEach _textArray;
-
-[format ["Saved %1 settings to profile '%2'.", _text, _profile], ICON_SAVE, GVAR(loadColorIcon), _unit, 3] call ace_common_fnc_displayTextPicture;
+[format ["Saved %1 settings to profile '%2'.", _textArray joinString ", ", _profile], ICON_SAVE, GVAR(loadColorIcon), _unit, 3] call ace_common_fnc_displayTextPicture;

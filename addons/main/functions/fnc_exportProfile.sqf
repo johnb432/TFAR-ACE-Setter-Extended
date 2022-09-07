@@ -18,7 +18,7 @@
 
 params [["_index", -1, [0]]];
 
-if (_index isEqualTo -1) exitWith {
+if (_index == -1) exitWith {
     ["The chosen index is invalid!", false, 10, 2] call ace_common_fnc_displayText;
 };
 

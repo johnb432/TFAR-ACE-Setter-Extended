@@ -43,7 +43,7 @@ _ctrlGroup ctrlCommit 0;
 
 // Title background
 private _ctrlBackgroundTitle = _display ctrlCreate ["RscTextMulti", -1, _ctrlGroup];
-_ctrlBackgroundTitle ctrlSetText ((["DELETE", "EXPORT"] select (_this isEqualTo EXPORT_PROFILE)) + " RADIO PRESET");
+_ctrlBackgroundTitle ctrlSetText ((["DELETE", "EXPORT"] select (_this == EXPORT_PROFILE)) + " RADIO PRESET");
 _ctrlBackgroundTitle ctrlSetPosition [0, 0, POS_W(16.7), POS_H(1)];
 _ctrlBackgroundTitle ctrlSetBackgroundColor [GETPRVAR("GUI_BCG_RGB_R",0.13), GETPRVAR("GUI_BCG_RGB_G",0.54), GETPRVAR("GUI_BCG_RGB_B",0.21), GETPRVAR("GUI_BCG_RGB_A",0.8)];
 _ctrlBackgroundTitle ctrlEnable false;
@@ -66,7 +66,7 @@ private _ctrlBackgroundList = _display ctrlCreate ["RscTextMulti", -1, _ctrlGrou
 _ctrlBackgroundList ctrlSetPosition [POS_X(4), POS_Y(1.5), POS_W(4.9), POS_H(1.2)];
 _ctrlBackgroundList ctrlSetBackgroundColor [0, 0, 0, 0.6];
 _ctrlBackgroundList ctrlSetText "Preset name:";
-_ctrlBackgroundList ctrlSetTooltip (["Allows you to select a preset to delete.", "Allows you to select a preset to export to the clipboard."] select (_this isEqualTo EXPORT_PROFILE));
+_ctrlBackgroundList ctrlSetTooltip (["Allows you to select a preset to delete.", "Allows you to select a preset to export to the clipboard."] select (_this == EXPORT_PROFILE));
 _ctrlBackgroundList ctrlEnable false;
 _ctrlBackgroundList ctrlCommit 0;
 
@@ -85,7 +85,7 @@ _ctrlButtonOk ctrlCommit 0;
 _ctrlButtonOk ctrlAddEventHandler ["ButtonClick", {
     private _display = ctrlParent (_this select 0);
 
-    [lbCurSel (_display displayCtrl IDD_LIST_SELECTED), displayParent _display] call ([FUNC(deleteProfile), FUNC(exportProfile)] select ((_display getVariable [QGVAR(selectProfileType), -1]) isEqualTo EXPORT_PROFILE));
+    [lbCurSel (_display displayCtrl IDD_LIST_SELECTED), displayParent _display] call ([FUNC(deleteProfile), FUNC(exportProfile)] select ((_display getVariable [QGVAR(selectProfileType), -1]) == EXPORT_PROFILE));
 
     _display closeDisplay IDC_OK;
 }];
@@ -113,11 +113,11 @@ _display displayAddEventHandler ["KeyDown", {
     params ["_display", "_keyCode"];
 
     // Cancel
-    if (_keyCode isEqualTo DIK_ESCAPE) exitWith {};
+    if (_keyCode == DIK_ESCAPE) exitWith {};
 
     // Ok
-    if (_keyCode isEqualTo DIK_RETURN) exitWith {
-        [lbCurSel (_display displayCtrl IDD_LIST_SELECTED), displayParent _display] call ([FUNC(deleteProfile), FUNC(exportProfile)] select ((_display getVariable [QGVAR(selectProfileType), -1]) isEqualTo EXPORT_PROFILE));
+    if (_keyCode == DIK_RETURN) exitWith {
+        [lbCurSel (_display displayCtrl IDD_LIST_SELECTED), displayParent _display] call ([FUNC(deleteProfile), FUNC(exportProfile)] select ((_display getVariable [QGVAR(selectProfileType), -1]) == EXPORT_PROFILE));
 
         _display closeDisplay IDC_OK;
     };
