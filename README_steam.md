@@ -1,4 +1,4 @@
-[b]TFAR - ACE Radio Setter - Extended[/b] is a client side. It's a simple Quality of Life mod which allows you to save/load your TFAR radios configuration via ACE Self-Interactions.
+[b]TFAR - ACE Radio Setter - Extended[/b] is a client side. It's a simple Quality of Life mod which allows you to save/load your TFAR radios configuration via ACE Self-Interactions. This is not an official ACE or TFAR mod.
 
 The mod stores data locally in `profileNamespace` which means it stores configurations on a per profile basis. This has the added side effect of requiring you to save a new configuration for each profile you make use of, but also ensures you can have different radio configurations for different units etc.
 

@@ -122,7 +122,7 @@ _display displayAddEventHandler ["KeyDown", {
         _display closeDisplay IDC_OK;
     };
 
-    true;
+    true
 }];
 
 ctrlSetFocus _ctrlList;

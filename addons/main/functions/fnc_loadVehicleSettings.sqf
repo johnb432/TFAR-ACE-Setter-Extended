@@ -5,10 +5,10 @@
  * Loads the saved settings in a vehicle.
  *
  * Arguments:
- * 0: Unit <OBJECT>
- * 1: Radio data <ARRAY>
- * 2: LR Radio <STRING|ARRAY>
- * 3: SR Radio <STRING> (optional)
+ * 0: Unit <OBJECT> (default: player)
+ * 1: Radio data <ARRAY> (default: [[], [], [], false])
+ * 2: LR Radio <ARRAY> (default: [])
+ * 3: SR Radio <STRING> (default: call FUNC(activeSwRadio))
  *
  * Return Value:
  * None
@@ -19,34 +19,44 @@
  * Public: No
  */
 
-params [["_unit", player, [objNull]], ["_data", [[], [], [], false], [[]]], ["_radioLR", [], [[]]], ["_radioSR", call FUNC(activeSwRadio), [""]]];
-_data params [["_dataSR", [], [[]]], ["_dataLR", [], [[]]], ["_dataVLR", [], [[]]], ["_headsetStatus", false, [true]]];
+params [["_unit", player, [objNull]], ["_data", [[], [], [], false], [[]], PROFILE_COUNT], ["_radioLR", [], [[]]], ["_radioSR", call FUNC(activeSwRadio), [""]]];
+_data params [["_dataSR", [], [[]], [0, RADIO_SETTINGS_COUNT]], ["_dataLR", [], [[]], [0, RADIO_SETTINGS_COUNT]], ["_dataVLR", [], [[]], [0, RADIO_SETTINGS_COUNT]], ["_headsetStatus", false, [true]]];
 
 if (!alive _unit) exitWith {};
 
-// Load side encryption. However, the radio settings in a profile will never be overwritten
-private _code = switch (side _unit) do {
-    case east: {tfar_radiocode_east};
-    case west: {tfar_radiocode_west};
-    default {tfar_radiocode_independent};
-};
-
 // If a SW is found and the settings are not [], load them
 if (_radioSR isNotEqualTo "" && {_dataSR isNotEqualTo []}) then {
+    // Load the side encryption; The radio settings in a profile will never be overwritten by using this
+    private _code = [_radioSR, "tf_encryptionCode"] call TFAR_fnc_getWeaponConfigProperty;
+
+    if (_code == "tf_guer_radio_code") then {
+        _code = "tf_independent_radio_code";
+    };
+
+    _dataSR set [TFAR_CODE_OFFSET, _code];
+
     // Set settings
     [_radioSR, _dataSR] call TFAR_fnc_setSwSettings;
-    [_radioSR, _code] call TFAR_fnc_setSwRadioCode;
     [_unit, _radioSR] call FUNC(setChannelFK);
 };
 
 // If a LR is found and the settings are not [], load them
 if (_radioLR isNotEqualTo [] && {_dataLR isNotEqualTo [] || {_dataVLR isNotEqualTo []}}) then {
-    // Set settings; Apply VLR to VLR if possible, otherwise a mix of settings (LR -> VLR, VLR -> LR, LR -> LR)
-    [_radioLR, [_dataLR, _dataVLR] select (_dataVLR isNotEqualTo [])] call TFAR_fnc_setLrSettings;
-    [_radioLR, _code] call TFAR_fnc_setLrRadioCode;
+    // Apply VLR to VLR if possible, otherwise a mix of settings (LR -> VLR, VLR -> LR, LR -> LR)
+    _dataLR = [_dataLR, _dataVLR] select (_dataVLR isNotEqualTo []);
+
+    // Load the side encryption; The radio settings in a profile will never be overwritten by using this
+    private _code = [_radioLR, "tf_encryptionCode"] call TFAR_fnc_getWeaponConfigProperty;
+
+    if (_code == "tf_guer_radio_code") then {
+        _code = "tf_independent_radio_code";
+    };
+
+    _dataLR set [TFAR_CODE_OFFSET, _code];
+
+    // Set settings
+    [_radioLR, _dataLR] call TFAR_fnc_setLrSettings;
 };
 
 // Set the headset up or down
-if (!isNil "_headsetStatus") then {
-    _headsetStatus call TFAR_fnc_setHeadsetLowered;
-};
+_headsetStatus call TFAR_fnc_setHeadsetLowered;

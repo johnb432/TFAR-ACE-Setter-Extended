@@ -9,7 +9,7 @@ GVAR(crewStatus) = GVAR(crewStatusDefault);
     // If the LR is disabled, filter it out immediately; However, SRs don't have it, so check if config entry exists
     if (isNumber (_itemCfg >> "tf_hasLRradio") && {getNumber (_itemCfg >> "tf_hasLRradio") == 0}) exitWith {0};
 
-    getNumber (_itemCfg >> "tf_range");
+    getNumber (_itemCfg >> "tf_range")
 }] call ace_arsenal_fnc_addSort;
 
 // If not multiplayer, exit
@@ -22,17 +22,17 @@ if (!isMultiplayer) exitWith {};
     params ["_newUnit", "_oldUnit"];
 
     if (!isNull _oldUnit) then {
-        private _eventIDs = _oldUnit getVariable QGVAR(eventHandlersVehicleIDs);
+        private _ehIDs = _oldUnit getVariable QGVAR(vehicleEhIDs);
 
         // Remove old EH
-        if (!isNil "_eventIDs") then {
-            _eventIDs params ["_getIn", "_switchSeat", "_getOut"];
+        if (!isNil "_ehIDs") then {
+            _ehIDs params ["_getInEhID", "_switchSeatEhID", "_getOutEhID"];
 
-            _oldUnit removeEventHandler ["GetInMan", _getIn];
-            _oldUnit removeEventHandler ["SeatSwitchedMan", _switchSeat];
-            _oldUnit removeEventHandler ["GetOutMan", _getOut];
+            _oldUnit removeEventHandler ["GetInMan", _getInEhID];
+            _oldUnit removeEventHandler ["SeatSwitchedMan", _switchSeatEhID];
+            _oldUnit removeEventHandler ["GetOutMan", _getOutEhID];
 
-            _oldUnit setVariable [QGVAR(eventHandlersVehicleIDs), nil];
+            _oldUnit setVariable [QGVAR(vehicleEhIDs), nil];
         };
 
         if (!GVAR(enableArsenalAutoSettings)) exitWith {};
@@ -42,9 +42,9 @@ if (!isMultiplayer) exitWith {};
 
         if (isNil "_data" || {_data isEqualTo [[], [], [], false]}) exitWith {};
 
-        // Load the SW settings when a SW is detected. However, there is a 10s timeout timer, in case a SW is never found.
+        // Load the SW settings when a SW is detected; However, there is a 10s timeout timer, in case a SW is never found
         [{
-           call TFAR_fnc_haveSWRadio;
+           call TFAR_fnc_haveSWRadio
         }, {
             _this params ["_SR", "", "", "_headset"];
 
@@ -55,9 +55,9 @@ if (!isMultiplayer) exitWith {};
             _headset call TFAR_fnc_setHeadsetLowered;
         }, _data, 10] call CBA_fnc_waitUntilAndExecute;
 
-        // Load the LR settings when a LR is detected. However, there is a 10s timeout timer, in case a LR is never found.
+        // Load the LR settings when a LR is detected; However, there is a 10s timeout timer, in case a LR is never found
         [{
-           !isNil {(_this select 1) call TFAR_fnc_backpackLR};
+           !isNil {(_this select 1) call TFAR_fnc_backpackLR}
         }, {
             (_this select 0) params ["", "_LR", "", "_headset"];
 
@@ -118,7 +118,7 @@ if (!isMultiplayer) exitWith {};
                         ] call ace_interact_menu_fnc_createAction, [], _unit];
                     });
 
-                    _actions;
+                    _actions
                 },
                 _unit
             ] call ace_interact_menu_fnc_createAction, [], _unit];
@@ -153,7 +153,7 @@ if (!isMultiplayer) exitWith {};
                         ] call ace_interact_menu_fnc_createAction, [], _unit];
                     });
 
-                    _actions;
+                    _actions
                 },
                 _unit
             ] call ace_interact_menu_fnc_createAction, [], _unit];
@@ -183,7 +183,7 @@ if (!isMultiplayer) exitWith {};
                 {GETPRVAR(QGVAR(profileNames),[]) isNotEqualTo []}
             ] call ace_interact_menu_fnc_createAction, [], _unit];
 
-            _actions;
+            _actions
         }
     ] call ace_interact_menu_fnc_createAction
 ] call ace_interact_menu_fnc_addActionToZeus;

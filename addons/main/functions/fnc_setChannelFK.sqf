@@ -5,8 +5,8 @@
  * Sets the channel to whatever squad you are in, if you have the option enabled and are on an FK server.
  *
  * Arguments:
- * 0: Unit <OBJECT>
- * 1: SR Radio <STRING> (optional)
+ * 0: Unit <OBJECT> (default: player)
+ * 1: SR Radio <STRING> (default: call FUNC(activeSwRadio))
  *
  * Return Value:
  * None
@@ -17,12 +17,12 @@
  * Public: No
  */
 
-params [["_unit", objNull, [objNull]], ["_radioSR", call FUNC(activeSwRadio), [""]]];
-
-if !(alive _unit && {_radioSR isNotEqualTo ""}) exitWith {};
-
 // Set the correct SR channel if FK compat mode is enabled and FKFramework is loaded
 if !(GVAR(enableCompatFK) && {!isNil "fkf_main_fnc_addArsenal"}) exitWith {};
+
+params [["_unit", player, [objNull]], ["_radioSR", call FUNC(activeSwRadio), [""]]];
+
+if !(alive _unit && {_radioSR isNotEqualTo ""}) exitWith {};
 
 // Find in which squad the unit is in and change index accordingly
 private _index = switch (((str group _unit) splitString " ") select 1) do {

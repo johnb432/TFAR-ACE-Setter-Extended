@@ -32,4 +32,4 @@
         },
         [_this, _x] // Action parameters
     ] call ace_interact_menu_fnc_createAction, [], _this];
-};
+}

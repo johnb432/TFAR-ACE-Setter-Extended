@@ -5,12 +5,12 @@
  * Loads select radio configurations from a chosen profile.
  *
  * Arguments:
- * 0: Unit <OBJECT>
- * 1: Which radios should be loaded <ARRAY>
- * 2: Which profile is selected <STRING>
- * 3: Load other type of radio (only works for LR and VLR) <BOOLEAN> (optional)
- * 4: SR Radio <STRING> (optional)
- * 5: LR Radio <ARRAY> (optional)
+ * 0: Unit <OBJECT> (default: player)
+ * 1: Which radios should be loaded <ARRAY> (default: [false, false, false])
+ * 2: Which profile is selected <STRING> (default: "")
+ * 3: Load same type of radio (only works for LR and VLR) <BOOL> (default: true)
+ * 4: SR Radio <STRING> (default: call FUNC(activeSwRadio))
+ * 5: LR Radio <ARRAY> (default: [])
  *
  * Return Value:
  * None
@@ -21,7 +21,7 @@
  * Public: No
  */
 
-params [["_unit", player, [objNull]], ["_loadFromRadios", [false, false, false], [[]]], ["_profile", "", [""]], ["_loadSameType", true, [true]], ["_radioSR", call FUNC(activeSwRadio), [""]], ["_radioLR", [], [[]]]];
+params [["_unit", player, [objNull]], ["_loadFromRadios", [false, false, false], [[]], [1, 2, 3]], ["_profile", "", [""]], ["_loadSameType", true, [true]], ["_radioSR", call FUNC(activeSwRadio), [""]], ["_radioLR", [], [[]]]];
 _loadFromRadios params [["_doSR", false, [true]], ["_doLR", false, [true]], ["_doVLR", false, [true]]];
 
 if (!alive _unit) exitWith {};
@@ -33,21 +33,22 @@ if (_profile isEqualTo "") exitWith {
 
 GETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),[]) params ["_dataSR", "_dataLR", "_dataVLR", "_headsetStatus"];
 
-// Load the side encryption; The radio settings in a profile will never be overwritten by using this
-private _code = switch (side _unit) do {
-    case east: {tfar_radiocode_east};
-    case west: {tfar_radiocode_west};
-    default {tfar_radiocode_independent};
-};
-
 // Store all changed radios
 private _textArray = [];
 
 // If the SR settings should be loaded
 if (_doSR && {_radioSR isNotEqualTo ""} && {_dataSR isNotEqualTo []}) then {
+    // Load the side encryption; The radio settings in a profile will never be overwritten by using this
+    private _code = [_radioSR, "tf_encryptionCode"] call TFAR_fnc_getWeaponConfigProperty;
+
+    if (_code == "tf_guer_radio_code") then {
+        _code = "tf_independent_radio_code";
+    };
+
+    _dataSR set [TFAR_CODE_OFFSET, _code];
+
     // Set settings
     [_radioSR, _dataSR] call TFAR_fnc_setSwSettings;
-    [_radioSR, _code] call TFAR_fnc_setSwRadioCode;
     [_unit, _radioSR] call FUNC(setChannelFK);
 
     _textArray pushBack "SR";
@@ -63,8 +64,17 @@ if (_doLR && {_dataLR isNotEqualTo []}) then {
 
     if (isNil "_radioLR") exitWith {};
 
+    // Load the side encryption; The radio settings in a profile will never be overwritten by using this
+    private _code = [_radioLR, "tf_encryptionCode"] call TFAR_fnc_getWeaponConfigProperty;
+
+    if (_code == "tf_guer_radio_code") then {
+        _code = "tf_independent_radio_code";
+    };
+
+    _dataLR set [TFAR_CODE_OFFSET, _code];
+
+    // Set settings
     [_radioLR, _dataLR] call TFAR_fnc_setLrSettings;
-    [_radioLR, _code] call TFAR_fnc_setLrRadioCode;
 
     _textArray pushBack "LR";
 };
@@ -76,8 +86,17 @@ if (_doVLR && {_dataVLR isNotEqualTo []}) then {
 
     if (isNil "_radioLR") exitWith {};
 
+    // Load the side encryption; The radio settings in a profile will never be overwritten by using this
+    private _code = [_radioLR, "tf_encryptionCode"] call TFAR_fnc_getWeaponConfigProperty;
+
+    if (_code == "tf_guer_radio_code") then {
+        _code = "tf_independent_radio_code";
+    };
+
+    _dataVLR set [TFAR_CODE_OFFSET, _code];
+
+    // Set settings
     [_radioLR, _dataVLR] call TFAR_fnc_setLrSettings;
-    [_radioLR, _code] call TFAR_fnc_setLrRadioCode;
 
     _textArray pushBack "VLR";
 };
@@ -88,8 +107,6 @@ if (_textArray isEqualTo []) exitWith {
 };
 
 // Set the headset up or down
-if (!isNil "_headsetStatus") then {
-    _headsetStatus call TFAR_fnc_setHeadsetLowered;
-};
+_headsetStatus call TFAR_fnc_setHeadsetLowered;
 
 [format ["Loaded %1 settings from profile '%2'.", _textArray joinString ", ", _profile], ICON_LOAD, GVAR(loadColorIcon), _unit, 3] call ace_common_fnc_displayTextPicture;

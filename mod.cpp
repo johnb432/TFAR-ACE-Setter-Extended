@@ -10,6 +10,6 @@ tooltip = "TFAR - ACE Radio Setter - Extended";
 tooltipOwned = "TFAR - ACE Radio Setter - Extended";
 action = "https://github.com/johnb432/ACE-TFAR-Setter-Extended";
 actionName = "Github";
-overview = "A simple quality of life mod for the Arma 3 TFAR Addon. Allows you to save multiple radio configurations and reload them at any point in the future.";
+overview = "A simple quality of life mod for the Arma 3 TFAR Addon. Allows you to save multiple radio configurations and reload them at any point in the future. Made by johnb43.";
 hidePicture = 0;
 hideName = 0;
