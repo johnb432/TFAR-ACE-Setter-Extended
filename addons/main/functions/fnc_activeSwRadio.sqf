@@ -19,4 +19,4 @@
 // Active SR radio must be in assignedItems
 private _assignedItems = assignedItems TFAR_currentUnit;
 
-_assignedItems param [_assignedItems findIf {_x call TFAR_fnc_isRadio}, ""];
+_assignedItems param [_assignedItems findIf {_x call TFAR_fnc_isRadio}, ""]

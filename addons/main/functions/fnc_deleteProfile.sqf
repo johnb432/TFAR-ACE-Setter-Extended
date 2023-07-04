@@ -5,7 +5,8 @@
  * Deletes a chosen profile of given index.
  *
  * Arguments:
- * 0: Index <INTEGER>
+ * 0: Index <NUMBER> (default: -1)
+ * 1: Display <DISPLAY> (default: displayNull)
  *
  * Return Value:
  * None

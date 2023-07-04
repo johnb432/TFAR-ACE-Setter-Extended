@@ -5,7 +5,7 @@
  * Sets the player to a status. This is used in the vehicle mounting detection.
  *
  * Arguments:
- * 0: Unit <OBJECT>
+ * 0: Unit <OBJECT> (default: player)
  *
  * Return Value:
  * None
@@ -31,9 +31,9 @@ if !(_vehicle isKindOf "Air" || {_vehicle isKindOf "Land"}) exitWith {};
 private _radioSR = call FUNC(activeSwRadio);
 
 private _dataRadioSR = if (_radioSR isNotEqualTo "") then {
-    _radioSR call TFAR_fnc_getSwSettings;
+    _radioSR call TFAR_fnc_getSwSettings
 } else {
-    [];
+    []
 };
 
 // Get currently active radios

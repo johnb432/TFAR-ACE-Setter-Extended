@@ -1,13 +1,25 @@
 #include "\x\cba\addons\main\script_macros_common.hpp"
 
-//This part includes parts of the CBA and ACE3 macro libraries
+// This part includes parts of the CBA and ACE3 macro libraries
 #define GETPRVAR(var1,var2) (profileNamespace getVariable [ARR_2(var1,var2)])
 #define SETPRVAR(var1,var2) (profileNamespace setVariable [ARR_2(var1,var2)])
 
 #define GETMVAR(var1,var2) (missionNamespace getVariable [ARR_2(var1,var2)])
 
+// From TFAR
+#define TFAR_CODE_OFFSET 4
+
+#define ASCII_NEWLINE 10
+#define ASCII_CARRIAGE_RETURN 13
+#define ASCII_TAB 9
+#define ASCII_SPACE 32
+#define WHITESPACE toString [ASCII_NEWLINE, ASCII_CARRIAGE_RETURN, ASCII_TAB, ASCII_SPACE]
+
 #define DELETE_PROFILE 0
 #define EXPORT_PROFILE 1
+
+#define PROFILE_COUNT 4
+#define RADIO_SETTINGS_COUNT 10
 
 #define EXCEPTIONS exceptions[] = {"isNotInside","isNotSitting","isNotSwimming"}
 

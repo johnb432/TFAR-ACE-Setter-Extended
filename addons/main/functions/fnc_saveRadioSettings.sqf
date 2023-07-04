@@ -5,12 +5,12 @@
  * Saves select radio configurations to a chosen profile.
  *
  * Arguments:
- * 0: Unit <OBJECT>
- * 1: Which radios should be saved <ARRAY>
- * 2: Which profile is selected <STRING>
- * 3: Load other type of radio (only works for LR and VLR) <BOOLEAN> (optional)
- * 4: SR Radio <STRING> (optional)
- * 5: LR Radio <ARRAY> (optional)
+ * 0: Unit <OBJECT> (default: player)
+ * 1: Which radios should be saved <ARRAY> (default: [false, false, false])
+ * 2: Which profile is selected <STRING> (default: "")
+ * 3: Load same type of radio (only works for LR and VLR) <BOOL> (default: true)
+ * 4: SR Radio <STRING> (default: call FUNC(activeSwRadio))
+ * 5: LR Radio <ARRAY> (default: [])
  *
  * Return Value:
  * None
@@ -21,7 +21,7 @@
  * Public: No
  */
 
-params [["_unit", player, [objNull]], ["_saveToRadios", [false, false, false], [[]]], ["_profile", "", [""]], ["_saveSameType", true, [true]], ["_radioSR", call FUNC(activeSwRadio), [""]], ["_radioLR", [], [[]]]];
+params [["_unit", player, [objNull]], ["_saveToRadios", [false, false, false], [[]], [1, 2, 3]], ["_profile", "", [""]], ["_saveSameType", true, [true]], ["_radioSR", call FUNC(activeSwRadio), [""]], ["_radioLR", [], [[]]]];
 _saveToRadios params [["_doSR", false, [true]], ["_doLR", false, [true]], ["_doVLR", false, [true]]];
 
 if (!alive _unit) exitWith {};

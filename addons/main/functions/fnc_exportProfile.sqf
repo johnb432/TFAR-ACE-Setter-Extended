@@ -5,7 +5,7 @@
  * Export a profile to the clipboard.
  *
  * Arguments:
- * 0: Index <INTEGER>
+ * 0: Index <NUMBER> (default: -1)
  *
  * Return Value:
  * None

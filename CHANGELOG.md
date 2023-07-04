@@ -1,3 +1,11 @@
+# Changelog for TFAR - ACE Setter - Extended 4.7.2023
+
+1.0.1.9
+- Fixed not being able to paste into "Create/Import Profile" dialog.
+- Added better verification to ensure imported settings are in correct format.
+- Updated to use HEMTT 1.2.0.
+- Minor tweaks & cleanup.
+
 # Changelog for TFAR - ACE Setter - Extended 7.9.2022
 
 1.0.1.8

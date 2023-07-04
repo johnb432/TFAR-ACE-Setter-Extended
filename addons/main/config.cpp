@@ -38,8 +38,8 @@ class CfgPatches {
 
 /*
     Profile: [[], [], [], false]:
-    0: SR sttings (from TFAR_fnc_getSwSettings; see above for layout of that)
-    1: LR settings (from TFAR_fnc_getLrSettings; see above for layout of that)
-    2: VLR settings (from TFAR_fnc_getLrSettings; see above for layout of that)
+    0: SR settings (from TFAR_fnc_getSwSettings; see above for layout)
+    1: LR settings (from TFAR_fnc_getLrSettings; see above for layout)
+    2: VLR settings (from TFAR_fnc_getLrSettings; see above for layout)
     3: Headset status (from missionNamespace getVariable ["TFAR_core_isHeadsetLowered", false])
 */

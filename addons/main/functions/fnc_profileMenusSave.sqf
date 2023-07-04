@@ -7,9 +7,9 @@
  * Arguments:
  * 0: Unit <OBJECT>
  * 1: Radio types to be saved <ARRAY>
- * 2: Save to other type of radio (only works for LR and VLR) <BOOLEAN> (optional)
- * 3: SR Radio <STRING> (optional)
- * 4: LR Radio <ARRAY> (optional)
+ * 2: Save to same type of radio (only works for LR and VLR) <BOOL> (default: true)
+ * 3: SR Radio <STRING> (default: call FUNC(activeSwRadio))
+ * 4: LR Radio <ARRAY> (default: [])
  * If arg#2 is set to true, it will save to the same type of radio (LR -> LR, VLR -> VLR). If false, not the same type (LR -> VLR, VLR -> LR).
  *
  * Return Value:
@@ -54,4 +54,4 @@ _profileNames apply {[
         nil, // Children actions
         [_unit, _saveFromRadios, _x, _saveSameType, _radioSR, _radioLR, _display] // Action parameters
     ] call ace_interact_menu_fnc_createAction, [], _unit];
-};
+}

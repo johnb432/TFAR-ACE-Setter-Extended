@@ -2,10 +2,10 @@
 
 /*
  * Author: johnb43
- * Applies EH to check for vehicle change on selected units
+ * Applies EH to check for vehicle change on a unit.
  *
  * Arguments:
- * 0: Unit <OBJECT>
+ * 0: Unit <OBJECT> (default: player)
  *
  * Return Value:
  * None
@@ -18,10 +18,10 @@
 
 params [["_unit", player, [objNull]]];
 
-if (isNull _unit || {!isNil {_unit getVariable QGVAR(eventHandlersVehicleIDs)}}) exitWith {};
+if (isNull _unit || {!isNil {_unit getVariable QGVAR(vehicleEhIDs)}}) exitWith {};
 
 // When mounting, save loadout and apply a profile's config
-_unit setVariable [QGVAR(eventHandlersVehicleIDs), [
+_unit setVariable [QGVAR(vehicleEhIDs), [
     _unit addEventHandler ["GetInMan", {
         // If CBA settings for this are disabled
         if (!GVAR(enableMountingAutoSettings) || {!GVAR(crewStatus)}) exitWith {};
@@ -34,9 +34,9 @@ _unit setVariable [QGVAR(eventHandlersVehicleIDs), [
         private _radioSR = call FUNC(activeSwRadio);
 
         private _dataRadioSR = if (_radioSR isNotEqualTo "") then {
-            _radioSR call TFAR_fnc_getSwSettings;
+            _radioSR call TFAR_fnc_getSwSettings
         } else {
-            [];
+            []
         };
 
         // Get currently active radios
