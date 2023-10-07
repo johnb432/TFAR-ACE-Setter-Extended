@@ -1,4 +1,4 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 
 /*
  * Author: johnb43
@@ -21,7 +21,7 @@ params [["_index", -1, [0]], ["_display", displayNull, [displayNull]]];
 
 // If index is invalid
 if (_index == -1) exitWith {
-    ["Profile can't be deleted!", false, 10, 2] call ace_common_fnc_displayText;
+    [LLSTRING(invalidDeletion), false, 10, 2] call ace_common_fnc_displayText;
 };
 
 if (isNull _display) then {
@@ -39,7 +39,7 @@ if (isNull _display) exitWith {};
     private _profile = _presets select _index;
 
     // Wait for confimation or setting is not enabled
-    if (!GVAR(askDeleteConfirmation) || {[format ["Are you sure you want to delete profile '%1'?", _profile], "Confirmation", "Yes", "No", _display] call BIS_fnc_guiMessage}) then {
+    if (!GVAR(askDeleteConfirmation) || {[format [LLSTRING(deleteConfirmation), _profile], localize "str_a3_a_hub_misc_mission_selection_box_title", localize "str_disp_xbox_hint_yes", localize "str_disp_xbox_hint_no", _display] call BIS_fnc_guiMessage}) then {
         // Set the profile to nil to delete variable
         SETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),nil);
 

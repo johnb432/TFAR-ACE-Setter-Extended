@@ -1,64 +1,64 @@
 [
     QGVAR(enableArsenalAutoSettings),
     "CHECKBOX",
-    ["Enable Arsenal Radio settings Saving", "Saves the current radio settings before entering the arsenal and applies them when you exit the arsenal (both ACE and BI Arsenals) or after respawning."],
-    [COMPONENT_NAME, "Funtionality"],
+    [LSTRING(enableArsenalSaving), LSTRING(enableArsenalSavingDesc)],
+    [COMPONENT_NAME, LSTRING(functionalityCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(enableCompatFK),
     "CHECKBOX",
-    ["Enable FK Server Detection", "When loading SR settings on an FK server, it will automatically change the channel to which squad you are in."],
-    [COMPONENT_NAME, "Funtionality"],
+    [LSTRING(enabledFkDetection), LSTRING(enabledFkDetectionDesc)],
+    [COMPONENT_NAME, LSTRING(functionalityCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(enableSRInteractions),
     "CHECKBOX",
-    ["Enable 'SR' Interactions", "Enables both saving and loading actions for SR."],
-    [COMPONENT_NAME, "Funtionality"],
+    [LSTRING(enableSrInteractions), LSTRING(enableSrInteractionsDesc)],
+    [COMPONENT_NAME, LSTRING(functionalityCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(enableLRInteractions),
     "CHECKBOX",
-    ["Enable 'LR' Interactions", "Enables both saving and loading actions for LR."],
-    [COMPONENT_NAME, "Funtionality"],
+    [LSTRING(enableLrInteractions), LSTRING(enableLrInteractionsDesc)],
+    [COMPONENT_NAME, LSTRING(functionalityCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(enableVLRInteractions),
     "CHECKBOX",
-    ["Enable 'VLR' Interactions", "Enables both saving and loading actions for VLR."],
-    [COMPONENT_NAME, "Funtionality"],
+    [LSTRING(enableVlrInteractions), LSTRING(enableVlrInteractionsDesc)],
+    [COMPONENT_NAME, LSTRING(functionalityCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(enableSRAndLRInteractions),
     "CHECKBOX",
-    ["Enable 'SR & LR' Interactions", "Enables both saving and loading actions for 'SR & LR'."],
-    [COMPONENT_NAME, "Funtionality"],
+    [LSTRING(enableSrLrInteractions), LSTRING(enableSrLrInteractionsDesc)],
+    [COMPONENT_NAME, LSTRING(functionalityCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(enableAllInteractions),
     "CHECKBOX",
-    ["Enable 'All' Interactions", "Enables both saving and loading actions for 'All'."],
-    [COMPONENT_NAME, "Funtionality"],
+    [LSTRING(enableAllInteractions), LSTRING(enableAllInteractionsDesc)],
+    [COMPONENT_NAME, LSTRING(functionalityCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(airProfile),
     "LIST",
-    ["Air Profile", "Applies the specified profile when you get into crew slots of air vehicles."],
-    [COMPONENT_NAME, "Vehicles"],
+    [LSTRING(airProfile), LSTRING(airProfileDesc)],
+    [COMPONENT_NAME, LSTRING(vehiclesCategory)],
     [["None"] + GETPRVAR(QGVAR(profileNames),[]), ["None"] + GETPRVAR(QGVAR(profileNames),[]), 0],
     0,
     {
@@ -71,8 +71,8 @@
 [
     QGVAR(landProfile),
     "LIST",
-    ["Land Profile", "Applies the specified profile when you get into crew slots of land vehicles."],
-    [COMPONENT_NAME, "Vehicles"],
+    [LSTRING(landProfile), LSTRING(landProfileDesc)],
+    [COMPONENT_NAME, LSTRING(vehiclesCategory)],
     [["None"] + GETPRVAR(QGVAR(profileNames),[]), ["None"] + GETPRVAR(QGVAR(profileNames),[]), 0],
     0,
     {
@@ -85,55 +85,55 @@
 [
     QGVAR(askSaveConfirmation),
     "CHECKBOX",
-    ["Ask Save Confirmation", "Asks the player for confirmation before saving a profile."],
-    [COMPONENT_NAME, "Profiles"],
+    [LSTRING(askSaveConfirmation), LSTRING(askSaveConfirmationDesc)],
+    [COMPONENT_NAME, LSTRING(profilesCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(askLoadConfirmation),
     "CHECKBOX",
-    ["Ask Load Confirmation", "Asks the player for confirmation before loading a profile."],
-    [COMPONENT_NAME, "Profiles"],
+    [LSTRING(askLoadConfirmation), LSTRING(askLoadConfirmationDesc)],
+    [COMPONENT_NAME, LSTRING(profilesCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(askDeleteConfirmation),
     "CHECKBOX",
-    ["Ask Delete Confirmation", "Asks the player for confirmation before deleting a profile."],
-    [COMPONENT_NAME, "Profiles"],
+    [LSTRING(askDeleteConfirmation), LSTRING(askDeleteConfirmationDesc)],
+    [COMPONENT_NAME, LSTRING(profilesCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(askOverwriteConfirmation),
     "CHECKBOX",
-    ["Ask Overwrite Confirmation", "Asks the player for confirmation before overwriting a profile when importing/making a new profile."],
-    [COMPONENT_NAME, "Profiles"],
+    [LSTRING(askOverwriteConfirmation), LSTRING(askOverwriteConfirmationDesc)],
+    [COMPONENT_NAME, LSTRING(profilesCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(loadColorIcon),
     "COLOR",
-    ["Icon Color in Messages", "Sets the icons in the messages to this color."],
-    [COMPONENT_NAME, "Profiles"],
+    [LSTRING(loadColorIcon), LSTRING(loadColorIconDesc)],
+    [COMPONENT_NAME, LSTRING(profilesCategory)],
     [1, 1, 1]
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(enableMountingAutoSettings),
     "CHECKBOX",
-    ["Enable Mounting Radio settings Saving", "Saves the current radio settings before entering a vehicle and applies them when you dismount."],
-    [COMPONENT_NAME, "Vehicles"],
+    [LSTRING(enableMountingAutoSettings), LSTRING(enableMountingAutoSettingsDesc)],
+    [COMPONENT_NAME, LSTRING(vehiclesCategory)],
     true
 ] call CBA_fnc_addSetting;
 
 [
     QGVAR(crewStatusDefault),
     "CHECKBOX",
-    ["Default Crew Status", "Sets the crew status you are by default when joining a mission. 'On' means you are crew, 'Off' means you aren't."],
-    [COMPONENT_NAME, "Vehicles"],
+    [LSTRING(crewStatusDefault), LSTRING(crewStatusDefaultDesc)],
+    [COMPONENT_NAME, LSTRING(vehiclesCategory)],
     false
 ] call CBA_fnc_addSetting;

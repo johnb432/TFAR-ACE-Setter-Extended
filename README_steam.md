@@ -20,7 +20,8 @@ This mod also adds the ability to sort radios by their ranges in the ACE arsenal
 [*] [b]Icon Color in Messages:[/b] This setting changes the color of the icon that is shown when you load/save/export a profile.
 [*] [b]Air Profile:[/b] Allows the player to have a profile applied automatically when getting in an aircraft.
 [*] [b]Land Profile:[/b] Allows the player to have a profile applied automatically when getting in a ground vehicle.
-[*] [b]Enable Mounting Radio settings Saving:[/b] This setting will make the player save his current radio preset before mounting into a vehicle. When exiting the vehicle, the saved settings will be applied again.
+[*] [b]Enable Mounting Radio settings Saving:[/b] If the player has crew status, this setting will make the player save his current radio preset before mounting into a vehicle. When exiting the vehicle, the saved settings will be applied again.
+[*] [b]Default Crew Status:[/b] Allows the player to set the default crew status when joining a mission.
 [/list]
 
 [h2]CBA Keybinds[/h2]

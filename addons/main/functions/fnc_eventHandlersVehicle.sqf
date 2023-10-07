@@ -1,11 +1,11 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 
 /*
  * Author: johnb43
  * Applies EH to check for vehicle change on a unit.
  *
  * Arguments:
- * 0: Unit <OBJECT> (default: player)
+ * 0: Unit <OBJECT> (default: call CBA_fnc_currentUnit)
  *
  * Return Value:
  * None
@@ -16,7 +16,7 @@
  * Public: No
  */
 
-params [["_unit", player, [objNull]]];
+params [["_unit", call CBA_fnc_currentUnit, [objNull]]];
 
 if (isNull _unit || {!isNil {_unit getVariable QGVAR(vehicleEhIDs)}}) exitWith {};
 
@@ -33,7 +33,7 @@ _unit setVariable [QGVAR(vehicleEhIDs), [
 
         private _radioSR = call FUNC(activeSwRadio);
 
-        private _dataRadioSR = if (_radioSR isNotEqualTo "") then {
+        private _dataRadioSR = if (_radioSR != "") then {
             _radioSR call TFAR_fnc_getSwSettings
         } else {
             []
@@ -51,8 +51,10 @@ _unit setVariable [QGVAR(vehicleEhIDs), [
 
         _unit setVariable [QGVAR(radioLoadout), _data];
 
+        private _radioVLR = _unit call TFAR_fnc_vehicleLR;
+
         // If there is no VLR, don't load any settings
-        if (isNil {_unit call TFAR_fnc_vehicleLR}) exitWith {};
+        if (isNil "_radioVLR") exitWith {};
 
         // Get data from profile
         _data = GETPRVAR(FORMAT_1(QGVAR(profile%1),[ARR_2(GVAR(landProfileName),GVAR(airProfileName))] select (_vehicle isKindOf "Air")),[]);
@@ -60,7 +62,7 @@ _unit setVariable [QGVAR(vehicleEhIDs), [
         // If nothing can be applied, exit
         if (isNil "_data" || {_data isEqualTo []}) exitWith {};
 
-        [_unit, _data, _unit call TFAR_fnc_vehicleLR] call FUNC(loadVehicleSettings);
+        [_unit, _data, _radioVLR] call FUNC(loadVehicleSettings);
     }],
     // When switching seats, apply a profile's config
     _unit addEventHandler ["SeatSwitchedMan", {

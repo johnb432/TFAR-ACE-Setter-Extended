@@ -1,4 +1,4 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 
 /*
  * Author: johnb43
@@ -45,7 +45,7 @@ _profileNames apply {[
             // All action parameters are passed; Needs to be scheduled because of BIS_fnc_guiMessage
             (_this select 2) spawn {
                 // Wait for confimation or setting is not enabled
-                if (!GVAR(askSaveConfirmation) || {[format ["Are you sure you want to save to profile '%1'?", _this select 2], "Confirmation", "Yes", "No", _this select 6] call BIS_fnc_guiMessage}) then {
+                if (!GVAR(askSaveConfirmation) || {[format [LLSTRING(saveConfirmation), _this select 2], localize "str_a3_a_hub_misc_mission_selection_box_title", localize "str_disp_xbox_hint_yes", localize "str_disp_xbox_hint_no", _this select 6] call BIS_fnc_guiMessage}) then {
                     _this call FUNC(saveRadioSettings);
                 };
             };
