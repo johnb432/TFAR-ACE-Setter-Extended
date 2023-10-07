@@ -1,9 +1,18 @@
 #include "script_component.hpp"
 
+// CBA Keybinds
+private _str = format ["%1 %2", localize "STR_TFAR_CORE_key_SW_Channel", 9];
+
+// Add Keybind for Channel 9 on SR
+[COMPONENT_NAME, QGVAR(SWChannel9), [_str, _str], {
+    // Returns if event was handled or not
+    8 call TFAR_fnc_processSWChannelKeys
+}, {}, [DIK_NUMPAD9, [false, false, false]]] call CBA_fnc_addKeybind;
+
 GVAR(crewStatus) = GVAR(crewStatusDefault);
 
 // Add radio range sorting
-[[[5, 12], []], QGVAR(radioRangeSort), "Sort by radio range", {
+[[[5, 12], []], QGVAR(radioRangeSort), LLSTRING(sortByRadioRange), {
     params ["_itemCfg"];
 
     // If the LR is disabled, filter it out immediately; However, SRs don't have it, so check if config entry exists
@@ -91,7 +100,7 @@ if (!isMultiplayer) exitWith {};
             // Add Save actions
             _actions pushBack [[
                 QGVAR(radiosCuratorSave),
-                "Save",
+                localize "str_disp_int_save",
                 ICON_SAVE,
                 {},
                 {GVAR(enableSRInteractions) || GVAR(enableLRInteractions)},
@@ -126,7 +135,7 @@ if (!isMultiplayer) exitWith {};
             // Add Load actions
             _actions pushBack [[
                 QGVAR(radiosCuratorLoad),
-                "Load",
+                localize "str_disp_me_load",
                 ICON_LOAD,
                 {},
                 {GVAR(enableSRInteractions) || GVAR(enableLRInteractions)},
@@ -161,7 +170,7 @@ if (!isMultiplayer) exitWith {};
             // Add Profile actions
             _actions pushBack [[
                 QGVAR(radiosCuratorDeleteProfile),
-                "Delete Profile",
+                LLSTRING(deleteProfile),
                 ICON_DELETE,
                 {DELETE_PROFILE spawn FUNC(selectProfileGUI)},
                 {GETPRVAR(QGVAR(profileNames),[]) isNotEqualTo []}
@@ -169,7 +178,7 @@ if (!isMultiplayer) exitWith {};
 
             _actions pushBack [[
                 QGVAR(radiosCuratorNewProfile),
-                "Create/Import Profile",
+                LLSTRING(createImportProfile),
                 ICON_ADD,
                 {[] spawn FUNC(createProfileGUI)},
                 {true}
@@ -177,7 +186,7 @@ if (!isMultiplayer) exitWith {};
 
             _actions pushBack [[
                 QGVAR(radiosCuratorExportProfile),
-                "Export Profile",
+                LLSTRING(exportProfile),
                 ICON_ADD,
                 {EXPORT_PROFILE spawn FUNC(selectProfileGUI)},
                 {GETPRVAR(QGVAR(profileNames),[]) isNotEqualTo []}

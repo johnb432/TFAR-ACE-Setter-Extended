@@ -5,20 +5,20 @@ class CfgVehicles {
             class TFAR_Radio {
                 class ADDON {
                     condition = QUOTE(true);
-                    displayName = "TFAR Setter";
+                    displayName = CSTRING(tfarSetter);
                     EXCEPTIONS;
                     icon = ICON_ROOT;
 
                     class GVAR(saveBase) {
                         condition = QUOTE(call TFAR_fnc_haveSWRadio || call TFAR_fnc_haveLRRadio);
-                        displayName = "Save";
+                        displayName = "$STR_disp_int_save";
                         EXCEPTIONS;
                         icon = ICON_SAVE;
                         insertChildren = QUOTE(_player call FUNC(interactSaveSR));
 
                         class GVAR(saveFromLRtoLR) {
                             condition = QUOTE(GVAR(enableLRInteractions) && {!isNil {_player call TFAR_fnc_backpackLR}});
-                            displayName = "from LR to LR";
+                            displayName = CSTRING(fromLRtoLR);
                             EXCEPTIONS;
                             icon = ICON_LR;
                             insertChildren = QUOTE([ARR_2(_player,[ARR_3(false,true,false)])] call FUNC(profileMenusSave));
@@ -26,7 +26,7 @@ class CfgVehicles {
 
                         class GVAR(saveFromVLRtoLR) {
                             condition = QUOTE(GVAR(enableVLRInteractions) && {!isNil {_player call TFAR_fnc_VehicleLR}});
-                            displayName = "from VLR to LR";
+                            displayName = CSTRING(fromVLRtoLR);
                             EXCEPTIONS;
                             icon = ICON_LR;
                             insertChildren = QUOTE([ARR_3(_player,[ARR_3(false,true,false)],false)] call FUNC(profileMenusSave));
@@ -34,7 +34,7 @@ class CfgVehicles {
 
                         class GVAR(saveFromLRtoVLR) {
                             condition = QUOTE(GVAR(enableLRInteractions) && {!isNil {_player call TFAR_fnc_backpackLR}});
-                            displayName = "from LR to VLR";
+                            displayName = CSTRING(fromLRtoVLR);
                             EXCEPTIONS;
                             icon = ICON_VLR;
                             insertChildren = QUOTE([ARR_3(_player,[ARR_3(false,false,true)],false)] call FUNC(profileMenusSave));
@@ -42,7 +42,7 @@ class CfgVehicles {
 
                         class GVAR(saveFromVLRtoVLR) {
                             condition = QUOTE(GVAR(enableVLRInteractions) && {!isNil {_player call TFAR_fnc_VehicleLR}});
-                            displayName = "from VLR to VLR";
+                            displayName = CSTRING(fromVLRtoVLR);
                             EXCEPTIONS;
                             icon = ICON_VLR;
                             insertChildren = QUOTE([ARR_2(_player,[ARR_3(false,false,true)])] call FUNC(profileMenusSave));
@@ -50,7 +50,7 @@ class CfgVehicles {
 
                         class GVAR(saveSRAndFromLRtoLR) {
                             condition = QUOTE(GVAR(enableSRAndLRInteractions) && {call TFAR_fnc_haveSWRadio} && {!isNil {_player call TFAR_fnc_backpackLR}});
-                            displayName = "SR and from LR to LR";
+                            displayName = CSTRING(SRAndFromLRtoLR);
                             EXCEPTIONS;
                             icon = ICON_ROOT;
                             insertChildren = QUOTE([ARR_2(_player,[ARR_3(true,true,false)])] call FUNC(profileMenusSave));
@@ -58,7 +58,7 @@ class CfgVehicles {
 
                         class GVAR(saveAll) {
                             condition = QUOTE(GVAR(enableAllInteractions) && {call TFAR_fnc_haveSWRadio} && {!isNil {_player call TFAR_fnc_backpackLR}} && {!isNil {_player call TFAR_fnc_VehicleLR}});
-                            displayName = "All";
+                            displayName = CSTRING(all);
                             EXCEPTIONS;
                             icon = ICON_ROOT;
                             insertChildren = QUOTE([ARR_2(_player,[ARR_3(true,true,true)])] call FUNC(profileMenusSave));
@@ -67,14 +67,14 @@ class CfgVehicles {
 
                     class GVAR(loadBase) {
                         condition = QUOTE(call TFAR_fnc_haveSWRadio || call TFAR_fnc_haveLRRadio);
-                        displayName = "Load";
+                        displayName = "$STR_disp_me_load";
                         EXCEPTIONS;
                         icon = ICON_LOAD;
                         insertChildren = QUOTE(_player call FUNC(interactLoadSR));
 
                         class GVAR(loadFromLRToLR) {
                             condition = QUOTE(GVAR(enableLRInteractions) && {!isNil {_player call TFAR_fnc_backpackLR}});
-                            displayName = "from LR to LR";
+                            displayName = CSTRING(fromLRtoLR);
                             EXCEPTIONS;
                             icon = ICON_LR;
                             insertChildren = QUOTE([ARR_2(_player,[ARR_3(false,true,false)])] call FUNC(profileMenusLoad));
@@ -82,7 +82,7 @@ class CfgVehicles {
 
                         class GVAR(loadFromVLRToLR) {
                             condition = QUOTE(GVAR(enableLRInteractions) && {!isNil {_player call TFAR_fnc_backpackLR}});
-                            displayName = "from VLR to LR";
+                            displayName = CSTRING(fromVLRtoLR);
                             EXCEPTIONS;
                             icon = ICON_LR;
                             insertChildren = QUOTE([ARR_3(_player,[ARR_3(false,false,true)],false)] call FUNC(profileMenusLoad));
@@ -90,7 +90,7 @@ class CfgVehicles {
 
                         class GVAR(loadFromLRToVLR) {
                             condition = QUOTE(GVAR(enableVLRInteractions) && {!isNil {_player call TFAR_fnc_VehicleLR}});
-                            displayName = "from LR to VLR";
+                            displayName = CSTRING(fromLRtoVLR);
                             EXCEPTIONS;
                             icon = ICON_VLR;
                             insertChildren = QUOTE([ARR_3(_player,[ARR_3(false,true,false)],false)] call FUNC(profileMenusLoad));
@@ -98,7 +98,7 @@ class CfgVehicles {
 
                         class GVAR(loadFromVLRToVLR) {
                             condition = QUOTE(GVAR(enableVLRInteractions) && {!isNil {_player call TFAR_fnc_VehicleLR}});
-                            displayName = "from VLR to VLR";
+                            displayName = CSTRING(fromVLRtoVLR);
                             EXCEPTIONS;
                             icon = ICON_VLR;
                             insertChildren = QUOTE([ARR_2(_player,[ARR_3(false,false,true)])] call FUNC(profileMenusLoad));
@@ -106,7 +106,7 @@ class CfgVehicles {
 
                         class GVAR(loadFromSRAndFromLRToLR) {
                             condition = QUOTE(GVAR(enableSRAndLRInteractions) && {call TFAR_fnc_haveSWRadio} && {!isNil {_player call TFAR_fnc_backpackLR}});
-                            displayName = "SR and from LR to LR";
+                            displayName = CSTRING(SRAndFromLRtoLR);
                             EXCEPTIONS;
                             icon = ICON_ROOT;
                             insertChildren = QUOTE([ARR_2(_player,[ARR_3(true,true,false)])] call FUNC(profileMenusLoad));
@@ -114,7 +114,7 @@ class CfgVehicles {
 
                         class GVAR(loadAll) {
                             condition = QUOTE(GVAR(enableAllInteractions) && {call TFAR_fnc_haveSWRadio} && {!isNil {_player call TFAR_fnc_backpackLR}} && {!isNil {_player call TFAR_fnc_VehicleLR}});
-                            displayName = "All";
+                            displayName = CSTRING(all);
                             EXCEPTIONS;
                             icon = ICON_ROOT;
                             insertChildren = QUOTE([ARR_2(_player,[ARR_3(true,true,true)])] call FUNC(profileMenusLoad));
@@ -123,7 +123,7 @@ class CfgVehicles {
 
                     class GVAR(deleteProfile) {
                          condition = QUOTE(GETPRVAR(QQGVAR(profileNames),[]) isNotEqualTo []);
-                         displayName = "Delete Profile";
+                         displayName = CSTRING(deleteProfile);
                          EXCEPTIONS;
                          icon = ICON_DELETE;
                          statement = QUOTE(DELETE_PROFILE spawn FUNC(selectProfileGUI));
@@ -131,7 +131,7 @@ class CfgVehicles {
 
                     class GVAR(newProfile) {
                          condition = QUOTE(true);
-                         displayName = "Create/Import Profile";
+                         displayName = CSTRING(createImportProfile);
                          EXCEPTIONS;
                          icon = ICON_ADD;
                          statement = QUOTE([] spawn FUNC(createProfileGUI));
@@ -139,7 +139,7 @@ class CfgVehicles {
 
                     class GVAR(exportProfile) {
                          condition = QUOTE(GETPRVAR(QQGVAR(profileNames),[]) isNotEqualTo []);
-                         displayName = "Export Profile";
+                         displayName = CSTRING(exportProfile);
                          EXCEPTIONS;
                          icon = ICON_ADD;
                          statement = QUOTE(EXPORT_PROFILE spawn FUNC(selectProfileGUI));
@@ -147,7 +147,7 @@ class CfgVehicles {
 
                     class GVAR(setCrewStatus) {
                          condition = QUOTE(!GVAR(crewStatus));
-                         displayName = "Set Status to Crew";
+                         displayName = CSTRING(setCrewStatus);
                          EXCEPTIONS;
                          icon = ICON_PERSON;
                          statement = QUOTE(_player call FUNC(setStatus));
@@ -155,7 +155,7 @@ class CfgVehicles {
 
                     class GVAR(resetCrewStatus) {
                          condition = QGVAR(crewStatus);
-                         displayName = "Set Status to Non-Crew";
+                         displayName = CSTRING(resetCrewStatus);
                          EXCEPTIONS;
                          icon = ICON_PERSON;
                          statement = QUOTE(GVAR(crewStatus) = false);

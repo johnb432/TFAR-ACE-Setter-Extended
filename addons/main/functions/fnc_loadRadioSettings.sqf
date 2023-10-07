@@ -1,11 +1,11 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 
 /*
  * Author: johnb43
  * Loads select radio configurations from a chosen profile.
  *
  * Arguments:
- * 0: Unit <OBJECT> (default: player)
+ * 0: Unit <OBJECT> (default: call CBA_fnc_currentUnit)
  * 1: Which radios should be loaded <ARRAY> (default: [false, false, false])
  * 2: Which profile is selected <STRING> (default: "")
  * 3: Load same type of radio (only works for LR and VLR) <BOOL> (default: true)
@@ -21,14 +21,14 @@
  * Public: No
  */
 
-params [["_unit", player, [objNull]], ["_loadFromRadios", [false, false, false], [[]], [1, 2, 3]], ["_profile", "", [""]], ["_loadSameType", true, [true]], ["_radioSR", call FUNC(activeSwRadio), [""]], ["_radioLR", [], [[]]]];
+params [["_unit", call CBA_fnc_currentUnit, [objNull]], ["_loadFromRadios", [false, false, false], [[]], [1, 2, 3]], ["_profile", "", [""]], ["_loadSameType", true, [true]], ["_radioSR", call FUNC(activeSwRadio), [""]], ["_radioLR", [], [[]]]];
 _loadFromRadios params [["_doSR", false, [true]], ["_doLR", false, [true]], ["_doVLR", false, [true]]];
 
 if (!alive _unit) exitWith {};
 
 // If profile is invalid
-if (_profile isEqualTo "") exitWith {
-    ["The chosen profile is invalid!", false, 10, 2] call ace_common_fnc_displayText;
+if (_profile == "") exitWith {
+    [LLSTRING(invalidProfile), false, 10, 2] call ace_common_fnc_displayText;
 };
 
 GETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),[]) params ["_dataSR", "_dataLR", "_dataVLR", "_headsetStatus"];
@@ -37,7 +37,7 @@ GETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),[]) params ["_dataSR", "_dataLR", "
 private _textArray = [];
 
 // If the SR settings should be loaded
-if (_doSR && {_radioSR isNotEqualTo ""} && {_dataSR isNotEqualTo []}) then {
+if (_doSR && {_radioSR != ""} && {_dataSR isNotEqualTo []}) then {
     // Load the side encryption; The radio settings in a profile will never be overwritten by using this
     private _code = [_radioSR, "tf_encryptionCode"] call TFAR_fnc_getWeaponConfigProperty;
 
@@ -65,7 +65,7 @@ if (_doLR && {_dataLR isNotEqualTo []}) then {
     if (isNil "_radioLR") exitWith {};
 
     // Load the side encryption; The radio settings in a profile will never be overwritten by using this
-    private _code = [_radioLR, "tf_encryptionCode"] call TFAR_fnc_getWeaponConfigProperty;
+    private _code = [typeOf (_radioLR select 0), "tf_encryptionCode"] call TFAR_fnc_getVehicleConfigProperty;
 
     if (_code == "tf_guer_radio_code") then {
         _code = "tf_independent_radio_code";
@@ -87,7 +87,7 @@ if (_doVLR && {_dataVLR isNotEqualTo []}) then {
     if (isNil "_radioLR") exitWith {};
 
     // Load the side encryption; The radio settings in a profile will never be overwritten by using this
-    private _code = [_radioLR, "tf_encryptionCode"] call TFAR_fnc_getWeaponConfigProperty;
+    private _code = [typeOf (_radioLR select 0), "tf_encryptionCode"] call TFAR_fnc_getVehicleConfigProperty;
 
     if (_code == "tf_guer_radio_code") then {
         _code = "tf_independent_radio_code";
@@ -103,10 +103,10 @@ if (_doVLR && {_dataVLR isNotEqualTo []}) then {
 
 // If nothing was changed
 if (_textArray isEqualTo []) exitWith {
-    ["No settings were loaded!", ICON_LOAD] call ace_common_fnc_displayTextPicture;
+    [LLSTRING(noSettingsLoaded), ICON_LOAD] call ace_common_fnc_displayTextPicture;
 };
 
 // Set the headset up or down
 _headsetStatus call TFAR_fnc_setHeadsetLowered;
 
-[format ["Loaded %1 settings from profile '%2'.", _textArray joinString ", ", _profile], ICON_LOAD, GVAR(loadColorIcon), _unit, 3] call ace_common_fnc_displayTextPicture;
+[format [LLSTRING(settingsLoadedFromProfile), _textArray joinString ", ", _profile], ICON_LOAD, GVAR(loadColorIcon), _unit, 3] call ace_common_fnc_displayTextPicture;

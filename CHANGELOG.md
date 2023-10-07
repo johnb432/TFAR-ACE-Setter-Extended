@@ -1,3 +1,9 @@
+# Changelog for TFAR - ACE Setter - Extended 7.10.2023
+
+1.0.2.0
+- Bug fix for loading LR radios.
+- Minor cleanup.
+
 # Changelog for TFAR - ACE Setter - Extended 4.7.2023
 
 1.0.1.9

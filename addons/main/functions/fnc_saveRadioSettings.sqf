@@ -1,11 +1,11 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 
 /*
  * Author: johnb43
  * Saves select radio configurations to a chosen profile.
  *
  * Arguments:
- * 0: Unit <OBJECT> (default: player)
+ * 0: Unit <OBJECT> (default: call CBA_fnc_currentUnit)
  * 1: Which radios should be saved <ARRAY> (default: [false, false, false])
  * 2: Which profile is selected <STRING> (default: "")
  * 3: Load same type of radio (only works for LR and VLR) <BOOL> (default: true)
@@ -21,19 +21,19 @@
  * Public: No
  */
 
-params [["_unit", player, [objNull]], ["_saveToRadios", [false, false, false], [[]], [1, 2, 3]], ["_profile", "", [""]], ["_saveSameType", true, [true]], ["_radioSR", call FUNC(activeSwRadio), [""]], ["_radioLR", [], [[]]]];
+params [["_unit", call CBA_fnc_currentUnit, [objNull]], ["_saveToRadios", [false, false, false], [[]], [1, 2, 3]], ["_profile", "", [""]], ["_saveSameType", true, [true]], ["_radioSR", call FUNC(activeSwRadio), [""]], ["_radioLR", [], [[]]]];
 _saveToRadios params [["_doSR", false, [true]], ["_doLR", false, [true]], ["_doVLR", false, [true]]];
 
 if (!alive _unit) exitWith {};
 
 // If nothing was changed
 if (!_doSR && {!_doLR} && {!_doVLR}) exitWith {
-    ["No settings were saved!", false, 10, 2] call ace_common_fnc_displayText;
+    [LLSTRING(noSettingsSaved), false, 10, 2] call ace_common_fnc_displayText;
 };
 
 // If profile is invalid
-if (_profile isEqualTo "") exitWith {
-    ["The chosen profile is invalid!", false, 10, 2] call ace_common_fnc_displayText;
+if (_profile == "") exitWith {
+    [LLSTRING(invalidProfile), false, 10, 2] call ace_common_fnc_displayText;
 };
 
 // Get data from selected profile
@@ -43,7 +43,7 @@ private _data = GETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),[]);
 private _textArray = [];
 
 // If the SR settings should be saved
-if (_doSR && {_radioSR isNotEqualTo ""}) then {
+if (_doSR && {_radioSR != ""}) then {
     // Set the data in the first element
     _data set [0, _radioSR call TFAR_fnc_getSwSettings];
 
@@ -89,4 +89,4 @@ _data set [3, GETMVAR("TFAR_core_isHeadsetLowered",false)];
 
 SETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),_data);
 
-[format ["Saved %1 settings to profile '%2'.", _textArray joinString ", ", _profile], ICON_SAVE, GVAR(loadColorIcon), _unit, 3] call ace_common_fnc_displayTextPicture;
+[format [LLSTRING(settingsSavedToProfile), _textArray joinString ", ", _profile], ICON_SAVE, GVAR(loadColorIcon), _unit, 3] call ace_common_fnc_displayTextPicture;

@@ -1,4 +1,4 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 
 /*
  * Author: johnb43
@@ -24,12 +24,12 @@ params [["_preset", "", [""]], ["_data", [[], [], [], false], ["", []], PROFILE_
 _preset = _preset splitString WHITESPACE joinString "";
 
 // If the new preset is invalid, exit
-if (_preset isEqualTo "" || {(toLower _preset) in ["names", "none"]}) exitWith {
-    ["The chosen name is invalid!", false, 10, 2] call ace_common_fnc_displayText;
+if (_preset == "" || {(toLower _preset) in ["names", "none"]}) exitWith {
+    [LLSTRING(invalidName), false, 10, 2] call ace_common_fnc_displayText;
 };
 
 // If empty string passed, use default
-if (_data isEqualTo "") then {
+if (_data == "") then {
     _data = [[], [], [], false];
 };
 
@@ -41,12 +41,12 @@ if (_data isEqualType "") then {
 
 // If not array or parsing failed, exit
 if !(_data isEqualType []) exitWith {
-    ["The given settings are invalid!", false, 10, 2] call ace_common_fnc_displayText;
+    [LLSTRING(invalidSettings), false, 10, 2] call ace_common_fnc_displayText;
 };
 
 // If wrong type given, exit
 if !(_data params [["_dataSR", [], [[]], [0, RADIO_SETTINGS_COUNT]], ["_dataLR", [], [[]], [0, RADIO_SETTINGS_COUNT]], ["_dataVLR", [], [[]], [0, RADIO_SETTINGS_COUNT]], ["_headsetStatus", false, [true]]]) exitWith {
-    ["The given settings are in the wrong format!", false, 10, 2] call ace_common_fnc_displayText;
+    [LLSTRING(wrongFormatSettings), false, 10, 2] call ace_common_fnc_displayText;
 };
 
 // Set the UID on the SR (only required for SR); Done as a precaution if the imported profile comes from another player
@@ -68,7 +68,7 @@ if ((_presets findIf {_x == _preset}) == -1) exitWith {
     params ["_preset", "_data", "_display"];
 
     // Wait for confirmation or setting is not enabled or setting was newly added
-    if (!GVAR(askOverwriteConfirmation) || {[format ["Are you sure you want to overwrite profile '%1'?", _preset], "Confirmation", "Yes", "No", _display] call BIS_fnc_guiMessage}) then {
+    if (!GVAR(askOverwriteConfirmation) || {[format [LLSTRING(overwriteConfirmation), _preset], localize "str_a3_a_hub_misc_mission_selection_box_title", localize "str_disp_xbox_hint_yes", localize "str_disp_xbox_hint_no", _display] call BIS_fnc_guiMessage}) then {
         SETPRVAR(FORMAT_1(QGVAR(profile%1),_preset),_data);
     };
 };

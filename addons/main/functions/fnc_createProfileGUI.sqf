@@ -1,4 +1,4 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 
 /*
  * Author: johnb43
@@ -41,8 +41,8 @@ _ctrlGroup ctrlSetPosition [POS_X(13), POS_Y(8), POS_W(16.7), POS_H(8)];
 _ctrlGroup ctrlCommit 0;
 
 // Title background
-private _ctrlBackgroundTitle = _display ctrlCreate ["RscTextMulti", -1, _ctrlGroup];
-_ctrlBackgroundTitle ctrlSetText "CREATE/IMPORT RADIO PRESET";
+private _ctrlBackgroundTitle = _display ctrlCreate ["RscTextMulti",-1, _ctrlGroup];
+_ctrlBackgroundTitle ctrlSetText LLSTRING(createImportPreset);
 _ctrlBackgroundTitle ctrlSetPosition [0, 0, POS_W(16.7), POS_H(1)];
 _ctrlBackgroundTitle ctrlSetBackgroundColor [GETPRVAR("GUI_BCG_RGB_R",0.13), GETPRVAR("GUI_BCG_RGB_G",0.54), GETPRVAR("GUI_BCG_RGB_B",0.21), GETPRVAR("GUI_BCG_RGB_A",0.8)];
 _ctrlBackgroundTitle ctrlEnable false;
@@ -64,8 +64,8 @@ _ctrlEditName ctrlCommit 0;
 private _ctrlBackgroundName = _display ctrlCreate ["RscTextMulti", -1, _ctrlGroup];
 _ctrlBackgroundName ctrlSetPosition [POS_X(4), POS_Y(1.5), POS_W(4.9), POS_H(1.2)];
 _ctrlBackgroundName ctrlSetBackgroundColor [0, 0, 0, 0.6];
-_ctrlBackgroundName ctrlSetText "Preset name:";
-_ctrlBackgroundName ctrlSetTooltip "Allows you to store multiple radio presets. Whitespaces will be removed. Profiles names are case insensitive. DO NOT USE PUNCTUATION MARKS.";
+_ctrlBackgroundName ctrlSetText LLSTRING(presetName);
+_ctrlBackgroundName ctrlSetTooltip LLSTRING(presetNameDesc);
 _ctrlBackgroundName ctrlEnable false;
 _ctrlBackgroundName ctrlCommit 0;
 
@@ -77,8 +77,8 @@ _ctrlEditSettings ctrlCommit 0;
 private _ctrlBackgroundSettings = _display ctrlCreate ["RscTextMulti", -1, _ctrlGroup];
 _ctrlBackgroundSettings ctrlSetPosition [POS_X(4), POS_Y(2.8), POS_W(4.9), POS_H(1.2)];
 _ctrlBackgroundSettings ctrlSetBackgroundColor [0, 0, 0, 0.6];
-_ctrlBackgroundSettings ctrlSetText "Preset settings:";
-_ctrlBackgroundSettings ctrlSetTooltip "Paste radio preset here, if you are importing. Leave blank if you are creating a new profile.";
+_ctrlBackgroundSettings ctrlSetText LLSTRING(presetSettings);
+_ctrlBackgroundSettings ctrlSetTooltip LLSTRING(presetSettingsDesc);
 _ctrlBackgroundSettings ctrlEnable false;
 _ctrlBackgroundSettings ctrlCommit 0;
 
@@ -87,7 +87,7 @@ private _ctrlButtonOk = _display ctrlCreate ["RscButtonMenu", -1, _ctrlGroup];
 _ctrlButtonOk ctrlSetPosition [POS_X(15.3), POS_Y(4.6), POS_W(4.8), POS_H(1.2)];
 _ctrlButtonOk ctrlSetBackgroundColor [0, 0, 0, 0.7];
 _ctrlButtonOk ctrlSetFont "PuristaLight";
-_ctrlButtonOk ctrlSetText "OK";
+_ctrlButtonOk ctrlSetText localize "str_disp_ok";
 _ctrlButtonOk ctrlCommit 0;
 _ctrlButtonOk ctrlAddEventHandler ["ButtonClick", {
     private _display = ctrlParent (_this select 0);
@@ -101,14 +101,14 @@ private _ctrlButtonCancel = _display ctrlCreate ["RscButtonMenu", -1, _ctrlGroup
 _ctrlButtonCancel ctrlSetPosition [POS_X(3.3), POS_Y(4.6), POS_W(5), POS_H(1.2)];
 _ctrlButtonCancel ctrlSetBackgroundColor [0, 0, 0, 0.7];
 _ctrlButtonCancel ctrlSetFont "PuristaLight";
-_ctrlButtonCancel ctrlSetText "CANCEL";
+_ctrlButtonCancel ctrlSetText localize "str_a3_om_system_rest_cancel";
 _ctrlButtonCancel ctrlCommit 0;
 _ctrlButtonCancel ctrlAddEventHandler ["ButtonClick", {
     (ctrlParent (_this select 0)) closeDisplay IDC_CANCEL;
 }];
 
 // Prevent scroll wheel from moving curator camera
-if (_displayParent isEqualTo (findDisplay IDD_RSCDISPLAYCURATOR)) then {
+if (_displayParent == findDisplay IDD_RSCDISPLAYCURATOR) then {
     _display setVariable [QGVAR(cameraPos), getPosASL curatorCamera];
 
     _display displayAddEventHandler ["MouseZChanged", {
@@ -129,3 +129,9 @@ _display displayAddEventHandler ["KeyDown", {
 }];
 
 ctrlSetFocus _ctrlEditName;
+
+// Bug fix: Title gets cuts off otherwise
+sleep 0.001;
+
+_ctrlBackgroundTitle ctrlSetText "";
+_ctrlBackgroundTitle ctrlSetText LLSTRING(createImportPreset);

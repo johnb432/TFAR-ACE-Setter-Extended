@@ -1,4 +1,4 @@
-#include "script_component.hpp"
+#include "..\script_component.hpp"
 
 /*
  * Author: johnb43
@@ -43,7 +43,7 @@ _ctrlGroup ctrlCommit 0;
 
 // Title background
 private _ctrlBackgroundTitle = _display ctrlCreate ["RscTextMulti", -1, _ctrlGroup];
-_ctrlBackgroundTitle ctrlSetText ((["DELETE", "EXPORT"] select (_this == EXPORT_PROFILE)) + " RADIO PRESET");
+_ctrlBackgroundTitle ctrlSetText localize ([LSTRING(deleteRadioPreset), LSTRING(exportRadioPreset)] select (_this == EXPORT_PROFILE));
 _ctrlBackgroundTitle ctrlSetPosition [0, 0, POS_W(16.7), POS_H(1)];
 _ctrlBackgroundTitle ctrlSetBackgroundColor [GETPRVAR("GUI_BCG_RGB_R",0.13), GETPRVAR("GUI_BCG_RGB_G",0.54), GETPRVAR("GUI_BCG_RGB_B",0.21), GETPRVAR("GUI_BCG_RGB_A",0.8)];
 _ctrlBackgroundTitle ctrlEnable false;
@@ -65,8 +65,8 @@ _ctrlList ctrlCommit 0;
 private _ctrlBackgroundList = _display ctrlCreate ["RscTextMulti", -1, _ctrlGroup];
 _ctrlBackgroundList ctrlSetPosition [POS_X(4), POS_Y(1.5), POS_W(4.9), POS_H(1.2)];
 _ctrlBackgroundList ctrlSetBackgroundColor [0, 0, 0, 0.6];
-_ctrlBackgroundList ctrlSetText "Preset name:";
-_ctrlBackgroundList ctrlSetTooltip (["Allows you to select a preset to delete.", "Allows you to select a preset to export to the clipboard."] select (_this == EXPORT_PROFILE));
+_ctrlBackgroundList ctrlSetText LLSTRING(presetName);
+_ctrlBackgroundList ctrlSetTooltip localize ([LSTRING(deleteRadioPresetDesc), LSTRING(exportRadioPresetDesc)] select (_this == EXPORT_PROFILE));
 _ctrlBackgroundList ctrlEnable false;
 _ctrlBackgroundList ctrlCommit 0;
 
@@ -80,7 +80,7 @@ private _ctrlButtonOk = _display ctrlCreate ["RscButtonMenu", -1, _ctrlGroup];
 _ctrlButtonOk ctrlSetPosition [POS_X(15.3), POS_Y(4.6), POS_W(4.8), POS_H(1.2)];
 _ctrlButtonOk ctrlSetBackgroundColor [0, 0, 0, 0.7];
 _ctrlButtonOk ctrlSetFont "PuristaLight";
-_ctrlButtonOk ctrlSetText "OK";
+_ctrlButtonOk ctrlSetText localize "str_disp_ok";
 _ctrlButtonOk ctrlCommit 0;
 _ctrlButtonOk ctrlAddEventHandler ["ButtonClick", {
     private _display = ctrlParent (_this select 0);
@@ -94,15 +94,16 @@ private _ctrlButtonCancel = _display ctrlCreate ["RscButtonMenu", -1, _ctrlGroup
 _ctrlButtonCancel ctrlSetPosition [POS_X(3.3), POS_Y(4.6), POS_W(5), POS_H(1.2)];
 _ctrlButtonCancel ctrlSetBackgroundColor [0, 0, 0, 0.7];
 _ctrlButtonCancel ctrlSetFont "PuristaLight";
-_ctrlButtonCancel ctrlSetText "CANCEL";
+_ctrlButtonCancel ctrlSetText localize "str_a3_om_system_rest_cancel";
 _ctrlButtonCancel ctrlCommit 0;
 _ctrlButtonCancel ctrlAddEventHandler ["ButtonClick", {
     (ctrlParent (_this select 0)) closeDisplay IDC_CANCEL;
 }];
 
 // Prevent scroll wheel from moving curator camera
-if (_displayParent isEqualTo (findDisplay IDD_RSCDISPLAYCURATOR)) then {
+if (_displayParent == findDisplay IDD_RSCDISPLAYCURATOR) then {
     _display setVariable [QGVAR(cameraPos), getPosASL curatorCamera];
+
     _display displayAddEventHandler ["MouseZChanged", {
         curatorCamera setPosASL ((_this select 0) getVariable QGVAR(cameraPos));
     }];
