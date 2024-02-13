@@ -1,8 +1,7 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
- * Creates the UI for selecting a profile.
+ * Creates the UI for making a new profile.
  * See https://community.bistudio.com/wiki/ctrlCreate, example 5 as main source.
  *
  * Arguments:
@@ -12,7 +11,7 @@
  * None
  *
  * Example:
- * 1 spawn tfar_ace_extended_main_fnc_selectProfileGUI;
+ * call tfar_ace_extended_main_fnc_gui_createProfile
  *
  * Public: No
  */
@@ -34,17 +33,16 @@ if (isNull _displayParent) then {
 
 // Display creation
 private _display = _displayParent createDisplay "RscDisplayEmpty";
-_display setVariable [QGVAR(selectProfileType), _this];
 
 // Create group control
-private _ctrlGroup = _display ctrlCreate ["RscControlsGroupNoHScrollbars", -1];
+private _ctrlGroup = _display ctrlCreate ["RscControlsGroupNoScrollbars", -1];
 _ctrlGroup ctrlSetPosition [POS_X(13), POS_Y(8), POS_W(16.7), POS_H(8)];
 _ctrlGroup ctrlCommit 0;
 
 // Title background
-private _ctrlBackgroundTitle = _display ctrlCreate ["RscTextMulti", -1, _ctrlGroup];
-_ctrlBackgroundTitle ctrlSetText localize ([LSTRING(deleteRadioPreset), LSTRING(exportRadioPreset)] select (_this == EXPORT_PROFILE));
+private _ctrlBackgroundTitle = _display ctrlCreate ["RscTextMulti",-1, _ctrlGroup];
 _ctrlBackgroundTitle ctrlSetPosition [0, 0, POS_W(16.7), POS_H(1)];
+_ctrlBackgroundTitle ctrlSetText LLSTRING(createImportProfileTitle);
 _ctrlBackgroundTitle ctrlSetBackgroundColor [GETPRVAR("GUI_BCG_RGB_R",0.13), GETPRVAR("GUI_BCG_RGB_G",0.54), GETPRVAR("GUI_BCG_RGB_B",0.21), GETPRVAR("GUI_BCG_RGB_A",0.8)];
 _ctrlBackgroundTitle ctrlEnable false;
 _ctrlBackgroundTitle ctrlCommit 0;
@@ -56,24 +54,32 @@ _ctrlBackground ctrlSetBackgroundColor [0, 0, 0, 0.5];
 _ctrlBackground ctrlEnable false;
 _ctrlBackground ctrlCommit 0;
 
-// List and its background
-private _ctrlList = _display ctrlCreate ["ctrlListbox", IDD_LIST_SELECTED, _ctrlGroup];
-_ctrlList ctrlSetPosition [POS_X(9), POS_Y(1.5), POS_W(10.5), POS_H(2.6)];
-_ctrlList ctrlSetBackgroundColor [0, 0, 0, 0.6];
-_ctrlList ctrlCommit 0;
+// Edit boxes and their backgrounds
+private _ctrlEditName = _display ctrlCreate ["RscEdit", IDD_EDIT_BOX_NAME, _ctrlGroup];
+_ctrlEditName ctrlSetPosition [POS_X(9), POS_Y(1.5), POS_W(10.5), POS_H(1.2)];
+_ctrlEditName ctrlSetBackgroundColor [0, 0, 0, 0.6];
+_ctrlEditName ctrlCommit 0;
 
-private _ctrlBackgroundList = _display ctrlCreate ["RscTextMulti", -1, _ctrlGroup];
-_ctrlBackgroundList ctrlSetPosition [POS_X(4), POS_Y(1.5), POS_W(4.9), POS_H(1.2)];
-_ctrlBackgroundList ctrlSetBackgroundColor [0, 0, 0, 0.6];
-_ctrlBackgroundList ctrlSetText LLSTRING(presetName);
-_ctrlBackgroundList ctrlSetTooltip localize ([LSTRING(deleteRadioPresetDesc), LSTRING(exportRadioPresetDesc)] select (_this == EXPORT_PROFILE));
-_ctrlBackgroundList ctrlEnable false;
-_ctrlBackgroundList ctrlCommit 0;
+private _ctrlBackgroundName = _display ctrlCreate ["RscTextMulti", -1, _ctrlGroup];
+_ctrlBackgroundName ctrlSetPosition [POS_X(4), POS_Y(1.5), POS_W(4.9), POS_H(1.2)];
+_ctrlBackgroundName ctrlSetBackgroundColor [0, 0, 0, 0.6];
+_ctrlBackgroundName ctrlSetText LLSTRING(profileName);
+_ctrlBackgroundName ctrlSetTooltip LLSTRING(profileNameDesc);
+_ctrlBackgroundName ctrlEnable false;
+_ctrlBackgroundName ctrlCommit 0;
 
-// Add items to list
-{
-    _ctrlList lbAdd _x;
-} forEach GETPRVAR(QGVAR(profileNames),[]);
+private _ctrlEditSettings = _display ctrlCreate ["RscEdit", IDD_EDIT_BOX_SETTINGS, _ctrlGroup];
+_ctrlEditSettings ctrlSetPosition [POS_X(9), POS_Y(2.8), POS_W(10.5), POS_H(1.2)];
+_ctrlEditSettings ctrlSetBackgroundColor [0, 0, 0, 0.6];
+_ctrlEditSettings ctrlCommit 0;
+
+private _ctrlBackgroundSettings = _display ctrlCreate ["RscTextMulti", -1, _ctrlGroup];
+_ctrlBackgroundSettings ctrlSetPosition [POS_X(4), POS_Y(2.8), POS_W(4.9), POS_H(1.2)];
+_ctrlBackgroundSettings ctrlSetBackgroundColor [0, 0, 0, 0.6];
+_ctrlBackgroundSettings ctrlSetText LLSTRING(profileSettings);
+_ctrlBackgroundSettings ctrlSetTooltip LLSTRING(profileSettingsDesc);
+_ctrlBackgroundSettings ctrlEnable false;
+_ctrlBackgroundSettings ctrlCommit 0;
 
 // Buttons
 private _ctrlButtonOk = _display ctrlCreate ["RscButtonMenu", -1, _ctrlGroup];
@@ -85,7 +91,7 @@ _ctrlButtonOk ctrlCommit 0;
 _ctrlButtonOk ctrlAddEventHandler ["ButtonClick", {
     private _display = ctrlParent (_this select 0);
 
-    [lbCurSel (_display displayCtrl IDD_LIST_SELECTED), displayParent _display] call ([FUNC(deleteProfile), FUNC(exportProfile)] select ((_display getVariable [QGVAR(selectProfileType), -1]) == EXPORT_PROFILE));
+    [ctrlText (_display displayCtrl IDD_EDIT_BOX_NAME), ctrlText (_display displayCtrl IDD_EDIT_BOX_SETTINGS), displayParent _display] call FUNC(createProfile);
 
     _display closeDisplay IDC_OK;
 }];
@@ -113,17 +119,16 @@ if (_displayParent == findDisplay IDD_RSCDISPLAYCURATOR) then {
 _display displayAddEventHandler ["KeyDown", {
     params ["_display", "_keyCode"];
 
-    // Cancel
-    if (_keyCode == DIK_ESCAPE) exitWith {};
-
     // Ok
     if (_keyCode == DIK_RETURN) exitWith {
-        [lbCurSel (_display displayCtrl IDD_LIST_SELECTED), displayParent _display] call ([FUNC(deleteProfile), FUNC(exportProfile)] select ((_display getVariable [QGVAR(selectProfileType), -1]) == EXPORT_PROFILE));
+        [ctrlText (_display displayCtrl IDD_EDIT_BOX_NAME), ctrlText (_display displayCtrl IDD_EDIT_BOX_SETTINGS), displayParent _display] call FUNC(createProfile);
 
         _display closeDisplay IDC_OK;
     };
-
-    true
 }];
 
-ctrlSetFocus _ctrlList;
+ctrlSetFocus _ctrlEditName;
+
+// Bug fix: Title gets cuts off otherwise
+_ctrlBackgroundTitle ctrlSetText "";
+_ctrlBackgroundTitle ctrlSetText LLSTRING(createImportProfileTitle);

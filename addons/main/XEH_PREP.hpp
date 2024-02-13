@@ -1,6 +1,5 @@
 PREP(activeSwRadio);
 PREP(createProfile);
-PREP(createProfileGUI);
 PREP(deleteProfile);
 PREP(eventHandlersVehicle);
 PREP(exportProfile);
@@ -11,6 +10,8 @@ PREP(loadVehicleSettings);
 PREP(profileMenusLoad);
 PREP(profileMenusSave);
 PREP(saveRadioSettings);
-PREP(selectProfileGUI);
 PREP(setChannelFK);
 PREP(setStatus);
+
+PREP(gui_createProfile);
+PREP(gui_selectProfile);

@@ -1,3 +1,9 @@
+# Changelog for TFAR - ACE Setter - Extended 13.2.2024
+
+1.0.3.0
+- Bug fix for people with no existing profiles.
+- Minor cleanup.
+
 # Changelog for TFAR - ACE Setter - Extended 7.10.2023
 
 1.0.2.0

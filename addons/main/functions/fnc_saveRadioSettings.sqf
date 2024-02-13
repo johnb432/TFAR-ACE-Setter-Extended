@@ -1,28 +1,27 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
  * Saves select radio configurations to a chosen profile.
  *
  * Arguments:
- * 0: Unit <OBJECT> (default: call CBA_fnc_currentUnit)
- * 1: Which radios should be saved <ARRAY> (default: [false, false, false])
- * 2: Which profile is selected <STRING> (default: "")
- * 3: Load same type of radio (only works for LR and VLR) <BOOL> (default: true)
- * 4: SR Radio <STRING> (default: call FUNC(activeSwRadio))
- * 5: LR Radio <ARRAY> (default: [])
+ * 0: Unit <OBJECT>
+ * 1: Which radios should be saved <ARRAY>
+ * 2: Profile name <STRING>
+ * 3: Load same type of radio (only works for LR and VLR)
+ * 4: SR Radio <STRING>
+ * 5: LR Radio <ARRAY>
  *
  * Return Value:
  * None
  *
  * Example:
- * [player, [true, false, false], "Test"] call tfar_ace_extended_main_fnc_saveRadioSettings;
+ * [player, [true, false, false], "Test"] call tfar_ace_extended_main_fnc_saveRadioSettings
  *
  * Public: No
  */
 
-params [["_unit", call CBA_fnc_currentUnit, [objNull]], ["_saveToRadios", [false, false, false], [[]], [1, 2, 3]], ["_profile", "", [""]], ["_saveSameType", true, [true]], ["_radioSR", call FUNC(activeSwRadio), [""]], ["_radioLR", [], [[]]]];
-_saveToRadios params [["_doSR", false, [true]], ["_doLR", false, [true]], ["_doVLR", false, [true]]];
+params ["_unit", "_saveToRadios", "_profile", "_saveSameType", "_radioSR", "_radioLR"];
+_saveToRadios params ["_doSR", "_doLR", "_doVLR"];
 
 if (!alive _unit) exitWith {};
 

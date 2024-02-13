@@ -126,7 +126,7 @@ class CfgVehicles {
                          displayName = CSTRING(deleteProfile);
                          EXCEPTIONS;
                          icon = ICON_DELETE;
-                         statement = QUOTE(DELETE_PROFILE spawn FUNC(selectProfileGUI));
+                         statement = QUOTE(DELETE_PROFILE call FUNC(gui_selectProfile));
                     };
 
                     class GVAR(newProfile) {
@@ -134,7 +134,7 @@ class CfgVehicles {
                          displayName = CSTRING(createImportProfile);
                          EXCEPTIONS;
                          icon = ICON_ADD;
-                         statement = QUOTE([] spawn FUNC(createProfileGUI));
+                         statement = QUOTE(call FUNC(gui_createProfile));
                     };
 
                     class GVAR(exportProfile) {
@@ -142,7 +142,7 @@ class CfgVehicles {
                          displayName = CSTRING(exportProfile);
                          EXCEPTIONS;
                          icon = ICON_ADD;
-                         statement = QUOTE(EXPORT_PROFILE spawn FUNC(selectProfileGUI));
+                         statement = QUOTE(EXPORT_PROFILE call FUNC(gui_selectProfile));
                     };
 
                     class GVAR(setCrewStatus) {

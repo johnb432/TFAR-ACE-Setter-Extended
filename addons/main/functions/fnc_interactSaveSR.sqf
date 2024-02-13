@@ -1,5 +1,4 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
  * Adds all SR to the menu for saving self-interactions.
@@ -11,7 +10,7 @@
  * All interaction submenus of SR <ARRAY>
  *
  * Example:
- * player call tfar_ace_extended_main_fnc_interactSaveSR;
+ * player call tfar_ace_extended_main_fnc_interactSaveSR
  *
  * Public: No
  */

@@ -1,30 +1,29 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
  * Creates a new profile.
  *
  * Arguments:
- * 0: Preset <STRING> (default: "")
+ * 0: Profile name <STRING>
  * 1: Settings <ARRAY> <STRING> (default: [[], [], [], false])
- * 2: Display <DISPLAY> (default: mission display)
+ * 2: Display <DISPLAY>
  *
  * Return Value:
  * None
  *
  * Example:
- * "Test" call tfar_ace_extended_main_fnc_createProfile;
+ * "Test" call tfar_ace_extended_main_fnc_createProfile
  *
  * Public: No
  */
 
-params [["_preset", "", [""]], ["_data", [[], [], [], false], ["", []], PROFILE_COUNT], ["_display", findDisplay IDD_MISSION, [displayNull]]];
+params ["_profile", ["_data", [[], [], [], false], ["", []], PROFILE_COUNT], "_display"];
 
 // Remove whitespaces
-_preset = _preset splitString WHITESPACE joinString "";
+_profile = _profile splitString WHITESPACE joinString "";
 
-// If the new preset is invalid, exit
-if (_preset == "" || {(toLower _preset) in ["names", "none"]}) exitWith {
+// If the new profile is invalid, exit
+if (_profile == "" || {(toLower _profile) in ["names", "none"]}) exitWith {
     [LLSTRING(invalidName), false, 10, 2] call ace_common_fnc_displayText;
 };
 
@@ -33,7 +32,7 @@ if (_data == "") then {
     _data = [[], [], [], false];
 };
 
-// If settings are left to default, add default preset; Otherwise make string into array
+// If settings are left to default, add default profile; Otherwise make string into array
 if (_data isEqualType "") then {
     // If failure, parseSimpleArray returns []
     _data = parseSimpleArray _data;
@@ -54,21 +53,21 @@ if (_dataSR isNotEqualTo []) then {
     _dataSR set [7, getPlayerUID player];
 };
 
-private _presets = GETPRVAR(QGVAR(profileNames),[]);
+private _profiles = GETPRVAR(QGVAR(profileNames),[]);
 
-// If preset isn't in preset list, add it and exit
-if ((_presets findIf {_x == _preset}) == -1) exitWith {
-    _presets pushBack _preset;
+// If profile isn't in profile list, add it and exit
+if ((_profiles findIf {_x == _profile}) == -1) exitWith {
+    _profiles pushBack _profile;
 
-    SETPRVAR(FORMAT_1(QGVAR(profile%1),_preset),_data);
+    SETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),_data);
 };
 
 // Needs to be scheduled because of BIS_fnc_guiMessage
-[_preset, _data, _display] spawn {
-    params ["_preset", "_data", "_display"];
+[_profile, _data, _display] spawn {
+    params ["_profile", "_data", "_display"];
 
-    // Wait for confirmation or setting is not enabled or setting was newly added
-    if (!GVAR(askOverwriteConfirmation) || {[format [LLSTRING(overwriteConfirmation), _preset], localize "str_a3_a_hub_misc_mission_selection_box_title", localize "str_disp_xbox_hint_yes", localize "str_disp_xbox_hint_no", _display] call BIS_fnc_guiMessage}) then {
-        SETPRVAR(FORMAT_1(QGVAR(profile%1),_preset),_data);
+    // Wait for confirmation or setting is not enabled
+    if (!GVAR(askOverwriteConfirmation) || {[format [LLSTRING(overwriteConfirmation), _profile], localize "str_a3_a_hub_misc_mission_selection_box_title", localize "str_disp_xbox_hint_yes", localize "str_disp_xbox_hint_no", _display] call BIS_fnc_guiMessage}) then {
+        SETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),_data);
     };
 };

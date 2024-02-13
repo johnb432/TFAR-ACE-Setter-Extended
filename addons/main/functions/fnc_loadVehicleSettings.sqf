@@ -1,28 +1,28 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
  * Loads the saved settings in a vehicle.
  *
  * Arguments:
- * 0: Unit <OBJECT> (default: call CBA_fnc_currentUnit)
- * 1: Radio data <ARRAY> (default: [[], [], [], false])
- * 2: LR Radio <ARRAY> (default: [])
- * 3: SR Radio <STRING> (default: call FUNC(activeSwRadio))
+ * 0: Unit <OBJECT>
+ * 1: Radio data <ARRAY>
+ * 2: LR Radio <ARRAY>
  *
  * Return Value:
  * None
  *
  * Example:
- * [player, [[], [], [], false], player call TFAR_fnc_vehicleLR] call tfar_ace_extended_main_fnc_loadVehicleSettings;
+ * [player, [[], [], [], false], player call TFAR_fnc_vehicleLR] call tfar_ace_extended_main_fnc_loadVehicleSettings
  *
  * Public: No
  */
 
-params [["_unit", call CBA_fnc_currentUnit, [objNull]], ["_data", [[], [], [], false], [[]], PROFILE_COUNT], ["_radioLR", [], [[]]], ["_radioSR", call FUNC(activeSwRadio), [""]]];
-_data params [["_dataSR", [], [[]], [0, RADIO_SETTINGS_COUNT]], ["_dataLR", [], [[]], [0, RADIO_SETTINGS_COUNT]], ["_dataVLR", [], [[]], [0, RADIO_SETTINGS_COUNT]], ["_headsetStatus", false, [true]]];
+params ["_unit", "_data", "_radioLR"];
+_data params ["_dataSR", "_dataLR", "_dataVLR", "_headsetStatus"];
 
 if (!alive _unit) exitWith {};
+
+private _radioSR = call FUNC(activeSwRadio);
 
 // If a SW is found and the settings are not [], load them
 if (_radioSR != "" && {_dataSR isNotEqualTo []}) then {

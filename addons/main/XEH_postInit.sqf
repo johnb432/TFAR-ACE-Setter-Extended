@@ -24,7 +24,7 @@ GVAR(crewStatus) = GVAR(crewStatusDefault);
 // If not multiplayer, exit
 if (!isMultiplayer) exitWith {};
 
-#include "EventHandlersArsenal.sqf"
+#include "EventHandlersArsenal.inc.sqf"
 
 // Add changed unit EH; This also triggers on respawn
 ["unit", {
@@ -172,7 +172,7 @@ if (!isMultiplayer) exitWith {};
                 QGVAR(radiosCuratorDeleteProfile),
                 LLSTRING(deleteProfile),
                 ICON_DELETE,
-                {DELETE_PROFILE spawn FUNC(selectProfileGUI)},
+                {DELETE_PROFILE call FUNC(gui_selectProfile)},
                 {GETPRVAR(QGVAR(profileNames),[]) isNotEqualTo []}
             ] call ace_interact_menu_fnc_createAction, [], _unit];
 
@@ -180,7 +180,7 @@ if (!isMultiplayer) exitWith {};
                 QGVAR(radiosCuratorNewProfile),
                 LLSTRING(createImportProfile),
                 ICON_ADD,
-                {[] spawn FUNC(createProfileGUI)},
+                {call FUNC(gui_createProfile)},
                 {true}
             ] call ace_interact_menu_fnc_createAction, [], _unit];
 
@@ -188,7 +188,7 @@ if (!isMultiplayer) exitWith {};
                 QGVAR(radiosCuratorExportProfile),
                 LLSTRING(exportProfile),
                 ICON_ADD,
-                {EXPORT_PROFILE spawn FUNC(selectProfileGUI)},
+                {EXPORT_PROFILE call FUNC(gui_selectProfile)},
                 {GETPRVAR(QGVAR(profileNames),[]) isNotEqualTo []}
             ] call ace_interact_menu_fnc_createAction, [], _unit];
 

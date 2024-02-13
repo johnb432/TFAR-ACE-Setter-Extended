@@ -1,17 +1,16 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
  * Sets the player to a status. This is used in the vehicle mounting detection.
  *
  * Arguments:
- * 0: Unit <OBJECT> (default: call CBA_fnc_currentUnit)
+ * 0: Unit <OBJECT>
  *
  * Return Value:
  * None
  *
  * Example:
- * player call tfar_ace_extended_main_fnc_setStatus;
+ * player call tfar_ace_extended_main_fnc_setStatus
  *
  * Public: No
  */
@@ -21,7 +20,7 @@ GVAR(crewStatus) = true;
 // If CBA settings for this are disabled, exit
 if (!GVAR(enableMountingAutoSettings)) exitWith {};
 
-params [["_unit", call CBA_fnc_currentUnit, [objNull]]];
+params ["_unit"];
 
 private _vehicle = objectParent _unit;
 

@@ -1,27 +1,26 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
  * Deletes a chosen profile of given index.
  *
  * Arguments:
- * 0: Index <NUMBER> (default: -1)
- * 1: Display <DISPLAY> (default: displayNull)
+ * 0: Profile index <NUMBER>
+ * 1: Display <DISPLAY>
  *
  * Return Value:
  * None
  *
  * Example:
- * 0 call tfar_ace_extended_main_fnc_deleteProfile;
+ * 0 call tfar_ace_extended_main_fnc_deleteProfile
  *
  * Public: No
  */
 
-params [["_index", -1, [0]], ["_display", displayNull, [displayNull]]];
+params ["_index", "_display"];
 
 // If index is invalid
 if (_index == -1) exitWith {
-    [LLSTRING(invalidDeletion), false, 10, 2] call ace_common_fnc_displayText;
+    [LLSTRING(invalidProfile), false, 10, 2] call ace_common_fnc_displayText;
 };
 
 if (isNull _display) then {
@@ -35,15 +34,15 @@ if (isNull _display) exitWith {};
 [_index, _display] spawn {
     params ["_index", "_display"];
 
-    private _presets = GETPRVAR(QGVAR(profileNames),[]);
-    private _profile = _presets select _index;
+    private _profiles = GETPRVAR(QGVAR(profileNames),[]);
+    private _profile = _profiles select _index;
 
     // Wait for confimation or setting is not enabled
     if (!GVAR(askDeleteConfirmation) || {[format [LLSTRING(deleteConfirmation), _profile], localize "str_a3_a_hub_misc_mission_selection_box_title", localize "str_disp_xbox_hint_yes", localize "str_disp_xbox_hint_no", _display] call BIS_fnc_guiMessage}) then {
         // Set the profile to nil to delete variable
         SETPRVAR(FORMAT_1(QGVAR(profile%1),_profile),nil);
 
-        // Delete the preset from the list
-        _presets deleteAt _index;
+        // Delete the profile from the list
+        _profiles deleteAt _index;
     };
 };
