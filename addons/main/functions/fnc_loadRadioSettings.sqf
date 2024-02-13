@@ -1,28 +1,27 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
  * Loads select radio configurations from a chosen profile.
  *
  * Arguments:
- * 0: Unit <OBJECT> (default: call CBA_fnc_currentUnit)
- * 1: Which radios should be loaded <ARRAY> (default: [false, false, false])
- * 2: Which profile is selected <STRING> (default: "")
- * 3: Load same type of radio (only works for LR and VLR) <BOOL> (default: true)
- * 4: SR Radio <STRING> (default: call FUNC(activeSwRadio))
- * 5: LR Radio <ARRAY> (default: [])
+ * 0: Unit <OBJECT>
+ * 1: Which radios should be loaded <ARRAY>
+ * 2: Profile name <STRING>
+ * 3: Load same type of radio (only works for LR and VLR) <BOOL>
+ * 4: SR Radio <STRING>
+ * 5: LR Radio <ARRAY>
  *
  * Return Value:
  * None
  *
  * Example:
- * [player, [true, false, false], "Test"] call tfar_ace_extended_main_fnc_loadRadioSettings;
+ * [player, [true, false, false], "Test"] call tfar_ace_extended_main_fnc_loadRadioSettings
  *
  * Public: No
  */
 
-params [["_unit", call CBA_fnc_currentUnit, [objNull]], ["_loadFromRadios", [false, false, false], [[]], [1, 2, 3]], ["_profile", "", [""]], ["_loadSameType", true, [true]], ["_radioSR", call FUNC(activeSwRadio), [""]], ["_radioLR", [], [[]]]];
-_loadFromRadios params [["_doSR", false, [true]], ["_doLR", false, [true]], ["_doVLR", false, [true]]];
+params ["_unit", "_loadFromRadios", "_profile", "_loadSameType", "_radioSR", "_radioLR"];
+_loadFromRadios params ["_doSR", "_doLR", "_doVLR"];
 
 if (!alive _unit) exitWith {};
 

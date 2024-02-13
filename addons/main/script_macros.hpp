@@ -38,9 +38,9 @@
 
 #define IDD_MISSION 46
 #define IDD_RSCDISPLAYCURATOR 312
-#define IDD_EDIT_BOX_NAME 123
-#define IDD_EDIT_BOX_SETTINGS 124
-#define IDD_LIST_SELECTED 125
+#define IDD_EDIT_BOX_NAME 10123
+#define IDD_EDIT_BOX_SETTINGS 10124
+#define IDD_LIST_SELECTED 10125
 
 #define POS_W(var1) var1 * _wOff
 #define POS_H(var1) var1 * _hOff

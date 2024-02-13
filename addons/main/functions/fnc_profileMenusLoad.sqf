@@ -1,5 +1,4 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
  * Makes all subentries of the interaction menu for loading from profiles.
@@ -16,7 +15,7 @@
  * All interaction submenus for loading from all profiles <ARRAY>
  *
  * Example:
- * [player, [true, false, false]] call tfar_ace_extended_main_fnc_profileMenusLoad;
+ * [player, [true, false, false]] call tfar_ace_extended_main_fnc_profileMenusLoad
  *
  * Public: No
  */
@@ -38,7 +37,7 @@ if (isNull _display) then {
 // Make menus
 _profileNames apply {[
     [
-        format [GVAR(profileLoad_%1), _x], // Action name
+        format [QGVAR(profileLoad_%1), _x], // Action name
         _x, // Display name
         "", // Icon
         { // Statement

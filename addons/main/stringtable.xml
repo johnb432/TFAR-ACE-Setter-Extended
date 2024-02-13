@@ -14,33 +14,30 @@
         <Key ID="STR_tfar_ace_extended_main_overwriteConfirmation">
             <English>Are you sure you want to overwrite profile '%1'?</English>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_createImportPreset">
-            <English>CREATE/IMPORT RADIO PRESET</English>
+        <Key ID="STR_tfar_ace_extended_main_createImportProfileTitle">
+            <English>CREATE/IMPORT RADIO PROFILE</English>
         </Key>
 
-        <Key ID="STR_tfar_ace_extended_main_presetName">
-            <English>Preset name:</English>
+        <Key ID="STR_tfar_ace_extended_main_profileName">
+            <English>Profile name:</English>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_presetNameDesc">
-            <English>Allows you to store multiple radio presets. Whitespaces will be removed. Profiles names are case insensitive. DO NOT USE PUNCTUATION MARKS.</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_presetSettings">
-            <English>Preset settings:</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_presetSettingsDesc">
-            <English>Paste radio preset here, if you are importing. Leave blank if you are creating a new profile.</English>
+        <Key ID="STR_tfar_ace_extended_main_profileNameDesc">
+            <English>Allows you to store multiple radio profiles. Whitespaces will be removed. Profile names are case insensitive. DO NOT USE PUNCTUATION MARKS.</English>
         </Key>
 
-        <Key ID="STR_tfar_ace_extended_main_invalidDeletion">
-            <English>Profile can't be deleted!</English>
+        <Key ID="STR_tfar_ace_extended_main_profileSettings">
+            <English>Profile settings:</English>
         </Key>
+        <Key ID="STR_tfar_ace_extended_main_profileSettingsDesc">
+            <English>Paste radio profile here, if you are importing. Leave blank if you are creating a new profile.</English>
+        </Key>
+
         <Key ID="STR_tfar_ace_extended_main_deleteConfirmation">
             <English>Are you sure you want to delete profile '%1'?</English>
         </Key>
 
         <Key ID="STR_tfar_ace_extended_main_invalidProfile">
-            <English>The chosen profile is invalid!</English>
+            <English>No profile was chosen!</English>
         </Key>
         <Key ID="STR_tfar_ace_extended_main_aceClipboardDisabled">
             <English>ACE clipboard is disabled!</English>
@@ -70,18 +67,18 @@
             <English>Saved %1 settings to profile '%2'.</English>
         </Key>
 
-        <Key ID="STR_tfar_ace_extended_main_deleteRadioPreset">
-            <English>DELETE RADIO PRESET</English>
+        <Key ID="STR_tfar_ace_extended_main_deleteProfileTitle">
+            <English>DELETE RADIO PROFILE</English>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_exportRadioPreset">
-            <English>EXPORT RADIO PRESET</English>
+        <Key ID="STR_tfar_ace_extended_main_exportProfileTitle">
+            <English>EXPORT RADIO PROFILE</English>
         </Key>
 
-        <Key ID="STR_tfar_ace_extended_main_deleteRadioPresetDesc">
-            <English>Allows you to select a preset to delete.</English>
+        <Key ID="STR_tfar_ace_extended_main_deleteProfileDesc">
+            <English>Allows you to select a profile to delete.</English>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_exportRadioPresetDesc">
-            <English>Allows you to select a preset to export to the clipboard.</English>
+        <Key ID="STR_tfar_ace_extended_main_exportProfileDesc">
+            <English>Allows you to select a profile to export to the clipboard.</English>
         </Key>
 
         <Key ID="STR_tfar_ace_extended_main_deleteProfile">

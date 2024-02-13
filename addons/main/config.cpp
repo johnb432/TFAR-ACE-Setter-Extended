@@ -7,14 +7,18 @@ class CfgPatches {
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {
-            "cba_main",
-            "cba_xeh",
             "ace_interact_menu",
             "task_force_radio"
         };
         author = "johnb43";
-        authors[] = {"johnb43", "Chatter", "M3ales", "Tirpitz93"};
+        authors[] = {
+            "johnb43",
+            "Chatter",
+            "M3ales",
+            "Tirpitz93"
+        };
         url = "https://github.com/johnb432/ACE-TFAR-Setter-Extended";
+        skipWhenMissingDependencies = 1;
         VERSION_CONFIG;
     };
 };

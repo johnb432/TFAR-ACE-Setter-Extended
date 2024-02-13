@@ -1,5 +1,4 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: NKey, johnb43
  * Returns the active SR radio.
@@ -11,7 +10,7 @@
  * Active SR radio <STRING>
  *
  * Example:
- * call tfar_ace_extended_main_fnc_activeSwRadio;
+ * call tfar_ace_extended_main_fnc_activeSwRadio
  *
  * Public: No
  */

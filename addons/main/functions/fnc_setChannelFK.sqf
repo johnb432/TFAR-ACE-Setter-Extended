@@ -1,18 +1,17 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
  * Sets the channel to whatever squad you are in, if you have the option enabled and are on an FK server.
  *
  * Arguments:
- * 0: Unit <OBJECT> (default: call CBA_fnc_currentUnit)
- * 1: SR Radio <STRING> (default: call FUNC(activeSwRadio))
+ * 0: Unit <OBJECT>
+ * 1: SR Radio <STRING>
  *
  * Return Value:
  * None
  *
  * Example:
- * player call tfar_ace_extended_main_fnc_setChannelFK;
+ * player call tfar_ace_extended_main_fnc_setChannelFK
  *
  * Public: No
  */
@@ -20,7 +19,7 @@
 // Set the correct SR channel if FK compat mode is enabled and FKFramework is loaded
 if !(GVAR(enableCompatFK) && {!isNil "fkf_main_fnc_addArsenal"}) exitWith {};
 
-params [["_unit", call CBA_fnc_currentUnit, [objNull]], ["_radioSR", call FUNC(activeSwRadio), [""]]];
+params ["_unit", "_radioSR"];
 
 if !(alive _unit && {_radioSR != ""}) exitWith {};
 

@@ -1,23 +1,23 @@
 #include "..\script_component.hpp"
-
 /*
  * Author: johnb43
  * Export a profile to the clipboard.
  *
  * Arguments:
- * 0: Index <NUMBER> (default: -1)
+ * 0: Profile index <NUMBER>
  *
  * Return Value:
  * None
  *
  * Example:
- * 0 call tfar_ace_extended_main_fnc_exportProfile;
+ * 0 call tfar_ace_extended_main_fnc_exportProfile
  *
  * Public: No
  */
 
-params [["_index", -1, [0]]];
+params ["_index"];
 
+// If index is invalid
 if (_index == -1) exitWith {
     [LLSTRING(invalidProfile), false, 10, 2] call ace_common_fnc_displayText;
 };
@@ -39,4 +39,4 @@ if (_settings isEqualTo []) exitWith {
 "ace_clipboard" callExtension (str _settings + ";");
 "ace_clipboard" callExtension "--COMPLETE--";
 
-[format [LSTRING(profileCopiedClipboard), _profile], ICON_LOAD, GVAR(loadColorIcon), TFAR_currentUnit, 3] call ace_common_fnc_displayTextPicture;
+[format [LLSTRING(profileCopiedClipboard), _profile], ICON_LOAD, GVAR(loadColorIcon), TFAR_currentUnit, 3] call ace_common_fnc_displayTextPicture;

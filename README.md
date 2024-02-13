@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="460" height="300" src="https://github.com/johnb432/TFAR-ACE-Setter-Extended/blob/main/image_src/logo_large_grey_alpha.png?raw=true">
+    <img width="460" height="300" src="image_src/logo_large_grey_alpha.png?raw=true">
 </p>
 
 ***
@@ -12,7 +12,7 @@ This mod also adds the ability to sort radios by their ranges in the ACE arsenal
 
 <h2>CBA Settings</h2>
 
-* **Enable Arsenal Radio settings Saving:** This setting will make the player save his current radio preset before accessing an arsenal (Vanilla or ACE). When exiting the arsenal or after respawning, the saved settings will be applied again.
+* **Enable Arsenal Radio settings Saving:** This setting will make the player save his current radio profile before accessing an arsenal (Vanilla or ACE). When exiting the arsenal or after respawning, the saved settings will be applied again.
 * **Enable FK Server Detection:** This setting will change your SR channel to your squad's channel automatically after loading a setting and can only be used on an FK server.
 * **Enable 'SR' Interactions:** If enabled, you will see the load and save options for SRs.
 * **Enable 'LR' Interactions:** If enabled, you will see the load and save options for LRs.
@@ -26,7 +26,7 @@ This mod also adds the ability to sort radios by their ranges in the ACE arsenal
 * **Icon Color in Messages:** This setting changes the color of the icon that is shown when you load/save/export a profile.
 * **Air Profile:** Allows the player to have a profile applied automatically when getting in an aircraft.
 * **Land Profile:** Allows the player to have a profile applied automatically when getting in a ground vehicle.
-* **Enable Mounting Radio settings Saving:** If the player has crew status, this setting will make the player save his current radio preset before mounting into a vehicle. When exiting the vehicle, the saved settings will be applied again.
+* **Enable Mounting Radio settings Saving:** If the player has crew status, this setting will make the player save his current radio profile before mounting into a vehicle. When exiting the vehicle, the saved settings will be applied again.
 * **Default Crew Status:** Allows the player to set the default crew status when joining a mission.
 
 <h2>CBA Keybinds</h2>
@@ -35,7 +35,7 @@ This mod also adds the ability to sort radios by their ranges in the ACE arsenal
 
 <h2>How to</h2>
 
-* Use the "Create/Import Profile" interaction, which will open a dialog (window). In the top line you must give your profile a name and in the lower line you can give settings to a preset, but it's optional. This array is proprietary (see config.cpp in comment).
+* Use the "Create/Import Profile" interaction, which will open a dialog (window). In the top line you must give your profile a name and in the lower line you can give settings to a profile, but it's optional. This array is proprietary (see config.cpp in comment).
 * Now you can save your current radio settings using the "Save" interaction. SR radios will be individually listed, if there are multiple whereas for LR there will always be 1 interaction. You can select which profile you want to save the settings to.
 * You can now load the saved settings using the "Load" interaction.
 * Use the "Set Status" interaction to change your status as a crew member:
