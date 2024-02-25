@@ -1,3 +1,8 @@
+# Changelog for TFAR - ACE Setter - Extended 25.2.2024
+
+1.0.4.0
+- Attempted fix for players crashing when opening UI.
+
 # Changelog for TFAR - ACE Setter - Extended 13.2.2024
 
 1.0.3.0

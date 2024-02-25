@@ -172,15 +172,15 @@ if (!isMultiplayer) exitWith {};
                 QGVAR(radiosCuratorDeleteProfile),
                 LLSTRING(deleteProfile),
                 ICON_DELETE,
-                {DELETE_PROFILE call FUNC(gui_selectProfile)},
-                {GETPRVAR(QGVAR(profileNames),[]) isNotEqualTo []}
+                {[FUNC(gui_selectProfile), DELETE_PROFILE] call CBA_fnc_execNextFrame}, // needs to be delayed for player interactions, as it can cause crashes otherwise
+                {GETPRVAR(QGVAR(profileNames),[]) isNotEqualTo []}                      // added it to Zeus interactions, just to be safe
             ] call ace_interact_menu_fnc_createAction, [], _unit];
 
             _actions pushBack [[
                 QGVAR(radiosCuratorNewProfile),
                 LLSTRING(createImportProfile),
                 ICON_ADD,
-                {call FUNC(gui_createProfile)},
+                {FUNC(gui_createProfile) call CBA_fnc_execNextFrame},
                 {true}
             ] call ace_interact_menu_fnc_createAction, [], _unit];
 
@@ -188,7 +188,7 @@ if (!isMultiplayer) exitWith {};
                 QGVAR(radiosCuratorExportProfile),
                 LLSTRING(exportProfile),
                 ICON_ADD,
-                {EXPORT_PROFILE call FUNC(gui_selectProfile)},
+                {[FUNC(gui_selectProfile), EXPORT_PROFILE] call CBA_fnc_execNextFrame},
                 {GETPRVAR(QGVAR(profileNames),[]) isNotEqualTo []}
             ] call ace_interact_menu_fnc_createAction, [], _unit];
 
