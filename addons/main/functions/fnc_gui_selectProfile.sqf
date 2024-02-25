@@ -31,6 +31,8 @@ if (isNull _displayParent) then {
     _displayParent = findDisplay IDD_MISSION;
 };
 
+if (isNull _displayParent) exitWith {};
+
 // Display creation
 private _display = _displayParent createDisplay "RscDisplayEmpty";
 _display setVariable [QGVAR(selectProfileType), _this];
