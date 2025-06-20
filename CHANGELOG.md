@@ -1,3 +1,10 @@
+# Changelog for TFAR - ACE Setter - Extended 20.6.2025
+
+1.0.5.0
+- Added partial French translations.
+- Fixed clipboard not working.
+- Minor fixes.
+
 # Changelog for TFAR - ACE Setter - Extended 25.2.2024
 
 1.0.4.0

@@ -1,176 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="tfar_ace_extended">
     <Package name="main">
-        <!-- Functions -->
-        <Key ID="STR_tfar_ace_extended_main_invalidName">
-            <English>The chosen name is invalid!</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_invalidSettings">
-            <English>The given settings are invalid!</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_wrongFormatSettings">
-            <English>The given settings are in the wrong format!</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_overwriteConfirmation">
-            <English>Are you sure you want to overwrite profile '%1'?</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_createImportProfileTitle">
-            <English>CREATE/IMPORT RADIO PROFILE</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_profileName">
-            <English>Profile name:</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_profileNameDesc">
-            <English>Allows you to store multiple radio profiles. Whitespaces will be removed. Profile names are case insensitive. DO NOT USE PUNCTUATION MARKS.</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_profileSettings">
-            <English>Profile settings:</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_profileSettingsDesc">
-            <English>Paste radio profile here, if you are importing. Leave blank if you are creating a new profile.</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_deleteConfirmation">
-            <English>Are you sure you want to delete profile '%1'?</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_invalidProfile">
-            <English>No profile was chosen!</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_aceClipboardDisabled">
-            <English>ACE clipboard is disabled!</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_profileCopiedClipboard">
-            <English>Profile '%1' has been copied to your clipboard.</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_noSettingsLoaded">
-            <English>No settings were loaded!</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_settingsLoadedFromProfile">
-            <English>Loaded %1 settings from profile '%2'.</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_loadConfirmation">
-            <English>Are you sure you want to load from profile '%1'?</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_saveConfirmation">
-            <English>Are you sure you want to save to profile '%1'?</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_noSettingsSaved">
-            <English>No settings were saved!</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_settingsSavedToProfile">
-            <English>Saved %1 settings to profile '%2'.</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_deleteProfileTitle">
-            <English>DELETE RADIO PROFILE</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_exportProfileTitle">
-            <English>EXPORT RADIO PROFILE</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_deleteProfileDesc">
-            <English>Allows you to select a profile to delete.</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_exportProfileDesc">
-            <English>Allows you to select a profile to export to the clipboard.</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_deleteProfile">
-            <English>Delete Profile</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_createImportProfile">
-            <English>Create/Import Profile</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_exportProfile">
-            <English>Export Profile</English>
-        </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_sortByRadioRange">
-            <English>Sort by radio range</English>
-        </Key>
-
-        <!-- ACE interactions -->
-        <Key ID="STR_tfar_ace_extended_main_tfarSetter">
-            <English>TFAR Setter</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_fromLRtoLR">
-            <English>from LR to LR</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_fromVLRtoLR">
-            <English>from VLR to LR</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_fromLRtoVLR">
-            <English>from LR to VLR</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_fromVLRtoVLR">
-            <English>from VLR to VLR</English>
-        </Key>
         <Key ID="STR_tfar_ace_extended_main_SRAndFromLRtoLR">
             <English>SR and from LR to LR</English>
         </Key>
+        <Key ID="STR_tfar_ace_extended_main_airProfile">
+            <English>Air Profile</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_airProfileDesc">
+            <English>Applies the specified profile when you get into crew slots of air vehicles.</English>
+        </Key>
         <Key ID="STR_tfar_ace_extended_main_all">
             <English>All</English>
+            <French>Tous</French>
         </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_setCrewStatus">
-            <English>Set Status to Crew</English>
+        <Key ID="STR_tfar_ace_extended_main_askDeleteConfirmation">
+            <English>Ask Delete Confirmation</English>
+            <French>Demande de confirmation de suppression</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_resetCrewStatus">
-            <English>Set Status to Non-Crew</English>
+        <Key ID="STR_tfar_ace_extended_main_askDeleteConfirmationDesc">
+            <English>Asks the player for confirmation before deleting a profile.</English>
+            <French>Demande au joueur de confirmer la suppression d'un profil.</French>
         </Key>
-
-        <!-- Settings -->
-        <Key ID="STR_tfar_ace_extended_main_functionalityCategory">
-            <English>Funtionality</English>
+        <Key ID="STR_tfar_ace_extended_main_askLoadConfirmation">
+            <English>Ask Load Confirmation</English>
+            <French>Demande de confirmation de chargement</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_vehiclesCategory">
-            <English>Vehicles</English>
+        <Key ID="STR_tfar_ace_extended_main_askLoadConfirmationDesc">
+            <English>Asks the player for confirmation before loading a profile.</English>
+            <French>Demande au joueur une confirmation avant de charger un profil.</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_profilesCategory">
-            <English>Profiles</English>
+        <Key ID="STR_tfar_ace_extended_main_askOverwriteConfirmation">
+            <English>Ask Overwrite Confirmation</English>
+            <French>Demande de confirmation d'écrasement</French>
         </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_enableArsenalSaving">
-            <English>Enable Arsenal Radio settings Saving</English>
+        <Key ID="STR_tfar_ace_extended_main_askOverwriteConfirmationDesc">
+            <English>Asks the player for confirmation before overwriting a profile when importing/making a new profile.</English>
+            <French>Demande au joueur une confirmation avant d'écraser un profil lors de l'importation/la création d'un nouveau profil.</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enableArsenalSavingDesc">
-            <English>Saves the current radio settings before entering the arsenal and applies them when you exit the arsenal (both ACE and BI Arsenals) or after respawning.</English>
+        <Key ID="STR_tfar_ace_extended_main_askSaveConfirmation">
+            <English>Ask Save Confirmation</English>
+            <French>Demander de confirmation de sauvegarder</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enabledFkDetection">
-            <English>Enable FK Server Detection</English>
+        <Key ID="STR_tfar_ace_extended_main_askSaveConfirmationDesc">
+            <English>Asks the player for confirmation before saving a profile.</English>
+            <French>Demande au joueur une confirmation avant d'enregistrer un profil.</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enabledFkDetectionDesc">
-            <English>When loading SR settings on an FK server, it will automatically change the channel to which squad you are in.</English>
+        <Key ID="STR_tfar_ace_extended_main_clipboardDisabled">
+            <English>No clipboard is available!</English>
+            <French>Aucun presse-papiers est disponible !</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enableSrInteractions">
-            <English>Enable 'SR' Interactions</English>
+        <Key ID="STR_tfar_ace_extended_main_createImportProfile">
+            <English>Create/Import Profile</English>
+            <French>Créer/Importer un profil</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enableSrInteractionsDesc">
-            <English>Enables both saving and loading actions for SR.</English>
+        <Key ID="STR_tfar_ace_extended_main_createImportProfileTitle">
+            <English>CREATE/IMPORT RADIO PROFILE</English>
+            <French>CRÉER/IMPORTER UN PROFIL</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enableLrInteractions">
-            <English>Enable 'LR' Interactions</English>
+        <Key ID="STR_tfar_ace_extended_main_crewStatusDefault">
+            <English>Default Crew Status</English>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enableLrInteractionsDesc">
-            <English>Enables both saving and loading actions for LR.</English>
+        <Key ID="STR_tfar_ace_extended_main_crewStatusDefaultDesc">
+            <English>Sets the crew status you are by default when joining a mission. 'On' means you are crew, 'Off' means you aren't.</English>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enableVlrInteractions">
-            <English>Enable 'VLR' Interactions</English>
+        <Key ID="STR_tfar_ace_extended_main_deleteConfirmation">
+            <English>Are you sure you want to delete profile '%1'?</English>
+            <French>Êtes-vous sûr de vouloir supprimer le profil '%1'?</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enableVlrInteractionsDesc">
-            <English>Enables both saving and loading actions for VLR.</English>
+        <Key ID="STR_tfar_ace_extended_main_deleteProfile">
+            <English>Delete Profile</English>
+            <French>Supprimer le profil</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enableSrLrInteractions">
-            <English>Enable 'SR &amp; LR' Interactions</English>
+        <Key ID="STR_tfar_ace_extended_main_deleteProfileDesc">
+            <English>Allows you to select a profile to delete.</English>
+            <French>Permet de sélectionner un profil à supprimer.</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enableSrLrInteractionsDesc">
-            <English>Enables both saving and loading actions for SR &amp; LR.</English>
+        <Key ID="STR_tfar_ace_extended_main_deleteProfileTitle">
+            <English>DELETE RADIO PROFILE</English>
+            <French>SUPPRIMER LE PROFIL</French>
         </Key>
         <Key ID="STR_tfar_ace_extended_main_enableAllInteractions">
             <English>Enable 'All' Interactions</English>
@@ -178,12 +86,87 @@
         <Key ID="STR_tfar_ace_extended_main_enableAllInteractionsDesc">
             <English>Enables both saving and loading actions for all radio types.</English>
         </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_airProfile">
-            <English>Air Profile</English>
+        <Key ID="STR_tfar_ace_extended_main_enableArsenalSaving">
+            <English>Enable Arsenal Radio settings Saving</English>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_airProfileDesc">
-            <English>Applies the specified profile when you get into crew slots of air vehicles.</English>
+        <Key ID="STR_tfar_ace_extended_main_enableArsenalSavingDesc">
+            <English>Saves the current radio settings before entering the arsenal and applies them when you exit the arsenal (both ACE and BI Arsenals) or after respawning.</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enableLrInteractions">
+            <English>Enable 'LR' Interactions</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enableLrInteractionsDesc">
+            <English>Enables both saving and loading actions for LR.</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enableMountingAutoSettings">
+            <English>Enable Mounting Radio settings Saving</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enableMountingAutoSettingsDesc">
+            <English>If you have crew status, this saves the current radio settings before entering a vehicle and applies them when you dismount.</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enableSrInteractions">
+            <English>Enable 'SR' Interactions</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enableSrInteractionsDesc">
+            <English>Enables both saving and loading actions for SR.</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enableSrLrInteractions">
+            <English>Enable 'SR &amp; LR' Interactions</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enableSrLrInteractionsDesc">
+            <English>Enables both saving and loading actions for SR &amp; LR.</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enableVlrInteractions">
+            <English>Enable 'VLR' Interactions</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enableVlrInteractionsDesc">
+            <English>Enables both saving and loading actions for VLR.</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enabledFkDetection">
+            <English>Enable FK Server Detection</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_enabledFkDetectionDesc">
+            <English>When loading SR settings on an FK server, it will automatically change the channel to which squad you are in.</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_exportProfile">
+            <English>Export Profile</English>
+            <French>Exporter le profil</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_exportProfileDesc">
+            <English>Allows you to select a profile to export to the clipboard.</English>
+            <French>Permet de sélectionner un profil à exporter vers le presse-papiers.</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_exportProfileTitle">
+            <English>EXPORT RADIO PROFILE</English>
+            <French>EXPORTER LE PROFIL</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_fromLRtoLR">
+            <English>from LR to LR</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_fromLRtoVLR">
+            <English>from LR to VLR</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_fromVLRtoLR">
+            <English>from VLR to LR</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_fromVLRtoVLR">
+            <English>from VLR to VLR</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_functionalityCategory">
+            <English>Functionality</English>
+            <French>Fonctionnalité</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_invalidName">
+            <English>The chosen name is invalid!</English>
+            <French>Le nom choisi n'est pas valide !</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_invalidProfile">
+            <English>No profile was chosen!</English>
+            <French>Aucun profil n'a été choisi !</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_invalidSettings">
+            <English>The given settings are invalid!</English>
+            <French>Les paramètres donnés ne sont pas valides !</French>
         </Key>
         <Key ID="STR_tfar_ace_extended_main_landProfile">
             <English>Land Profile</English>
@@ -191,51 +174,86 @@
         <Key ID="STR_tfar_ace_extended_main_landProfileDesc">
             <English>Applies the specified profile when you get into crew slots of land vehicles.</English>
         </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_askSaveConfirmation">
-            <English>Ask Save Confirmation</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_askSaveConfirmationDesc">
-            <English>Asks the player for confirmation before saving a profile.</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_askLoadConfirmation">
-            <English>Ask Load Confirmation</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_askLoadConfirmationDesc">
-            <English>Asks the player for confirmation before loading a profile.</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_askDeleteConfirmation">
-            <English>Ask Delete Confirmation</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_askDeleteConfirmationDesc">
-            <English>Asks the player for confirmation before deleting a profile.</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_askOverwriteConfirmation">
-            <English>Ask Overwrite Confirmation</English>
-        </Key>
-        <Key ID="STR_tfar_ace_extended_main_askOverwriteConfirmationDesc">
-            <English>Asks the player for confirmation before overwriting a profile when importing/making a new profile.</English>
-        </Key>
-
         <Key ID="STR_tfar_ace_extended_main_loadColorIcon">
             <English>Icon Color in Messages</English>
+            <French>Couleur de l'icône dans les messages</French>
         </Key>
         <Key ID="STR_tfar_ace_extended_main_loadColorIconDesc">
             <English>Sets the icons in the messages to this color.</English>
+            <French>Définit les icônes des messages dans cette couleur.</French>
         </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_enableMountingAutoSettings">
-            <English>Enable Mounting Radio settings Saving</English>
+        <Key ID="STR_tfar_ace_extended_main_loadConfirmation">
+            <English>Are you sure you want to load from profile '%1'?</English>
+            <French>Êtes-vous sûr de vouloir charger le profil '%1'?</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_enableMountingAutoSettingsDesc">
-            <English>If you have crew status, this saves the current radio settings before entering a vehicle and applies them when you dismount.</English>
+        <Key ID="STR_tfar_ace_extended_main_noSettingsLoaded">
+            <English>No settings were loaded!</English>
+            <French>Aucun paramètre n'a été chargé !</French>
         </Key>
-
-        <Key ID="STR_tfar_ace_extended_main_crewStatusDefault">
-            <English>Default Crew Status</English>
+        <Key ID="STR_tfar_ace_extended_main_noSettingsSaved">
+            <English>No settings were saved!</English>
+            <French>Aucun réglage n'a été sauvegardé !</French>
         </Key>
-        <Key ID="STR_tfar_ace_extended_main_crewStatusDefaultDesc">
-            <English>Sets the crew status you are by default when joining a mission. 'On' means you are crew, 'Off' means you aren't.</English>
+        <Key ID="STR_tfar_ace_extended_main_overwriteConfirmation">
+            <English>Are you sure you want to overwrite profile '%1'?</English>
+            <French>Êtes-vous sûr de vouloir écraser le profil '%1'?</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_profileCopiedClipboard">
+            <English>Profile '%1' has been copied to your clipboard.</English>
+            <French>Le profil '%1' a été copié dans votre presse-papiers.</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_profileName">
+            <English>Profile name:</English>
+            <French>Nom du profil :</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_profileNameDesc">
+            <English>Allows you to store multiple radio profiles. Whitespaces will be removed. Profile names are case insensitive. DO NOT USE PUNCTUATION MARKS.</English>
+            <French>Permet de stocker plusieurs profils. Les espaces blancs seront supprimés. Les noms de profils sont insensibles à la casse. NE PAS UTILISER DE SIGNES DE PONCTUATION.</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_profileSettings">
+            <English>Profile settings:</English>
+            <French>Paramètres du profil :</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_profileSettingsDesc">
+            <English>Paste radio profile here, if you are importing. Leave blank if you are creating a new profile.</English>
+            <French>Collez le profil ici, si vous l'importez. Laissez en blanc si vous créez un nouveau profil.</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_profilesCategory">
+            <English>Profiles</English>
+            <French>Profils</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_resetCrewStatus">
+            <English>Set Status to Non-Crew</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_saveConfirmation">
+            <English>Are you sure you want to save to profile '%1'?</English>
+            <French>Êtes-vous sûr de vouloir enregistrer dans le profil '%1'?</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_setCrewStatus">
+            <English>Set Status to Crew</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_settingsLoadedFromProfile">
+            <English>Loaded %1 settings from profile '%2'.</English>
+            <French>Chargement des paramètres %1 du profil '%2'.</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_settingsSavedToProfile">
+            <English>Saved %1 settings to profile '%2'.</English>
+            <French>Enregistrement des paramètres de %1 dans le profil '%2'.</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_sortByRadioRange">
+            <English>Sort by radio range</English>
+            <French>Trier par portée radio</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_tfarSetter">
+            <English>TFAR Setter</English>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_vehiclesCategory">
+            <English>Vehicles</English>
+            <French>Véhicules</French>
+        </Key>
+        <Key ID="STR_tfar_ace_extended_main_wrongFormatSettings">
+            <English>The given settings are in the wrong format!</English>
+            <French>Les paramètres donnés ne sont pas dans le bon format !</French>
         </Key>
     </Package>
 </Project>

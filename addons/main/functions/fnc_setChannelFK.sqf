@@ -24,14 +24,16 @@ params ["_unit", "_radioSR"];
 if !(alive _unit && {_radioSR != ""}) exitWith {};
 
 // Find in which squad the unit is in and change index accordingly
-private _index = switch (((str group _unit) splitString " ") select 1) do {
+private _index = switch (groupId group _unit) do {
     case "A": {0};
     case "B": {1};
     case "C": {2};
     case "D": {3};
     case "E": {4};
     case "PltHQ": {5};
+    case "MRTR";
     case "KNGT": {6};
+    case "PRHT";
     case "RPTR": {7};
     default {8};
 };

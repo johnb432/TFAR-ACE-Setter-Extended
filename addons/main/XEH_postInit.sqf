@@ -24,6 +24,12 @@ GVAR(crewStatus) = GVAR(crewStatusDefault);
 // If not multiplayer, exit
 if (!isMultiplayer) exitWith {};
 
+GVAR(ACEClipboardLoaded) = if (getNumber (configFile >> "CfgPatches" >> "ace_main" >> "version") >= 3.18) then {
+    [0, 2] select (("ace" callExtension ["version", []]) params [["_versionEx", "", [""]], ["_returnCode", -1, [-1]]])
+} else {
+    parseNumber (isClass (configFile >> "ACE_Extensions" >> "ace_clipboard"))
+};
+
 #include "EventHandlersArsenal.inc.sqf"
 
 // Add changed unit EH; This also triggers on respawn

@@ -4,9 +4,9 @@
 
 ***
 
-**TFAR - ACE Radio Setter - Extended** is a client side. It's a simple Quality of Life mod which allows you to save/load your TFAR radios configuration via ACE Self-Interactions. This is not an official ACE or TFAR mod.
+**TFAR - ACE Radio Setter - Extended** is a client side mod which allows you to save/load your TFAR radios configuration via ACE Self-Interactions. This is not an official ACE or TFAR mod.
 
-The mod stores data locally in `profileNamespace` which means it stores configurations on a per profile basis. This has the added side effect of requiring you to save a new configuration for each profile you make use of, but also ensures you can have different radio configurations for different units etc.
+The mod stores data locally in `profileNamespace` which means it stores configurations on a per player profile basis. This has the added side effect of requiring you to save a new configuration for each profile you make use of, but also ensures you can have different radio configurations for different units etc.
 
 This mod also adds the ability to sort radios by their ranges in the ACE arsenal.
 
@@ -37,7 +37,7 @@ This mod also adds the ability to sort radios by their ranges in the ACE arsenal
 
 * Use the "Create/Import Profile" interaction, which will open a dialog (window). In the top line you must give your profile a name and in the lower line you can give settings to a profile, but it's optional. This array is proprietary (see config.cpp in comment).
 * Now you can save your current radio settings using the "Save" interaction. SR radios will be individually listed, if there are multiple whereas for LR there will always be 1 interaction. You can select which profile you want to save the settings to.
-* You can now load the saved settings using the "Load" interaction.
+* You can now load the saved profile using the "Load" interaction.
 * Use the "Set Status" interaction to change your status as a crew member:
     If you are crew, it will apply radio loadouts in vehicles if they are defined.
     If you aren't crew, it will do nothing.
@@ -55,6 +55,7 @@ TFAR Beta is required, but it is version independent as far as I'm aware. If you
 
 * [Chatter](https://github.com/RTO-Chatter) & [M3ales](https://github.com/M3ales), with edits from [Tirpitz93](https://github.com/Tirpitz93) for TFAR Beta compatibility, for making the [original mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1909836103)
 * Mod by johnb43
+* See AUTHORS.txt
 
 <h2>License</h2>
 
