@@ -242,14 +242,14 @@
         </Key>
         <Key ID="STR_tfar_ace_extended_main_sortByRadioRange">
             <English>Sort by radio range</English>
-            <English>Trier par portée radio</English>
+            <French>Trier par portée radio</French>
         </Key>
         <Key ID="STR_tfar_ace_extended_main_tfarSetter">
             <English>TFAR Setter</English>
         </Key>
         <Key ID="STR_tfar_ace_extended_main_vehiclesCategory">
             <English>Vehicles</English>
-            <English>Véhicules</English>
+            <French>Véhicules</French>
         </Key>
         <Key ID="STR_tfar_ace_extended_main_wrongFormatSettings">
             <English>The given settings are in the wrong format!</English>
