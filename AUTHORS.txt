@@ -1,0 +1,10 @@
+# Map Marker Setter CONTRIBUTOR LIST
+#
+# Feel free to add yourself to this when creating a pull
+# request, optionally including an email address.
+
+# CORE
+johnb43
+
+# CONTRIBUTORS
+Alfred-Neuman
